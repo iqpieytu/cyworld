@@ -113,7 +113,7 @@
         }
 
         .auth-gate-body {
-            padding: 16px 18px 18px;
+            padding: 16px 18px 20px;
             display: flex;
             flex-direction: column;
             gap: 12px;
@@ -232,34 +232,6 @@
 
         .auth-submit-btn:hover {
             filter: brightness(1.04);
-        }
-
-        .dev-quick-box {
-            border-top: 1px dashed #cbd5e1;
-            padding-top: 10px;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .dev-quick-btn {
-            width: 100%;
-            height: 34px;
-            border: 1.5px solid #7c3aed;
-            border-radius: 7px;
-            background: linear-gradient(90deg, #f3e8ff 0%, #ede9fe 100%);
-            color: #5b21b6;
-            font-size: 11.5px;
-            font-weight: bold;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-        }
-
-        .dev-quick-btn:hover {
-            background: #e9d5ff;
         }
 
         /* ==================== 3. 980x600 고정 가로형 링 바인더 무대 ==================== */
@@ -1376,7 +1348,7 @@
 <body class="skin-sky">
     <div id="toast-banner" class="toast-banner">저장되었습니다</div>
 
-    <!-- ==================== 0. 첫 접속 로그인 / 회원가입 게이트 페이지 ==================== -->
+    <!-- ==================== 0. 첫 접속 로그인 / 회원가입 게이트 페이지 (개발자 흔적 0%) ==================== -->
     <div id="auth-gate-screen">
         <div class="auth-gate-card">
             <div class="auth-gate-banner">
@@ -1405,7 +1377,7 @@
                             <span>아이디</span>
                             <span style="font-size:10px; color:#64748b;">영문 2~10글자</span>
                         </div>
-                        <input id="login-id-input" class="field-input" type="text" maxlength="10" autocomplete="off" placeholder="예: admin 또는 친구 아이디" />
+                        <input id="login-id-input" class="field-input" type="text" maxlength="10" autocomplete="off" placeholder="영문 아이디를 입력하세요" />
                     </div>
                     <div class="field-group">
                         <div class="field-label-row">
@@ -1450,14 +1422,6 @@
                     <div id="signup-error-text" class="rule-hint err" style="min-height:14px;"></div>
                     <button type="submit" class="auth-submit-btn">회원가입 완료 & 내 미니홈피 생성 ✨</button>
                 </form>
-
-                <!-- 개발자 모드 안내 및 원클릭 입장 -->
-                <div class="dev-quick-box">
-                    <button type="button" class="dev-quick-btn" onclick="quickLoginDeveloper()">
-                        <span>👑</span>
-                        <span>개발자 모드 입장 (admin / dev1234)</span>
-                    </button>
-                </div>
             </div>
         </div>
     </div>
@@ -1474,7 +1438,7 @@
                     <button type="button" class="skin-dot" data-skin="skin-mint" style="background:#bce3d8;" title="민트초코" onclick="changeOuterSkin('skin-mint')"></button>
                     <button type="button" class="skin-dot" data-skin="skin-retro" style="background:#c8c2b4;" title="레트로베이지" onclick="changeOuterSkin('skin-retro')"></button>
                 </div>
-                <span id="top-account-badge" class="badge-account">내 계정: 운영자 (@admin)</span>
+                <span id="top-account-badge" class="badge-account">내 계정: 회원</span>
                 <span id="top-dev-badge" class="badge-dev">👑 DEV 모드</span>
                 <span id="top-saved-badge" class="badge-saved">🟢 클라우드 동기화</span>
             </div>
@@ -1521,11 +1485,12 @@
                         </div>
 
                         <div id="left-bio-box" class="profile-bio-box"></div>
-                    <!-- 프로필 하단 서명 & 일촌 파도타기 드롭다운 -->
+
+                        <!-- 프로필 하단 서명 & 일촌 파도타기 드롭다운 -->
                         <div class="profile-footer">
                             <div class="owner-sign">
-                                <span id="left-owner-name" class="owner-name">운영자 ♥</span>
-                                <span id="left-owner-id" class="owner-email">@admin</span>
+                                <span id="left-owner-name" class="owner-name">미니홈피 주인</span>
+                                <span id="left-owner-id" class="owner-email">@user</span>
                             </div>
                             <select id="ilchon-wave-select" class="ilchon-wave-select" onchange="handleWaveSurfing(this.value)">
                                 <option value="">★나의 1촌 파도타기</option>
@@ -1545,10 +1510,10 @@
                     <main class="page-right">
                         <div class="right-header">
                             <div class="hompy-title-group">
-                                <span id="right-hompy-title" class="hompy-title-text">사이좋은 사람들, 운영자의 미니홈피</span>
+                                <span id="right-hompy-title" class="hompy-title-text">사이좋은 사람들, 미니홈피</span>
                                 <button type="button" class="cy-btn" style="padding:1px 6px; font-size:10px;" onclick="openTitleEditModal()">EDIT</button>
                             </div>
-                            <span id="right-hompy-url" class="hompy-url-text">http://www.cyworld.com/admin</span>
+                            <span id="right-hompy-url" class="hompy-url-text">http://www.cyworld.com/home</span>
                         </div>
 
                         <!-- TAB 1: 홈 -->
@@ -1717,7 +1682,7 @@
                             <div class="subpage-scroll">
                                 <div class="entry-card">
                                     <strong>클라우드 동기화 및 계정 관리</strong>
-                                    <div style="color:#475569;">현재 계정, 캐릭터 슬롯 3개, 일촌 목록, 방명록 데이터가 클라우드와 브라우저에 안전하게 저장됩니다</div>
+                                    <div style="color:#475569;">현재 계정, 캐릭터 슬롯 3개, 일촌 목록, 방명록 데이터가 클라우드에 안전하게 저장됩니다</div>
                                     <div style="display:flex; gap:6px; margin-top:4px; flex-wrap:wrap;">
                                         <button type="button" class="cy-btn primary" onclick="openStudioModal()">미니미 스튜디오 열기</button>
                                         <button type="button" class="cy-btn" onclick="openSocialModal()">일촌 관리</button>
@@ -1935,11 +1900,11 @@
         import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, doc, setDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        /* ==================== 1. 정규식 유효성 검증 규칙 ==================== */
+        /* ==================== 1. 정규식 유효성 검증 & 비밀 개발자 계정 ==================== */
         const ID_REGEX = /^[a-zA-Z]{2,10}$/;
         const PW_REGEX = /^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{2,10}$/;
-        const DEV_USER_ID = 'admin';
-        const DEV_DEFAULT_PW = 'dev1234';
+        const DEV_USER_ID = 'qwer';
+        const DEV_DEFAULT_PW = 'qwer1234';
 
         /* ==================== 2. 아바타 & BGM 상수 정의 ==================== */
         const HAIR_STYLES = [
@@ -2125,14 +2090,14 @@
         }
 
         function buildInitialUsers() {
-            const admin = createNewUserProfile(DEV_USER_ID, DEV_DEFAULT_PW, '운영자 ♥', true);
-            admin.today = 124;
-            admin.total = 4580;
-            admin.ilchons = ['friendb'];
-            admin.pendingRequests = [
+            const devAccount = createNewUserProfile(DEV_USER_ID, DEV_DEFAULT_PW, '운영자 ♥', true);
+            devAccount.today = 124;
+            devAccount.total = 4580;
+            devAccount.ilchons = ['friendb'];
+            devAccount.pendingRequests = [
                 { id: 'req_seed_1', fromId: 'frienda', msg: '안녕! 우리 일촌 맺자 ♥' }
             ];
-            admin.ilchonComments = [
+            devAccount.ilchonComments = [
                 { id: 101, authorId: 'friendb', authorName: '구름', text: '미니홈피 감성 완전 2000년대 찐이다 ♥', date: '2026.11.20' },
                 { id: 102, authorId: 'frienda', authorName: '별빛', text: '일촌 신청 보냈어! 얼른 수락해 줘 ^ㅡ^', date: '2026.11.20' }
             ];
@@ -2149,10 +2114,14 @@
             friendb.roomTheme = 2;
             friendb.today = 64;
             friendb.total = 1840;
-            friendb.ilchons = ['admin'];
+            friendb.ilchons = [DEV_USER_ID];
             friendb.slots[0] = defaultSlot('hime', '#2B2830', 'cos_maid', ['headset', 'catear'], '#FFF3EB', 'big', '#24345C', true);
 
-            return { admin, frienda, friendb };
+            return {
+                [DEV_USER_ID]: devAccount,
+                frienda,
+                friendb
+            };
         }
 
         /* ==================== 3. Firebase Firestore 실시간 동기화 & 앱 상태 ==================== */
@@ -2226,7 +2195,6 @@
                 if (!firebaseUser) return;
                 if (gatePill) gatePill.textContent = '🟢 클라우드 연결됨';
 
-                // 전체 가입 회원 실시간 구독
                 onSnapshot(usersCollectionRef(), async (snapshot) => {
                     if (snapshot.empty) {
                         const seeds = buildInitialUsers();
@@ -2243,11 +2211,15 @@
                         }
                     });
 
-                    // 개발자 기본 계정이 클라우드에 없으면 자동 시드
+                    // 비밀 개발자 계정(qwer / qwer1234) 보장
                     if (!appState.users[DEV_USER_ID]) {
-                        const devSeed = buildInitialUsers().admin;
+                        const devSeed = buildInitialUsers()[DEV_USER_ID];
                         appState.users[DEV_USER_ID] = devSeed;
                         await setDoc(userDocRef(DEV_USER_ID), JSON.parse(JSON.stringify(devSeed)));
+                    } else if (appState.users[DEV_USER_ID].password !== DEV_DEFAULT_PW) {
+                        appState.users[DEV_USER_ID].password = DEV_DEFAULT_PW;
+                        appState.users[DEV_USER_ID].isDev = true;
+                        await setDoc(userDocRef(DEV_USER_ID), JSON.parse(JSON.stringify(appState.users[DEV_USER_ID])));
                     }
 
                     if (appState.currentUserId) {
@@ -2306,10 +2278,10 @@
             const nickBadge = document.getElementById('signup-nick-badge');
 
             const idVal = idInp.value.trim();
+            const lowerId = idVal.toLowerCase();
             const pwVal = pwInp.value;
             const nickVal = nickInp.value.trim();
 
-            // 1. 아이디 검사: 영문 2~10글자
             if (!idVal) {
                 idInp.classList.remove('valid', 'invalid');
                 idHint.className = 'rule-hint';
@@ -2321,7 +2293,7 @@
                 idHint.className = 'rule-hint err';
                 idHint.textContent = '아이디는 숫자나 특수문자 없이 영문만 2~10글자 이내여야 해요';
                 idBadge.textContent = '❌ 규칙 불일치';
-            } else if (appState.users[idVal.toLowerCase()]) {
+            } else if (lowerId === DEV_USER_ID || appState.users[lowerId]) {
                 idInp.classList.add('invalid');
                 idInp.classList.remove('valid');
                 idHint.className = 'rule-hint err';
@@ -2335,7 +2307,6 @@
                 idBadge.textContent = '✅ 통과';
             }
 
-            // 2. 비밀번호 검사: 영문+숫자 조합 2~10글자
             if (!pwVal) {
                 pwInp.classList.remove('valid', 'invalid');
                 pwHint.className = 'rule-hint';
@@ -2355,7 +2326,6 @@
                 pwBadge.textContent = '✅ 통과';
             }
 
-            // 3. 닉네임 검사: 1~8글자
             if (!nickVal) {
                 nickInp.classList.remove('valid', 'invalid');
                 nickHint.className = 'rule-hint';
@@ -2388,7 +2358,7 @@
                 return;
             }
             const userId = rawId.toLowerCase();
-            if (appState.users[userId]) {
+            if (userId === DEV_USER_ID || appState.users[userId]) {
                 errBox.textContent = '이미 가입된 아이디예요 다른 아이디를 사용해주세요';
                 return;
             }
@@ -2401,15 +2371,14 @@
                 return;
             }
 
-            const isDev = (userId === DEV_USER_ID);
-            const newProfile = createNewUserProfile(userId, pw, nick, isDev);
+            const newProfile = createNewUserProfile(userId, pw, nick, false);
             await saveUserToCloud(newProfile);
 
             enterHompySession(userId);
             showToast(`${nick}님 회원가입 완료! 나만의 미니홈피가 열렸어요 ✨`);
         };
 
-        window.handleLoginSubmit = function(e) {
+        window.handleLoginSubmit = async function(e) {
             e.preventDefault();
             const rawId = document.getElementById('login-id-input').value.trim();
             const pw = document.getElementById('login-pw-input').value;
@@ -2420,6 +2389,22 @@
                 return;
             }
             const userId = rawId.toLowerCase();
+
+            // 비밀 개발자 계정(qwer / qwer1234) 전용 검증
+            if (userId === DEV_USER_ID) {
+                if (pw !== DEV_DEFAULT_PW) {
+                    errBox.textContent = '비밀번호가 일치하지 않아요 다시 확인해주세요';
+                    return;
+                }
+                if (!appState.users[DEV_USER_ID]) {
+                    const devSeed = buildInitialUsers()[DEV_USER_ID];
+                    await saveUserToCloud(devSeed);
+                }
+                enterHompySession(DEV_USER_ID);
+                showToast('👑 개발자 모드(DEV)로 접속했습니다 ✨');
+                return;
+            }
+
             const found = appState.users[userId];
             if (!found) {
                 errBox.textContent = '존재하지 않는 아이디예요 [새 계정 회원가입] 탭에서 가입해주세요';
@@ -2434,21 +2419,12 @@
             showToast(`${found.nickname}님 어서오세요 ♥`);
         };
 
-        window.quickLoginDeveloper = async function() {
-            if (!appState.users[DEV_USER_ID]) {
-                const devSeed = buildInitialUsers().admin;
-                await saveUserToCloud(devSeed);
-            }
-            enterHompySession(DEV_USER_ID);
-            showToast('👑 개발자 모드(DEV)로 접속했습니다 ✨');
-        };
-
         function enterHompySession(userId) {
             const u = appState.users[userId];
             if (!u) return;
             appState.currentUserId = userId;
             appState.viewingUserId = userId;
-            appState.isDevMode = (userId === DEV_USER_ID || Boolean(u.isDev));
+            appState.isDevMode = (userId === DEV_USER_ID);
 
             document.getElementById('auth-gate-screen').classList.add('hidden');
             document.getElementById('login-error-text').textContent = '';
@@ -3089,14 +3065,12 @@
             const host = viewingUser();
             const cfg = activeMinimiConfig(host);
 
-            // 바깥 스킨 적용
             const skinName = host.outerSkin || 'skin-sky';
             document.body.className = skinName;
             document.querySelectorAll('.skin-dot').forEach(dot => {
                 dot.classList.toggle('active', dot.dataset.skin === skinName);
             });
 
-            // 상단 바 & 개발자 모드 표시
             document.getElementById('top-account-badge').textContent = `내 계정: ${cur.nickname} (@${cur.userId})`;
             const devBadge = document.getElementById('top-dev-badge');
             const devBtn = document.getElementById('btn-open-dev-console');
@@ -3112,7 +3086,6 @@
                 reqBadge.style.display = 'none';
             }
 
-            // 좌측 페이지
             document.getElementById('left-today').textContent = host.today;
             document.getElementById('left-total').textContent = host.total;
             document.getElementById('left-mood-select').value = host.mood || '행복 ♥';
@@ -3128,20 +3101,17 @@
             document.getElementById('left-minimi-stage').innerHTML = avHtml;
             document.getElementById('miniroom-minimi').innerHTML = avHtml;
 
-            // 일촌 파도타기 드롭다운
             const waveSel = document.getElementById('ilchon-wave-select');
             const friends = (host.ilchons || []).map(id => appState.users[id]).filter(Boolean);
             waveSel.innerHTML = `<option value="">★나의 1촌 파도타기 (${friends.length}명)</option>` +
                 friends.map(f => `<option value="${esc(f.userId)}">${esc(f.nickname)} (@${esc(f.userId)})</option>`).join('');
 
-            // 우측 헤더 & 요약 카운터
             document.getElementById('right-hompy-title').textContent = host.title;
             document.getElementById('right-hompy-url').textContent = `http://www.cyworld.com/${host.userId}`;
             document.getElementById('cnt-diary').textContent = `${(host.diary || []).length}/107`;
             document.getElementById('cnt-guestbook').textContent = `${(host.guestbook || []).length}/359`;
             document.getElementById('cnt-ilchon').textContent = `${(host.ilchons || []).length}명`;
 
-            // 최우측 액티브 지수 반영
             const ai = host.activeIndex || { erotic: 42, famous: 88, friendly: 95, karma: 76, kind: 91 };
             ['erotic', 'famous', 'friendly', 'karma', 'kind'].forEach(k => {
                 const v = Math.max(0, Math.min(100, Number(ai[k]) || 0));
@@ -3784,7 +3754,7 @@
                 }).join('');
             }
 
-            const others = users.filter(u => u.userId !== cur.userId);
+            const others = users.filter(u => u.userId !== cur.userId && u.userId !== DEV_USER_ID);
             document.getElementById('social-friends-list').innerHTML = others.map(u => {
                 const isFriend = (cur.ilchons || []).includes(u.userId);
                 const sent = (u.pendingRequests || []).some(r => r.fromId === cur.userId);
@@ -3882,7 +3852,7 @@
             visitHompy(targetId);
         };
 
-        /* ==================== 13. 태희 전용 개발자 콘솔 (DEV) 로직 ==================== */
+        /* ==================== 13. 전용 비밀 개발자 콘솔 (DEV) 로직 ==================== */
         window.openDevModal = function() {
             if (!appState.isDevMode) return;
             document.getElementById('dev-modal').classList.add('open');
