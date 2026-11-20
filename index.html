@@ -99,6 +99,42 @@
             overflow-y: auto;
         }
         #auth-screen.hidden { display: none; }
+        .bookmark-col .bm-tab { height: 31px; font-size: 10.5px; }
+        .hompy-right { display: flex; align-items: center; gap: 8px; min-width: 0; }
+        .bgmbar { display: inline-flex; align-items: center; gap: 3px; border: 1px solid #cbd5e1; background: #f8fafc; padding: 1px 4px; border-radius: 4px; font-size: 10px; max-width: 250px; min-width: 0; color: #334155; }
+        .bgmbar .lb { color: #2563eb; font-weight: 800; white-space: nowrap; }
+        .bgmbar .sg { flex: 1; white-space: nowrap; overflow: hidden; min-width: 60px; max-width: 150px; color: #334155; }
+        .bgmbar .sg span { display: inline-block; padding-left: 100%; animation: bgmq 9s linear infinite; }
+        .bgmbar.paused .sg span { animation-play-state: paused; padding-left: 0; }
+        @keyframes bgmq { to { transform: translateX(-100%); } }
+        .bgmbar button { border: 1px solid #94a3b8; background: #fff; color: #1e293b; font-size: 9px; padding: 0 4px; line-height: 14px; height: 16px; border-radius: 3px; }
+        .juke-row { display: grid; grid-template-columns: 22px 20px 1fr 90px 120px; gap: 5px; align-items: center; padding: 5px 6px; border-bottom: 1px dashed #cbd5e1; font-size: 11.5px; color: #1e293b; }
+        .juke-row.cur { background: #fff7ed; }
+        .juke-row input[type=text] { width: 100%; border: 1px solid #cbd5e1; border-radius: 3px; padding: 2px 4px; font-size: 11px; background: #fff; color: #1e293b; }
+        .juke-row .ok { color: #16a34a; font-weight: bold; }
+        .juke-prog { font-size: 10px; color: #c2410c; }
+        #btn-notes.has-new { background: linear-gradient(90deg, #fff7d6, #ffe0f0); border-color: #f59e0b; color: #9a3412; animation: noteglow 1.2s ease-in-out infinite; }
+        @keyframes noteglow { 0%,100% { box-shadow: 0 0 0 0 rgba(255, 196, 0, .0); } 50% { box-shadow: 0 0 12px 3px rgba(255, 196, 0, .75); } }
+        .note-item { display: flex; gap: 8px; align-items: center; padding: 8px 10px; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; color: #1e293b; cursor: pointer; text-align: left; width: 100%; font-size: 12px; }
+        .note-item.unread { border-color: #f59e0b; background: #fffbeb; box-shadow: 0 0 10px rgba(255, 196, 0, .45); }
+        .note-item .dot { width: 8px; height: 8px; border-radius: 50%; background: #f59e0b; flex-shrink: 0; }
+        .note-paper { background: repeating-linear-gradient(180deg, #fffdf7 0 22px, #f1e7d2 22px 23px); border: 1px solid #e7d9bc; border-radius: 6px; padding: 12px 14px; min-height: 140px; font-size: 13px; line-height: 23px; color: #3b2f2f; white-space: pre-wrap; word-break: break-all; }
+        .note-paper .cur { display: inline-block; width: 7px; background: #3b2f2f; animation: blinkc 0.8s steps(1) infinite; }
+        @keyframes blinkc { 50% { opacity: 0; } }
+        .prof-table { width: 100%; border-collapse: collapse; font-size: 12px; color: #1e293b; }
+        .prof-table th { width: 90px; text-align: left; background: #f1f5f9; color: #334155; padding: 6px 8px; border-bottom: 1px solid #e2e8f0; font-weight: bold; }
+        .prof-table td { padding: 6px 8px; border-bottom: 1px solid #e2e8f0; background: #fff; }
+        .prof-table input, .prof-table textarea { width: 100%; border: 1px solid #cbd5e1; border-radius: 3px; padding: 3px 5px; font-size: 11.5px; background: #fff; color: #1e293b; }
+        .board-post { border: 1px solid #e2e8f0; border-radius: 6px; background: #fff; color: #1e293b; margin-bottom: 6px; }
+        .board-post .bh { display: flex; justify-content: space-between; padding: 6px 9px; background: #f8fafc; border-bottom: 1px solid #e2e8f0; font-size: 11.5px; }
+        .board-post .bb { padding: 7px 9px; font-size: 11.5px; white-space: pre-wrap; line-height: 1.5; }
+        #rm-grid .rm-lock img { opacity: .45; filter: grayscale(.6); }
+        #rm-grid .rm-lock small { color: #b45309; font-weight: bold; }
+        .photo-up { align-items: center; }
+        .photo-pick { position: relative; white-space: nowrap; }
+        #photo-pick-preview { width: 34px; height: 34px; object-fit: cover; border: 2px solid #fff; box-shadow: 0 0 0 1px #94a3b8; border-radius: 3px; }
+        .ph-img { width: 100%; height: 100%; object-fit: cover; display: block; cursor: zoom-in; }
+        .ph-loading { font-size: 10px; color: #64748b; }
         .entry-title { font-size: 12px; font-weight: bold; color: #1e3a5f; }
         .entry-mine { display: flex; flex-direction: column; gap: 6px; }
         .entry-home { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; border-radius: 10px; border: 2px solid #ffb066; background: #fff7ee; color: #2b2b30; font-size: 13px; text-align: left; }
@@ -158,7 +194,7 @@
         }
         .auth-tab.active {
             background: #ffffff;
-            color: #ff6b00;
+            color: #c2410c;
             box-shadow: 0 2px 6px rgba(0,0,0,0.08);
         }
 
@@ -400,7 +436,7 @@
             border-bottom: 1px dotted #cbd5e1;
             flex-shrink: 0;
         }
-        .visit-bar .today { color: #f97316; font-weight: bold; }
+        .visit-bar .today { color: #ea580c; font-weight: bold; }
         .visit-bar .total { color: #0f172a; font-weight: bold; }
 
         .minimi-card {
@@ -861,7 +897,7 @@
         .avk .avslots button.on{border-color:var(--acc);background:#fff}
         .avk .avslots img{width:48px;height:48px}
         .avk .avslots span{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:700}
-        .avk .avslots em{font-style:normal;font-size:10px;color:var(--acc)}
+        .avk .avslots em{font-style:normal;font-size:10px;color:#c2410c}
         .avk .avslots .add{justify-content:center;color:var(--muted);border:2px dashed #DCDBE0;background:none}
         .avk .avslots .add b{font-size:26px;line-height:48px}
         .avk .avdel{display:block;margin:8px auto 0;font-size:12px;color:#B4475B;padding:6px 10px;background:none;border:none}
@@ -931,6 +967,7 @@
 /* ===== 3D 아바타 메이커 (Travel 플래너에서 가져옴) ===== */
 var AVK=(function(){
 const LS={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+var ACCT="";const AK=b=>ACCT?b+":"+ACCT:b;
 const str=(v,n)=>String(v==null?"":v).slice(0,n);
 const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const toast=(m)=>{try{(window.showToast||console.log)(m)}catch(e){}};
@@ -5707,7 +5744,7 @@ function avSlotsSave() {
 AVSL.list[AVSL.cur] = {
 ...AV
 };
-LS.set("tripPlanner.avslots", JSON.stringify(AVSL));
+LS.set(AK("tripPlanner.avslots"), JSON.stringify(AVSL));
 }
 function avSlotGo(i) {
 AVSL.list[AVSL.cur] = {
@@ -5859,41 +5896,44 @@ const pinDec=t=>{t=String(t||"").trim();if(t.startsWith("EJ1:"))t=t.slice(4);ret
 function applyPin(p,quiet){
 if(!p||typeof p!=="object")return;
 AV=vAv({...p});AVSL.list[AVSL.cur]={...AV};avSlotsSave();
-LS.set("tripPlanner.avatar",JSON.stringify(AV));avDirty=false;
+LS.set(AK("tripPlanner.avatar"),JSON.stringify(AV));avDirty=false;
 if(typeof window.onAvatarSaved==="function")window.onAvatarSaved();
 if(!quiet)toast("📌 고정된 아바타를 불러왔어요");
 render();
 }
 async function pinSaveDB(p){
-if(!PINREF)return;
-try{if(p)await PINREF.set({pinned:p,at:Date.now()});else await PINREF.delete();PINDB=p?"ok":"";}catch(e){PINDB="fail";}
+try{if(typeof window.onAvatarPinned==="function")PINDB=window.onAvatarPinned(p?{...p}:null)?"ok":"";}catch(e){PINDB="fail";}
 render();
 }
 function pinNow(){
 const nm=$("#avNm");if(nm)AV.nm=nm.value.trim().slice(0,12)||AV.nm;
-PIN={...AV};LS.set("avk.pinned",JSON.stringify(PIN));
+PIN={...AV};LS.set(AK("avk.pinned"),JSON.stringify(PIN));
 saveAv(true);toast("📌 이 아바타로 고정했어요 · 다시 들어와도 그대로예요");
 pinSaveDB(PIN);
 }
-function unpin(){PIN=null;try{localStorage.removeItem("avk.pinned")}catch(e){}toast("고정을 해제했어요");pinSaveDB(null);render();}
-async function boot(){
-if(PIN)applyPin(PIN,true);
-try{
-if(!window.claude||typeof window.claude.use!=="function")return;
-const db=await window.claude.use("db"),user=await window.claude.use("user");
-if(!db||!user)return;
-const id=await user.id();if(!id)return;
-PINREF=db.doc("data/users/"+id+"/avatar");
-const snap=await PINREF.get();
-if(snap.exists){const d=snap.data();if(d&&d.pinned){PIN=d.pinned;LS.set("avk.pinned",JSON.stringify(PIN));PINDB="ok";applyPin(PIN,true);}}
-else if(PIN){pinSaveDB(PIN);}
+function unpin(){PIN=null;try{localStorage.removeItem(AK("avk.pinned"))}catch(e){}toast("고정을 해제했어요");pinSaveDB(null);render();}
+const AV_DEF={skin:0,sex:"f",hair:"bob",hc:1,eye:"big",mouth:"smile",acc:"none",out:"tee",sh:3,bot:"jeans",bc:4,shoe:"sneaker",nm:""};
+function boot(){if(PIN)applyPin(PIN,true);}
+function useAccount(id,u){
+ACCT=String(id||"");
+const J=k=>{try{return JSON.parse(LS.get(k)||"null")}catch(e){return null}};
+let slots=J(AK("tripPlanner.avslots")),pin=J(AK("avk.pinned"));
+if(!slots&&ACCT==="euiju")slots=J("tripPlanner.avslots");
+if(!pin&&ACCT==="euiju")pin=J("avk.pinned");
+if(u&&u.avatarPinned)pin=u.avatarPinned;
+const fromSlots=slots&&Array.isArray(slots.list)&&slots.list.length?slots.list[Math.min(slots.list.length-1,slots.cur|0)]:null;
+AV=vAv(pin||(u&&u.avatar3d)||fromSlots||AV_DEF)||vAv(AV_DEF);
+if(fromSlots){const list=slots.list.slice(0,3).map(vAv).filter(Boolean);const cur=Math.max(0,Math.min(list.length-1,slots.cur|0));AVSL.list=list.length?list:[{...AV}];AVSL.cur=list.length?cur:0;}
+else{AVSL.list=[{...AV}];AVSL.cur=0;}
+AVSL.list[AVSL.cur]={...AV};
+PIN=pin?vAv(pin):null;PINDB=PIN&&u&&u.avatarPinned?"ok":"";avDirty=false;
+LS.set(AK("tripPlanner.avslots"),JSON.stringify(AVSL));LS.set(AK("tripPlanner.avatar"),JSON.stringify(AV));
 render();
-}catch(e){}
 }
 function saveAv(quiet){
 const nm=$("#avNm");
 if(nm&&!quiet)AV.nm=nm.value.trim().slice(0,12)||AV.nm;
-LS.set("tripPlanner.avatar",JSON.stringify(AV));
+LS.set(AK("tripPlanner.avatar"),JSON.stringify(AV));
 avDirty=false;avSlotsSave();
 toast(quiet?`🧑 ${AV.nm||"캐릭터 "+(AVSL.cur+1)}(으)로 바꿨어요`:"아바타를 저장했어요 🧑");
 if(typeof window.onAvatarSaved==="function")window.onAvatarSaved();
@@ -5950,7 +5990,7 @@ if(k==="now")pinNow();
 else if(k==="off")unpin();
 else if(k==="load"&&PIN)applyPin(PIN);
 else if(k==="copy"){const t=$("#pinCode");if(t){t.select();let ok=false;try{if(navigator.clipboard){navigator.clipboard.writeText(t.value);ok=true}}catch(e){}if(!ok){try{ok=document.execCommand("copy")}catch(e){}}toast(ok?"코드를 복사했어요":"코드를 길게 눌러 직접 복사해 주세요");}}
-else if(k==="import"){const t=$("#pinIn");try{const p=pinDec(t&&t.value);if(!p||!p.hair)throw 0;PIN=vAv(p);LS.set("avk.pinned",JSON.stringify(PIN));applyPin(PIN);pinSaveDB(PIN);toast("📌 코드로 불러와서 고정했어요");}catch(e){toast("코드가 올바르지 않아요");}}
+else if(k==="import"){const t=$("#pinIn");try{const p=pinDec(t&&t.value);if(!p||!p.hair)throw 0;PIN=vAv(p);LS.set(AK("avk.pinned"),JSON.stringify(PIN));applyPin(PIN);pinSaveDB(PIN);toast("📌 코드로 불러와서 고정했어요");}catch(e){toast("코드가 올바르지 않아요");}}
 return;}
 }
 function onChange(e){if(e.target.id==="avNm"){AV.nm=e.target.value.trim().slice(0,12);avDirty=true;}}
@@ -5959,8 +5999,9 @@ mount(el){if(ROOT){ROOT.removeEventListener("click",onClick);ROOT.removeEventLis
 unmount(){if(ROOT){ROOT.removeEventListener("click",onClick);ROOT.removeEventListener("change",onChange);ROOT.innerHTML="";}ROOT=null;},
 url(a){return avUrl(a||AV)}, svg(a,s){return avSVG(a||AV,s)}, get(){return {...AV}},
 sprite(w,h,yaw){try{const r=AV3D.sprite({...AV,nm:""},w,h,yaw==null?0.3:yaw,true);return r?pixelize(r):null}catch(e){return null}},
+spriteOf(av,w,h,yaw){try{const v=vAv(av);if(!v)return null;const r=AV3D.sprite({...v,nm:""},w,h,yaw==null?0.3:yaw,true);return r?pixelize(r):null}catch(e){return null}},
 mount3D(el){try{return AV3D.mount(el,{...AV,nm:""})}catch(e){return false}},
-isDirty(){return avDirty}, boot, pinned(){return PIN}
+isDirty(){return avDirty}, boot, useAccount, pinned(){return PIN}, account(){return ACCT}
 };
 })();
 </script>
@@ -6043,7 +6084,9 @@ var MR = (function () {
     mint: { n: '민트 체크', a: '#DDF3EA', b: '#C6EADB', pat: 'check' },
     sky: { n: '하늘 구름', a: '#D7ECFF', b: '#FFFFFF', pat: 'cloud' },
     lav: { n: '라벤더 하트', a: '#ECE4FF', b: '#D6C8FF', pat: 'heart' },
-    night: { n: '별밤 네이비', a: '#2B3566', b: '#FFF3A8', pat: 'star' }
+    night: { n: '별밤 네이비', a: '#2B3566', b: '#FFF3A8', pat: 'star' },
+    glam: { n: '✨ 골드 스타 벽지', a: '#3A1D52', b: '#FFD36E', pat: 'star', sp: true },
+    rose: { n: '✨ 로즈골드 하트', a: '#FFD9E2', b: '#E8A26A', pat: 'heart', sp: true }
   };
   const FLOORS = {
     wood: { n: '원목 마루', a: '#D9A86C', b: '#C99558', pat: 'plank' },
@@ -6051,7 +6094,9 @@ var MR = (function () {
     check: { n: '체크 타일', a: '#F6F2EA', b: '#E3D9C8', pat: 'check' },
     pinkc: { n: '핑크 카펫', a: '#F7C9D6', b: '#F2B7C8', pat: 'carpet' },
     tile: { n: '하늘 타일', a: '#E4F1FB', b: '#C9DFF0', pat: 'check' },
-    grass: { n: '잔디', a: '#9ED37A', b: '#86C564', pat: 'carpet' }
+    grass: { n: '잔디', a: '#9ED37A', b: '#86C564', pat: 'carpet' },
+    marble: { n: '✨ 펄 대리석', a: '#FBF6FF', b: '#E7D9F2', pat: 'check', sp: true },
+    stagef: { n: '✨ 무대 바닥', a: '#2A2440', b: '#3A3358', pat: 'plank', sp: true }
   };
 
   /* ---------- items ---------- */
@@ -6072,6 +6117,112 @@ var MR = (function () {
     boombox: { n: '카세트 라디오', w: 1, d: 1, draw(k) { const b = k.box(0.1, 0.3, 0.8, 0.4, 0, 9, '#E25B5B'); k.face(b, k.front(), 0.08, 0.38, 2, 7, '#2B2B2E'); k.face(b, k.front(), 0.62, 0.92, 2, 7, '#2B2B2E'); k.face(b, k.front(), 0.42, 0.58, 3, 6, '#BFE6FF'); k.box(0.3, 0.45, 0.4, 0.06, 9, 3, '#3A3A40'); } },
     cushion: { n: '방석', w: 1, d: 1, draw(k) { k.box(0.1, 0.1, 0.8, 0.8, 0, 3, '#FFD36E'); k.box(0.42, 0.42, 0.16, 0.16, 3, 1, '#F2A73A'); } },
     fridge: { n: '미니 냉장고', w: 1, d: 1, draw(k) { const b = k.box(0.1, 0.1, 0.8, 0.8, 0, 20, '#BFE3F2'); k.face(b, k.front(), 0.1, 0.9, 13, 13.6, '#8FBBD0'); k.face(b, k.front(), 0.75, 0.82, 6, 11, '#FFFFFF'); } },
+    /* ===== 상점 테마 가구 (도토리로 구매) ===== */
+    spc_rocket: { n: '미니 우주선', w: 1, d: 1, draw(k) {
+      k.box(0.3, 0.3, 0.4, 0.4, 0, 26, '#F4F4F6'); const b = k.box(0.3, 0.3, 0.4, 0.4, 0, 26, '#F4F4F6'); k.face(b, k.front(), 0.3, 0.7, 14, 19, '#7FD3FF');
+      k.box(0.35, 0.35, 0.3, 0.3, 26, 6, '#E25B5B'); k.box(0.42, 0.42, 0.16, 0.16, 32, 4, '#E25B5B');
+      k.box(0.15, 0.4, 0.15, 0.2, 0, 8, '#E25B5B'); k.box(0.7, 0.4, 0.15, 0.2, 0, 8, '#E25B5B'); k.box(0.38, 0.38, 0.24, 0.24, -1, 2, '#FFB347');
+    } },
+    spc_ufo: { n: '네온 UFO 소파', w: 2, d: 1, draw(k) {
+      k.box(0.1, 0.1, 1.8, 0.8, 0, 4, '#5B4B8A'); k.box(0, 0, 2, 1, 4, 4, '#8A7AD0'); k.box(0.2, 0.2, 1.6, 0.6, 8, 3, '#7FE3FF');
+      k.box(0.1, 0.05, 1.8, 0.25, 8, 9, '#8A7AD0'); for (let i = 0; i < 5; i++) k.box(0.2 + i * 0.37, 0.95, 0.1, 0.05, 5, 2, ['#FFE27A', '#FF8FB3', '#7FE3FF'][i % 3]);
+    } },
+    spc_planet: { n: '토성 무드등', w: 1, d: 1, draw(k) {
+      k.box(0.35, 0.35, 0.3, 0.3, 0, 2, '#3A3A40'); k.box(0.47, 0.47, 0.06, 0.06, 2, 12, '#3A3A40');
+      k.box(0.25, 0.25, 0.5, 0.5, 14, 13, '#F2A65A'); k.box(0.3, 0.3, 0.4, 0.4, 19, 2, '#E0874A'); k.flat(0.02, 0.02, 0.96, 0.96, 20, '#FFE7A3'); k.box(0.25, 0.25, 0.5, 0.5, 21, 6, '#F2A65A');
+    } },
+    spc_robot: { n: '도트 우주 로봇', w: 1, d: 1, draw(k) {
+      k.box(0.3, 0.35, 0.15, 0.3, 0, 7, '#8A8F99'); k.box(0.55, 0.35, 0.15, 0.3, 0, 7, '#8A8F99');
+      const b = k.box(0.25, 0.3, 0.5, 0.4, 7, 10, '#B9BEC8'); k.face(b, k.front(), 0.3, 0.7, 3, 7, '#E25B5B');
+      const hd = k.box(0.28, 0.32, 0.44, 0.36, 17, 8, '#C9CED8'); k.face(hd, k.front(), 0.2, 0.4, 3, 5, '#7FE3FF'); k.face(hd, k.front(), 0.6, 0.8, 3, 5, '#7FE3FF');
+      k.box(0.47, 0.47, 0.06, 0.06, 25, 5, '#3A3A40'); k.box(0.44, 0.44, 0.12, 0.12, 30, 2, '#FFE27A');
+    } },
+    grd_bench: { n: '하얀 정원 벤치', w: 2, d: 1, draw(k) {
+      for (const [x, y] of [[0.1, 0.2], [1.75, 0.2], [0.1, 0.7], [1.75, 0.7]]) k.box(x, y, 0.12, 0.12, 0, 7, '#E8E4DC');
+      for (let i = 0; i < 3; i++) k.box(0.05, 0.25 + i * 0.2, 1.9, 0.14, 7, 2, '#FFFFFF');
+      for (let i = 0; i < 2; i++) k.box(0.05, 0.15, 1.9, 0.08, 12 + i * 5, 2, '#FFFFFF'); k.box(0.05, 0.15, 0.1, 0.08, 7, 12, '#E8E4DC'); k.box(1.85, 0.15, 0.1, 0.08, 7, 12, '#E8E4DC');
+    } },
+    grd_tulip: { n: '무지개 튤립 화단', w: 2, d: 1, draw(k) {
+      k.box(0, 0.1, 2, 0.8, 0, 5, '#A0663E'); k.box(0.05, 0.15, 1.9, 0.7, 5, 1, '#5B3A26');
+      const cs = ['#E25B5B', '#F5D24A', '#FF8FB3', '#C084FC', '#F2A73A', '#FFFFFF'];
+      for (let i = 0; i < 6; i++) { const x = 0.15 + i * 0.3, y = 0.3 + (i % 2) * 0.25; k.box(x + 0.05, y + 0.05, 0.05, 0.05, 6, 7, '#4E9A45'); k.box(x, y, 0.15, 0.15, 13, 5, cs[i]); }
+    } },
+    grd_fountain: { n: '요정 미니 분수대', w: 2, d: 2, draw(k) {
+      k.box(0, 0, 2, 2, 0, 6, '#D9DCE3'); k.box(0.15, 0.15, 1.7, 1.7, 5, 1, '#7FC8F2'); k.box(0.85, 0.85, 0.3, 0.3, 6, 12, '#D9DCE3');
+      k.box(0.65, 0.65, 0.7, 0.7, 18, 3, '#D9DCE3'); k.box(0.75, 0.75, 0.5, 0.5, 20, 1, '#9FD8FA'); k.box(0.92, 0.92, 0.16, 0.16, 21, 8, '#BFE6FF'); k.box(0.95, 0.95, 0.1, 0.1, 29, 2, '#FFFFFF');
+    } },
+    grd_picnic: { n: '딸기 피크닉 매트', w: 2, d: 2, flat: true, draw(k) {
+      k.flat(0, 0, 2, 2, 0, '#E25B5B', (x, y) => (((x >> 2) + (y >> 2)) % 2) ? [255, 255, 255] : [226, 91, 91]);
+      k.box(0.6, 0.6, 0.4, 0.3, 0, 3, '#C99558'); k.box(1.2, 0.9, 0.2, 0.2, 0, 3, '#E25B5B'); k.box(1.25, 0.92, 0.1, 0.06, 3, 1, '#5BAE52');
+    } },
+    cat_tower: { n: '3단 캣타워', w: 1, d: 1, draw(k) {
+      k.box(0.05, 0.05, 0.9, 0.9, 0, 3, '#C9A27A'); k.box(0.2, 0.2, 0.15, 0.15, 3, 34, '#E8D5B5'); k.box(0.65, 0.65, 0.15, 0.15, 3, 22, '#E8D5B5');
+      k.box(0.1, 0.1, 0.8, 0.8, 14, 2, '#F2B7C8'); k.box(0.45, 0.45, 0.5, 0.5, 25, 2, '#F2B7C8'); k.box(0.05, 0.05, 0.55, 0.55, 37, 4, '#F2B7C8'); k.box(0.6, 0.15, 0.25, 0.25, 41, 0, '#F2B7C8');
+    } },
+    cat_sofa: { n: '고양이 귀 소파', w: 2, d: 1, draw(k) {
+      k.box(0, 0, 2, 1, 0, 7, '#F7A1BC'); k.box(0, 0, 2, 0.3, 7, 10, '#EE89A9'); k.box(0.3, 0.35, 1.4, 0.55, 7, 2, '#FFD1DE');
+      k.box(0.15, 0.05, 0.3, 0.2, 17, 6, '#EE89A9'); k.box(1.55, 0.05, 0.3, 0.2, 17, 6, '#EE89A9'); k.box(0.22, 0.12, 0.16, 0.1, 19, 3, '#FFD1DE'); k.box(1.62, 0.12, 0.16, 0.1, 19, 3, '#FFD1DE');
+    } },
+    cat_bowl: { n: '생선 밥그릇 & 쿠션', w: 1, d: 1, draw(k) {
+      k.box(0.05, 0.05, 0.6, 0.6, 0, 3, '#9FD4FF'); k.box(0.15, 0.15, 0.4, 0.4, 3, 1, '#CFEBFF');
+      k.box(0.6, 0.6, 0.32, 0.32, 0, 3, '#E25B5B'); k.box(0.66, 0.66, 0.2, 0.2, 3, 1, '#C9CCD2'); k.box(0.68, 0.72, 0.16, 0.06, 4, 1, '#7FA8C9');
+    } },
+    caf_counter: { n: '에스프레소 바', w: 2, d: 1, draw(k) {
+      const b = k.box(0, 0.1, 2, 0.8, 0, 16, '#7A4E33'); k.face(b, k.front(), 0.05, 0.95, 4, 6, '#5E3A25'); k.box(0, 0.05, 2, 0.9, 16, 2, '#E8D9C4');
+      k.box(0.3, 0.2, 0.6, 0.5, 18, 11, '#C9CCD2'); k.box(0.4, 0.3, 0.4, 0.3, 29, 2, '#9A9AA2'); k.box(0.5, 0.65, 0.2, 0.08, 20, 3, '#3A3A40');
+      k.box(1.3, 0.4, 0.15, 0.15, 18, 4, '#FFFFFF'); k.box(1.55, 0.35, 0.15, 0.15, 18, 4, '#FFFFFF');
+    } },
+    caf_menu: { n: '초크 메뉴판', w: 1, d: 1, draw(k) {
+      k.box(0.2, 0.45, 0.06, 0.06, 0, 26, '#8A5A3B'); k.box(0.74, 0.45, 0.06, 0.06, 0, 26, '#8A5A3B');
+      const b = k.box(0.15, 0.4, 0.7, 0.12, 8, 20, '#2F3A33'); const f = k.front();
+      k.face(b, f, 0.15, 0.6, 15, 16, '#F4F4F6'); k.face(b, f, 0.15, 0.8, 11, 12, '#F4F4F6'); k.face(b, f, 0.15, 0.5, 7, 8, '#FFB3C7'); k.face(b, f, 0.15, 0.7, 3, 4, '#F4F4F6');
+    } },
+    caf_plant: { n: '몬스테라 화분', w: 1, d: 1, draw(k) {
+      k.box(0.3, 0.3, 0.4, 0.4, 0, 9, '#F2E6D6'); k.box(0.35, 0.35, 0.3, 0.3, 9, 1, '#5B3A26');
+      for (const [x, y, z] of [[0.1, 0.3, 12], [0.55, 0.15, 16], [0.25, 0.55, 20], [0.55, 0.5, 13], [0.35, 0.25, 24]]) k.box(x, y, 0.38, 0.32, z, 4, z > 18 ? '#5BAE52' : '#3E8E41');
+    } },
+    /* ===== ✨ 스페셜 (의주 전용) ===== */
+    stage: { n: '✨ 반짝 무대', w: 3, d: 2, sp: true, draw(k) {
+      k.box(0, 0, 3, 2, 0, 6, '#F28CB0', { tpat: (x, y) => ((x + y) % 7 === 0) ? [255, 246, 200] : [247, 160, 195] });
+      k.box(0.12, 0.12, 2.76, 1.76, 6, 1, '#FFD9E6');
+      const cols = ['#FFE27A', '#9FD4FF', '#FF8FB3', '#C9A7FF'];
+      for (let i = 0; i < 6; i++) { k.box(0.1 + i * 0.48, 1.86, 0.18, 0.14, 1, 3, cols[i % 4]); k.box(2.86, 0.1 + i * 0.3, 0.14, 0.14, 1, 3, cols[(i + 2) % 4]); }
+      for (const [x, y] of [[0.4, 0.4], [1.6, 0.9], [2.4, 0.5], [0.9, 1.4]]) k.box(x, y, 0.08, 0.08, 7, 1, '#FFFFFF');
+    } },
+    mic: { n: '✨ 골드 스탠드 마이크', w: 1, d: 1, sp: true, draw(k) {
+      k.box(0.3, 0.3, 0.4, 0.4, 0, 2, '#2B2B2E'); k.box(0.47, 0.47, 0.06, 0.06, 2, 30, '#D9B45A');
+      k.box(0.42, 0.4, 0.16, 0.2, 32, 7, '#E8C76A'); k.box(0.4, 0.38, 0.2, 0.24, 38, 4, '#B9B9BE'); k.box(0.44, 0.42, 0.06, 0.06, 41, 1, '#FFFFFF');
+    } },
+    trophy: { n: '✨ 대상 트로피', w: 1, d: 1, sp: true, draw(k) {
+      k.box(0.15, 0.15, 0.7, 0.7, 0, 10, '#3A2A4A'); k.box(0.2, 0.2, 0.6, 0.6, 10, 2, '#5A4370');
+      k.box(0.42, 0.42, 0.16, 0.16, 12, 6, '#D9B45A'); k.box(0.28, 0.28, 0.44, 0.44, 18, 10, '#F5CE52'); k.box(0.2, 0.42, 0.1, 0.16, 22, 5, '#E8B93A'); k.box(0.7, 0.42, 0.1, 0.16, 22, 5, '#E8B93A');
+      k.box(0.36, 0.36, 0.12, 0.12, 25, 2, '#FFF6C8'); k.box(0.45, 0.45, 0.1, 0.1, 28, 4, '#FFE27A');
+    } },
+    disco: { n: '✨ 미러볼', w: 1, d: 1, sp: true, draw(k) {
+      k.box(0.35, 0.35, 0.3, 0.3, 0, 2, '#2B2B2E'); k.box(0.47, 0.47, 0.06, 0.06, 2, 26, '#9A9AA2');
+      k.box(0.2, 0.2, 0.6, 0.6, 28, 14, '#C9CCD2', { tpat: (x, y) => ((x >> 1) + (y >> 1)) % 2 ? [255, 255, 255] : [160, 200, 255], lc: '#E4C9F5', rc: '#9FD4FF' });
+      for (const [x, y, z, c] of [[0.25, 0.3, 33, '#FFFFFF'], [0.6, 0.55, 36, '#FF8FB3'], [0.4, 0.7, 31, '#FFE27A']]) k.box(x, y, 0.08, 0.08, z, 2, c);
+    } },
+    piano: { n: '✨ 화이트 그랜드피아노', w: 2, d: 2, sp: true, draw(k) {
+      for (const [x, y] of [[0.1, 0.1], [1.75, 0.1], [0.9, 1.75]]) k.box(x, y, 0.15, 0.15, 0, 11, '#E8E2EC');
+      k.box(0, 0, 2, 1.9, 11, 7, '#FFFFFF'); k.box(0.1, 0.1, 1.6, 1.4, 18, 1, '#F2EEF6');
+      const kb = k.box(0, 1.55, 2, 0.35, 15, 2, '#FFFFFF'); for (let i = 0; i < 9; i++) k.box(0.1 + i * 0.2, 1.6, 0.08, 0.15, 17, 1, '#2B2B2E');
+      k.box(0.2, 0.15, 1.4, 0.06, 18, 14, '#F7F3FA'); k.box(1.4, 0.4, 0.3, 0.2, 18, 3, '#FF8FB3');
+    } },
+    carpet: { n: '✨ 레드카펫', w: 1, d: 4, flat: true, sp: true, draw(k) { k.flat(0, 0, 1, 4, 0, '#D6283E'); k.flat(0, 0, 0.1, 4, 0, '#F5CE52'); k.flat(0.9, 0, 0.1, 4, 0, '#F5CE52'); k.flat(0.2, 0.3, 0.6, 0.06, 0, '#FF6B7E'); k.flat(0.2, 3.6, 0.6, 0.06, 0, '#FF6B7E'); } },
+    wreath: { n: '✨ 축하 화환', w: 1, d: 1, sp: true, draw(k) {
+      k.box(0.2, 0.45, 0.06, 0.06, 0, 30, '#8A5A3B'); k.box(0.74, 0.45, 0.06, 0.06, 0, 30, '#8A5A3B');
+      const fl = ['#FF8FB3', '#FFFFFF', '#FFE27A', '#F28CB0', '#C9A7FF'];
+      for (let i = 0; i < 14; i++) { const a = i / 14 * Math.PI * 2; k.box(0.42 + Math.cos(a) * 0.32, 0.45, 0.16, 0.12, 32 + Math.sin(a) * 9, 4, fl[i % 5]); }
+      k.box(0.36, 0.42, 0.28, 0.12, 30, 6, '#FFF6C8'); k.box(0.4, 0.44, 0.06, 0.08, 18, 12, '#E25B5B');
+    } },
+    vanity: { n: '✨ 할리우드 조명 화장대', w: 2, d: 1, sp: true, draw(k) {
+      k.box(0, 0, 2, 0.8, 0, 13, '#FFE3EC'); const f = k.front(); const b0 = k.box(0, 0, 2, 0.8, 0, 13, '#FFE3EC'); k.face(b0, f, 0.47, 0.53, 4, 10, '#E8B93A');
+      const m = k.box(0.25, 0.05, 1.5, 0.12, 13, 24, '#F5CE52'); k.face(m, f, 0.08, 0.92, 3, 21, '#CFEBFF'); k.face(m, f, 0.12, 0.35, 12, 19, '#EAF6FF');
+      for (let i = 0; i < 5; i++) { k.box(0.2 + i * 0.37, 0.02, 0.1, 0.1, 37, 3, '#FFF6C8'); }
+      for (let j = 0; j < 4; j++) { k.box(0.12, 0.02, 0.1, 0.1, 15 + j * 6, 3, '#FFF6C8'); k.box(1.78, 0.02, 0.1, 0.1, 15 + j * 6, 3, '#FFF6C8'); }
+      k.box(0.4, 0.4, 0.15, 0.15, 13, 5, '#FF5C8A'); k.box(1.3, 0.35, 0.2, 0.2, 13, 3, '#C9A7FF');
+    } },
     cat: { n: '삼색냥', w: 1, d: 1, draw(k) { k.box(0.2, 0.35, 0.6, 0.35, 0, 6, '#FFFFFF'); k.box(0.2, 0.35, 0.25, 0.35, 3, 3, '#F2A73A'); k.box(0.6, 0.35, 0.22, 0.35, 0, 6, '#3A3A40'); k.box(0.15, 0.4, 0.25, 0.25, 6, 5, '#FFFFFF'); k.box(0.15, 0.4, 0.06, 0.06, 11, 2, '#F2A73A'); k.box(0.34, 0.4, 0.06, 0.06, 11, 2, '#3A3A40'); } }
   };
   const WIT = {
@@ -6080,6 +6231,22 @@ var MR = (function () {
     clock: { n: '벽시계', w: 1, draw(q) { q.rect(0.1, 34, 0.8, 14, '#3A3A40'); q.rect(0.2, 36, 0.6, 10, '#FFFFFF'); q.rect(0.48, 40, 0.06, 5, '#3A3A40'); q.rect(0.48, 40, 0.25, 1, '#E25B5B'); } },
     frame: { n: '액자', w: 2, draw(q) { q.rect(0, 24, 2, 18, '#C99558'); q.rect(0.15, 26, 1.7, 14, '#BFE3F2'); q.rect(0.15, 26, 1.7, 5, '#9ED37A'); q.rect(1.2, 34, 0.3, 4, '#FFF3A8'); } },
     lights: { n: '꼬마전구', w: 4, draw(q) { for (let i = 0; i < 9; i++) q.rect(i * 0.45, 52 - (i % 2) * 2, 0.18, 3, ['#FFD36E', '#FF8FB3', '#9FD4FF'][i % 3]); q.rect(0, 53, 4, 0.8, '#6B6B70'); } },
+    neon: { n: '✨ 네온 하트', w: 3, sp: true, draw(q) {
+      q.rect(0.05, 20, 2.9, 32, '#1E1530');
+      for (let i = 0; i < 64; i++) { const t = i / 64 * Math.PI * 2; const x = 16 * Math.pow(Math.sin(t), 3), y = 13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t);
+        const u = 1.5 + x * 0.07, v = 34 + y * 0.8; q.rect(u - 0.06, v - 0.8, 0.16, 1.9, '#FF4FA0'); q.rect(u - 0.02, v - 0.3, 0.07, 0.9, '#FFD1EA'); }
+      q.rect(0.25, 46, 0.35, 0.9, '#7FE3FF'); q.rect(0.37, 44.5, 0.1, 3.9, '#7FE3FF');
+      q.rect(2.45, 24, 0.35, 0.9, '#FFE27A'); q.rect(2.57, 22.5, 0.1, 3.9, '#FFE27A');
+    } },
+    spot: { n: '✨ 무대 조명', w: 4, sp: true, draw(q) {
+      q.rect(0, 54, 4, 1.5, '#3A3A40');
+      const cs = ['#FF8FB3', '#FFE27A', '#7FE3FF', '#C9A7FF'];
+      for (let i = 0; i < 4; i++) { q.rect(0.25 + i * 0.95, 48, 0.45, 6, '#2B2B2E'); q.rect(0.3 + i * 0.95, 46, 0.35, 2.5, cs[i]); for (let j = 1; j < 6; j++) q.rect(0.32 + i * 0.95 - j * 0.02, 46 - j * 5, 0.3 + j * 0.06, 2, cs[i]); }
+    } },
+    stars: { n: '✨ 골드 별 가랜드', w: 4, sp: true, draw(q) {
+      q.rect(0, 51, 4, 0.6, '#C9A75A');
+      for (let i = 0; i < 7; i++) { const u = 0.15 + i * 0.55, v = 44 - (i % 2) * 3; q.rect(u + 0.12, v, 0.12, 6, '#F5CE52'); q.rect(u, v + 2, 0.36, 2, '#F5CE52'); q.rect(u + 0.15, v + 2.5, 0.06, 1, '#FFF6C8'); }
+    } },
     shelfw: { n: '벽 선반', w: 2, draw(q) { q.rect(0, 30, 2, 2, '#B98A5E'); q.rect(0.2, 32, 0.4, 7, '#7CCB6A'); q.rect(0.8, 32, 0.3, 9, '#4A88C7'); q.rect(1.2, 32, 0.5, 5, '#F28CB0'); } }
   };
 
@@ -6345,6 +6512,7 @@ var MR = (function () {
                 <button type="button" id="btn-back-dev" class="cy-btn dev" style="display:none;" onclick="backToDevAccount()">👑 운영자로</button>
                 <button type="button" id="btn-my-home" class="cy-btn" onclick="goMyHome()">내 홈피</button>
                 <button type="button" id="btn-ilchon-top" class="cy-btn primary" onclick="switchTab('ilchon')">일촌찾기 <span id="req-count-pill"></span></button>
+                <button type="button" id="btn-notes" class="cy-btn" onclick="openNotes()">✉ 쪽지 <span id="notes-count"></span></button>
                 <button type="button" id="btn-send-inquiry" class="cy-btn pink" onclick="openInquirySendModal()">💌 문의하기</button>
                 <button type="button" id="btn-auth-switch" class="cy-btn" onclick="logoutUser()">로그아웃</button>
             </div>
@@ -6353,7 +6521,7 @@ var MR = (function () {
         <!-- 전체 공지 티커 -->
         <div id="global-notice-bar" class="notice-strip">
             <div style="display:flex; align-items:center; gap:6px; min-width:0;">
-                <span style="background:#f59e0b; color:#fff; font-size:10px; font-weight:bold; padding:1px 6px; border-radius:999px; flex-shrink:0;">📢 전체공지</span>
+                <span style="background:#c2410c; color:#fff; font-size:10px; font-weight:bold; padding:1px 6px; border-radius:999px; flex-shrink:0;">📢 전체공지</span>
                 <strong id="global-notice-text" style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">쉿! 너만 알아 🤫 매일 출석하고 도토리로 5가지 도트 테마를 꾸며보세요 ✨</strong>
             </div>
             <button type="button" id="btn-notice-shortcut" class="cy-btn amber" style="display:none; padding:1px 6px; font-size:10px;" onclick="openDevModal('sample')">공지 수정</button>
@@ -6416,12 +6584,13 @@ var MR = (function () {
                         <div class="owner-footer">
                             <div style="display:flex; justify-content:space-between; align-items:center; font-size:11.5px;">
                                 <strong id="owner-nick-label" style="color:#0f172a;">닉네임</strong>
-                                <span id="owner-id-label" style="font-size:10px; color:#f97316;">@id</span>
+                                <span id="owner-id-label" style="font-size:10px; color:#c2410c;">@id</span>
                             </div>
                             <select id="wave-select" class="cy-btn" style="width:100%; text-align:left; font-size:10.5px;" onchange="surfToFriend(this.value)">
                                 <option value="">★ 나의 1촌 파도타기</option>
                             </select>
                             <button type="button" id="guest-wave-btn" class="cy-btn guest-locked" style="display:none; width:100%; text-align:left; font-size:10.5px;" onclick="notifyGuestLoginRequired()">★ 나의 1촌 파도타기</button>
+                            <button type="button" id="btn-note-to-host" class="cy-btn pink" style="display:none; width:100%; font-size:10.5px; margin-top:4px;" onclick="composeNote(host().userId)">✉ 이 사람에게 쪽지 보내기</button>
                         </div>
                     </aside>
 
@@ -6439,7 +6608,7 @@ var MR = (function () {
                                 <span id="hompy-title-text" class="hompy-title">사이좋은 사람들, 미니홈피</span>
                                 <button type="button" id="btn-edit-title" class="cy-btn" style="padding:1px 6px; font-size:10px;" onclick="editHompyTitle()">수정</button>
                             </div>
-                            <span id="hompy-url-text" style="font-size:10.5px; color:#64748b; flex-shrink:0;">cyworld-nu.vercel.app</span>
+                            <span class="hompy-right"><span id="bgm-bar" class="bgmbar"></span><span id="hompy-url-text" style="font-size:10.5px; color:#64748b; flex-shrink:0;">secret-diary</span></span>
                         </div>
 
                         <div id="guest-banner-inline" class="guest-banner-inline">
@@ -6451,11 +6620,11 @@ var MR = (function () {
                         <section id="view-home" class="tab-view active">
                             <div class="home-summary-grid">
                                 <div class="mini-card">
-                                    <div class="sub-title"><span>Updated news</span><span style="font-size:9.5px; color:#94a3b8;">TODAY</span></div>
+                                    <div class="sub-title"><span>Updated news</span><span style="font-size:9.5px; color:#64748b;">TODAY</span></div>
                                     <div style="font-size:11px; color:#334155; display:flex; flex-direction:column; gap:2px;">
                                         <div><span style="background:#ec4899; color:#fff; font-size:9px; padding:1px 4px; border-radius:2px;">다이어리</span> 오늘도 비밀일기 감성 충전 완료 ✨</div>
                                         <div><span style="background:#3b82f6; color:#fff; font-size:9px; padding:1px 4px; border-radius:2px;">사진첩</span> 추억의 도트 엽서 업데이트</div>
-                                        <div><span style="background:#f59e0b; color:#fff; font-size:9px; padding:1px 4px; border-radius:2px;">미니룸</span> 5종 테마 & 도트 가구 상점 오픈</div>
+                                        <div><span style="background:#c2410c; color:#fff; font-size:9px; padding:1px 4px; border-radius:2px;">미니룸</span> 5종 테마 & 도트 가구 상점 오픈</div>
                                     </div>
                                 </div>
                                 <div class="mini-card">
@@ -6473,7 +6642,7 @@ var MR = (function () {
                                 <canvas id="pixel-room-canvas" width="480" height="190" onclick="moveMinimiInRoom(event)" title="바닥을 클릭하면 미니미가 걸어가요!"></canvas>
                                 <div class="room-bottom-bar">
                                     <span id="room-theme-caption" style="font-weight:bold; color:#1e3a8a;">현재 테마: 학생 방 (바닥 클릭 시 미니미 이동)</span>
-                                    <span style="display:flex;gap:4px"><button type="button" id="btn-room-edit" class="cy-btn pink" style="padding:2px 7px; font-size:10.5px;" onclick="openRoomEditor()">🛋 미니룸 꾸미기</button><button type="button" id="btn-room-shop-go" class="cy-btn amber" style="padding:2px 7px; font-size:10.5px;" onclick="switchTab('shop')">🌰 상점</button></span>
+                                    <span style="display:flex;gap:4px"><button type="button" id="btn-room-sample" class="cy-btn dev" style="display:none; padding:2px 7px; font-size:10.5px;" onclick="publishSecretRoomAsSample()">📤 샘플로 올리기</button><button type="button" id="btn-room-edit" class="cy-btn pink" style="padding:2px 7px; font-size:10.5px;" onclick="openRoomEditor()">🛋 미니룸 꾸미기</button><button type="button" id="btn-room-shop-go" class="cy-btn amber" style="padding:2px 7px; font-size:10.5px;" onclick="switchTab('shop')">🌰 상점</button></span>
                                 </div>
                             </div>
 
@@ -6514,14 +6683,9 @@ var MR = (function () {
 
                         <!-- TAB 3: 사진첩 -->
                         <section id="view-photo" class="tab-view">
-                            <form id="photo-add-panel" class="inline-form" onsubmit="postPhotoEntry(event)">
-                                <select id="photo-preset-select" style="max-width:155px;">
-                                    <option value="sunset">🌅 노을 지는 옥탑방</option>
-                                    <option value="space_walk">🚀 우주 유영 기념샷</option>
-                                    <option value="tulip_picnic">🌷 봄날의 튤립 소풍</option>
-                                    <option value="cat_nap">🐱 식빵 굽는 고양이</option>
-                                    <option value="latte_art">☕ 딸기케이크와 라떼</option>
-                                </select>
+                            <form id="photo-add-panel" class="inline-form photo-up" onsubmit="postPhotoEntry(event)">
+                                <label class="cy-btn photo-pick" id="photo-pick-label">📷 사진 고르기<input id="photo-file-input" type="file" accept="image/*" onchange="onPhotoPicked(this)" hidden /></label>
+                                <img id="photo-pick-preview" alt="" style="display:none;" />
                                 <input id="photo-caption-input" type="text" maxlength="50" placeholder="사진 설명을 적어주세요" />
                                 <button type="submit" class="cy-btn primary">사진 올리기</button>
                             </form>
@@ -6573,8 +6737,39 @@ var MR = (function () {
                                     <strong style="color:#1e3a8a;">✏️ 왼쪽 프로필 소개글 수정</strong>
                                     <button type="button" class="cy-btn primary" style="padding:2px 8px;" onclick="saveBioText()">소개글 저장</button>
                                 </div>
-                                <textarea id="bio-textarea" rows="2" style="width:100%; padding:5px; border:1px solid #94a3b8; border-radius:4px; font-size:11.5px; resize:none;"></textarea>
+                                <textarea id="bio-textarea" rows="3" style="width:100%; min-height:62px; flex-shrink:0; padding:6px 7px; border:1px solid #94a3b8; border-radius:4px; font-size:11.5px; line-height:1.45; resize:none; background:#fff; color:#1e293b; overflow-y:auto;"></textarea>
                             </div>
+                        </section>
+
+                        <!-- TAB: 프로필 -->
+                        <section id="view-profile" class="tab-view">
+                            <div id="profile-view" class="scroll-area"></div>
+                        </section>
+
+                        <!-- TAB: 쥬크박스 -->
+                        <section id="view-jukebox" class="tab-view">
+                            <div class="entry-box" style="flex-shrink:0; background:#f8fbff;">
+                                <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
+                                    <strong style="color:#1e3a8a;">♬ Jukebox · 쥬크박스</strong>
+                                    <span style="font-size:10px; color:#475569;">☑ 체크한 곡이 배경음악으로 차례대로 재생돼요</span>
+                                </div>
+                            </div>
+                            <div id="jukebox-list" class="scroll-area"></div>
+                            <form id="jukebox-add" class="inline-form" onsubmit="addJukeSong(event)">
+                                <input id="juke-title" type="text" maxlength="40" placeholder="곡명 (예: Love Love Love)" />
+                                <input id="juke-artist" type="text" maxlength="30" placeholder="아티스트" style="max-width:120px;" />
+                                <button type="submit" class="cy-btn primary">선곡 (🌰6)</button>
+                            </form>
+                        </section>
+
+                        <!-- TAB: 게시판 -->
+                        <section id="view-board" class="tab-view">
+                            <form id="board-form" class="entry-box" onsubmit="postBoard(event)" style="flex-shrink:0; gap:5px;">
+                                <input id="board-title" class="cy-input" type="text" maxlength="40" placeholder="게시글 제목" />
+                                <textarea id="board-text" rows="2" maxlength="600" placeholder="내용을 적어주세요" style="width:100%; padding:5px; border:1px solid #94a3b8; border-radius:4px; font-size:11.5px; resize:none; background:#fff; color:#1e293b;"></textarea>
+                                <button type="submit" class="cy-btn primary" style="align-self:flex-end;">게시글 올리기 (+2🌰)</button>
+                            </form>
+                            <div id="board-list" class="scroll-area"></div>
                         </section>
 
                         <!-- TAB 7: 개발자 전용 문의함 -->
@@ -6595,12 +6790,32 @@ var MR = (function () {
             <nav class="bookmark-col" aria-label="미니홈피 책갈피 메뉴">
                 <button type="button" class="bm-tab active" data-tab="home" onclick="switchTab('home')">홈</button>
                 <button type="button" id="bm-tab-shop" class="bm-tab" data-tab="shop" onclick="switchTab('shop')">상점</button>
+                <button type="button" id="bm-tab-profile" class="bm-tab" data-tab="profile" onclick="switchTab('profile')">프로필</button>
+                <button type="button" id="bm-tab-jukebox" class="bm-tab" data-tab="jukebox" onclick="switchTab('jukebox')">쥬크박스</button>
                 <button type="button" id="bm-tab-photo" class="bm-tab" data-tab="photo" onclick="switchTab('photo')">사진첩</button>
                 <button type="button" id="bm-tab-ilchon" class="bm-tab" data-tab="ilchon" onclick="switchTab('ilchon')">일촌찾기</button>
                 <button type="button" id="bm-tab-guestbook" class="bm-tab" data-tab="guestbook" onclick="switchTab('guestbook')">방명록</button>
                 <button type="button" id="bm-tab-diary" class="bm-tab" data-tab="diary" onclick="switchTab('diary')">다이어리</button>
+                <button type="button" id="bm-tab-board" class="bm-tab" data-tab="board" onclick="switchTab('board')">게시판</button>
                 <button type="button" id="bm-tab-devinquiries" class="bm-tab dev-tab" data-tab="devinquiries" onclick="switchTab('devinquiries')">문의함</button>
             </nav>
+        </div>
+    </div>
+
+    <div id="notes-modal" class="modal-bg" onclick="if(event.target===this)closeNotes()">
+        <div class="modal-box" style="max-width:520px;">
+            <div class="modal-head"><span id="notes-head">✉ 쪽지함</span><button type="button" class="cy-btn" onclick="closeNotes()">닫기 ✕</button></div>
+            <div id="notes-body" class="modal-body"></div>
+        </div>
+    </div>
+
+    <div id="photo-lightbox" class="modal-bg" onclick="if(event.target===this)closePhotoLightbox()">
+        <div class="modal-box" style="max-width:640px;">
+            <div class="modal-head"><span id="photo-lb-title">📷 사진첩</span><button type="button" class="cy-btn" onclick="closePhotoLightbox()">닫기 ✕</button></div>
+            <div class="modal-body" style="align-items:center;">
+                <img id="photo-lb-img" alt="" style="max-width:100%; max-height:62dvh; border:3px solid #fff; box-shadow:0 2px 10px rgba(0,0,0,.2); background:#f1f5f9;" />
+                <div id="photo-lb-cap" style="font-size:12.5px; color:#1e293b; text-align:center;"></div>
+            </div>
         </div>
     </div>
 
@@ -7091,9 +7306,9 @@ var MR = (function () {
                 placedFurniture: ['stu_desk', 'stu_bed', 'stu_bookshelf'],
                 minimi: { hairStyle: 'long', hairColor: '#3b2820', outfit: 'sailor', acc: 'ribbon' },
                 photos: [
-                    { id: 'ph_1', preset: 'sunset', caption: '노을 지는 우리들의 도트 미니룸 🌅', date: todayDateString() },
-                    { id: 'ph_2', preset: 'cat_nap', caption: '식빵 굽는 삼색냥이랑 오후 낮잠 🐱', date: todayDateString() },
-                    { id: 'ph_3', preset: 'latte_art', caption: '달콤한 딸기케이크 티타임 ☕', date: todayDateString() }
+                    { id: 'ph_1', preset: 'sunset', caption: '노을 지는 우리들의 도트 미니룸 🌅', date: retroDate() },
+                    { id: 'ph_2', preset: 'cat_nap', caption: '식빵 굽는 삼색냥이랑 오후 낮잠 🐱', date: retroDate() },
+                    { id: 'ph_3', preset: 'latte_art', caption: '달콤한 딸기케이크 티타임 ☕', date: retroDate() }
                 ],
                 ilchons: [],
                 pendingRequests: [],
@@ -7500,6 +7715,7 @@ var MR = (function () {
             if (userId !== SECRET_ID) session.secretFromDev = false;
             session.isDev = (userId === DEV_ID) || (userId === SECRET_ID && !!session.secretFromDev);
             session.isGuest = false;
+            if (window.AVK && AVK.useAccount) { AVK.useAccount(userId, DB.users[userId]); ROOM_SPRITE = null; MAIN_KEY = ''; }
             document.getElementById('auth-screen').classList.add('hidden');
             fitLandscapeStage();
             switchTab('home');
@@ -7519,6 +7735,11 @@ var MR = (function () {
                 persistLocalOnly();
             }
             if (!DB.users[SECRET_ID].isSecret) { DB.users[SECRET_ID].isSecret = true; persistLocalOnly(); }
+            const E = DB.users[SECRET_ID]; let ch = false;
+            if (!Array.isArray(E.bgm)) { E.bgm = [{ id: 'sg_lovelovelove', title: 'Love Love Love', artist: '', on: true, hasFile: false }, { id: 'sg_ytellme', title: 'Y (Please Tell Me Why)', artist: '', on: true, hasFile: false }]; ch = true; }
+            if (!Array.isArray(E.notes)) { E.notes = [{ id: 'nt_rune_first', fromId: 'rune', fromNick: '루네', text: '의주야, 오늘 진짜 수고 많았어!\n무대 위에서 반짝반짝하던 거 다 봤어 ✨\n쉿, 이건 너만 알아 🤫', date: todayDateString(), read: false }]; ch = true; }
+            if (!E.profile) { E.profile = { name: '의주', birth: '', blood: '', mbti: '', like: '', dream: '', intro: '' }; ch = true; }
+            if (ch) persistLocalOnly();
         }
         window.openSecretHome = function() {
             if (!session.isDev) return;
@@ -7800,6 +8021,10 @@ var MR = (function () {
 
         let MAIN_SCENE = null, MAIN_KEY = '', EDIT_SCENE = null, EDIT_ROOM = null, RM_TAB = 'item';
         const THEME2ROOM = { student: ['cream', 'wood'], space: ['night', 'dark'], garden: ['sky', 'grass'], cat: ['pink', 'pinkc'], cafe: ['cream', 'dark'] };
+        function applyThemeToRoom(u, themeId) {
+            const t = THEME2ROOM[themeId]; if (!t) return;
+            const R = JSON.parse(JSON.stringify(MR.norm(roomOf(u)))); R.wall = t[0]; R.floor = t[1]; u.room2 = R; MAIN_KEY = '';
+        }
         function roomOf(u) {
             if (u.room2) return u.room2;
             const t = THEME2ROOM[u.roomTheme] || THEME2ROOM.student, d = MR.defRoom();
@@ -7821,9 +8046,10 @@ var MR = (function () {
             const R = roomOf(h); const resized = MAIN_SCENE.fit(); const key = h.userId + MAIN_SCENE.W + JSON.stringify(R);
             MAIN_SCENE.o.bubble = (h.room2 && h.room2.bubble) || '';
             if (key !== MAIN_KEY) { MAIN_SCENE.setRoom(R); MAIN_KEY = key; }
-            MAIN_SCENE.setSprite(isMyHome() ? (getRoomSprite() || oldMinimiSprite(h.minimi)) : oldMinimiSprite(h.minimi));
+            MAIN_SCENE.setSprite(isMyHome() ? (getRoomSprite() || oldMinimiSprite(h.minimi)) : (spriteForUser(h) || oldMinimiSprite(h.minimi)));
             MAIN_SCENE.idle();
             const eb = document.getElementById('btn-room-edit'); if (eb) eb.style.display = isMyHome() ? 'inline-block' : 'none';
+            const sb = document.getElementById('btn-room-sample'); if (sb) sb.style.display = (isMyHome() && session.currentUserId === SECRET_ID && session.isDev) ? 'inline-block' : 'none';
         }
         window.moveMinimiInRoom = function(e) {
             if (!MAIN_SCENE) return; const p = MAIN_SCENE.toRoom(e);
@@ -7843,6 +8069,44 @@ var MR = (function () {
         window.closeRoomEditor = function(save) {
             if (save && EDIT_ROOM) { const u = me(); u.room2 = EDIT_ROOM; saveDB(u.userId); MAIN_KEY = ''; renderPixelMiniroom(); showToast('미니룸을 저장했어요 🛋'); }
             document.getElementById('room-modal').classList.remove('open'); EDIT_SCENE = null;
+        };
+        function SP_OK() { return session.currentUserId === SECRET_ID; }
+        /* 상점 가구 ↔ 도트 미니룸 가구 연결 */
+        const SHOP2MR = { stu_desk: 'desk', stu_bed: 'bed', stu_bookshelf: 'shelf', stu_rug: 'rug', cat_calico: 'cat', caf_table: 'table' };
+        const MR2SHOP = {}; FURNITURE_CATALOG.forEach(f => { MR2SHOP[SHOP2MR[f.id] || f.id] = f; });
+        const mrKeyOf = fid => SHOP2MR[fid] || fid;
+        function shopOwns(u, f) { return !f || f.price === 0 || (u && (u.ownedFurniture || []).includes(f.id)); }
+        function mrItemLocked(k) { const f = MR2SHOP[k]; return !!(f && !shopOwns(me(), f)); }
+        function isFurniturePlaced(u, fid) { const k = mrKeyOf(fid); return (roomOf(u).items || []).some(i => i.k === k); }
+        function placeFurnitureInRoom(u, fid) {
+            const k = mrKeyOf(fid); if (!MR.IT[k]) return false;
+            const R = JSON.parse(JSON.stringify(MR.norm(roomOf(u))));
+            for (let r = 0; r < MR.N; r++) for (let c = 0; c < MR.N; c++) { const it = { k, c, r, rot: 0 }; if (MR.fits(R, it, -1)) { R.items.push(it); u.room2 = R; return true; } }
+            return false;
+        }
+        function removeFurnitureFromRoom(u, fid) {
+            const k = mrKeyOf(fid); const R = JSON.parse(JSON.stringify(MR.norm(roomOf(u))));
+            R.items = R.items.filter(i => i.k !== k); u.room2 = R;
+        }
+        let SAMPLE_ARM = 0;
+        window.publishSecretRoomAsSample = function() {
+            if (session.currentUserId !== SECRET_ID || !session.isDev) return;
+            const btn = document.getElementById('btn-room-sample');
+            if (Date.now() - SAMPLE_ARM > 3500) {
+                SAMPLE_ARM = Date.now();
+                if (btn) btn.textContent = '한 번 더 누르면 올라가요';
+                setTimeout(() => { if (btn && Date.now() - SAMPLE_ARM >= 3400) btn.textContent = '📤 샘플로 올리기'; }, 3500);
+                showToast('게스트가 보는 샘플 미니룸이 의주 방으로 바뀌어요. 한 번 더 누르면 올라가요');
+                return;
+            }
+            SAMPLE_ARM = 0;
+            if (btn) btn.textContent = '📤 샘플로 올리기';
+            const src = DB.users[SECRET_ID], dev = DB.users[DEV_ID];
+            if (!src || !dev) return;
+            dev.room2 = JSON.parse(JSON.stringify(MR.norm(roomOf(src))));
+            dev.roomTheme = src.roomTheme || dev.roomTheme;
+            saveDB(DEV_ID);
+            showToast('📤 의주 미니룸을 게스트 샘플로 올렸어요!');
         };
         function rmSync() { EDIT_SCENE.setRoom(EDIT_ROOM); rmCtrl(); }
         function roomEditClick(e) {
@@ -7873,6 +8137,7 @@ var MR = (function () {
             (sel.t === 'wall' ? EDIT_ROOM.wall2 : EDIT_ROOM.items).splice(sel.i, 1); EDIT_SCENE.sel = null; rmSync();
         };
         window.rmAdd = function(k, wall) {
+            if (!wall && mrItemLocked(k)) { const f = MR2SHOP[k]; showToast(`🔒 '${f.name}'은(는) 상점에서 도토리 ${f.price}개로 살 수 있어요`); return; }
             if (wall) { EDIT_ROOM.wall2.push({ k, side: 'R', u: 0.5 }); EDIT_SCENE.sel = { t: 'wall', i: EDIT_ROOM.wall2.length - 1 }; rmSync(); return; }
             for (let r = 0; r < MR.N; r++) for (let c = 0; c < MR.N; c++) { const it = { k, c, r, rot: 0 }; if (MR.fits(EDIT_ROOM, it, -1)) { EDIT_ROOM.items.push(it); EDIT_SCENE.sel = { t: 'item', i: EDIT_ROOM.items.length - 1 }; rmSync(); return; } }
             showToast('방에 빈 자리가 없어요');
@@ -7891,10 +8156,10 @@ var MR = (function () {
         function rmRender() {
             document.getElementById('rm-tabs').innerHTML = [['item', '🪑 가구'], ['wall2', '🖼 벽 장식'], ['wall', '🧱 벽지'], ['floor', '🟫 바닥']].map(([k, t]) => `<button class="${RM_TAB === k ? 'on' : ''}" onclick="rmTab('${k}')">${t}</button>`).join('');
             const g = document.getElementById('rm-grid');
-            if (RM_TAB === 'item') g.innerHTML = Object.entries(MR.IT).map(([k, d]) => `<button onclick="rmAdd('${k}')"><img src="${rmThumb(k)}"><span>${d.n}</span></button>`).join('');
-            else if (RM_TAB === 'wall2') g.innerHTML = Object.entries(MR.WIT).map(([k, d]) => `<button onclick="rmAdd('${k}',1)"><img src="${rmThumb(k, 1)}"><span>${d.n}</span></button>`).join('');
-            else if (RM_TAB === 'wall') g.innerHTML = Object.entries(MR.WALLS).map(([k, d]) => `<button class="${EDIT_ROOM.wall === k ? 'on' : ''}" onclick="rmSet('wall','${k}')"><div class="rm-sw" style="background:repeating-linear-gradient(90deg,${d.a} 0 8px,${d.b} 8px 12px)"></div><span>${d.n}</span></button>`).join('');
-            else g.innerHTML = Object.entries(MR.FLOORS).map(([k, d]) => `<button class="${EDIT_ROOM.floor === k ? 'on' : ''}" onclick="rmSet('floor','${k}')"><div class="rm-sw" style="background:repeating-linear-gradient(45deg,${d.a} 0 8px,${d.b} 8px 12px)"></div><span>${d.n}</span></button>`).join('');
+            if (RM_TAB === 'item') g.innerHTML = Object.entries(MR.IT).filter(([k, d]) => !d.sp || SP_OK()).map(([k, d]) => { const lk = mrItemLocked(k), f = MR2SHOP[k]; return `<button class="${lk ? 'rm-lock' : ''}" onclick="rmAdd('${k}')"><img src="${rmThumb(k)}"><span>${d.n}${lk ? `<br><small>🔒 🌰${f.price}</small>` : ''}</span></button>`; }).join('');
+            else if (RM_TAB === 'wall2') g.innerHTML = Object.entries(MR.WIT).filter(([k, d]) => !d.sp || SP_OK()).map(([k, d]) => `<button onclick="rmAdd('${k}',1)"><img src="${rmThumb(k, 1)}"><span>${d.n}</span></button>`).join('');
+            else if (RM_TAB === 'wall') g.innerHTML = Object.entries(MR.WALLS).filter(([k, d]) => !d.sp || SP_OK()).map(([k, d]) => `<button class="${EDIT_ROOM.wall === k ? 'on' : ''}" onclick="rmSet('wall','${k}')"><div class="rm-sw" style="background:repeating-linear-gradient(90deg,${d.a} 0 8px,${d.b} 8px 12px)"></div><span>${d.n}</span></button>`).join('');
+            else g.innerHTML = Object.entries(MR.FLOORS).filter(([k, d]) => !d.sp || SP_OK()).map(([k, d]) => `<button class="${EDIT_ROOM.floor === k ? 'on' : ''}" onclick="rmSet('floor','${k}')"><div class="rm-sw" style="background:repeating-linear-gradient(45deg,${d.a} 0 8px,${d.b} 8px 12px)"></div><span>${d.n}</span></button>`).join('');
             rmCtrl();
         }
 
@@ -7917,7 +8182,7 @@ var MR = (function () {
                     <div class="shop-card ${active ? 'equipped' : (owned ? 'owned' : '')}">
                         <div style="width:100%; height:26px; border-radius:4px; background:linear-gradient(180deg, ${t.wallTop} 60%, ${t.floor} 60%); border:1px solid #94a3b8;"></div>
                         <strong style="font-size:11px;">${t.name}</strong>
-                        ${editable ? btnHtml : '<span style="font-size:10px; color:#94a3b8;">구경</span>'}
+                        ${editable ? btnHtml : '<span style="font-size:10px; color:#64748b;">구경</span>'}
                     </div>
                 `;
             }).join('');
@@ -7928,14 +8193,15 @@ var MR = (function () {
             const items = FURNITURE_CATALOG.filter(f => f.theme === curThemeObj.id);
             document.getElementById('furniture-shop-grid').innerHTML = items.map(f => {
                 const owned = f.price === 0 || (u.ownedFurniture || []).includes(f.id);
-                const placed = (u.placedFurniture || []).includes(f.id);
+                const placed = isFurniturePlaced(u, f.id);
                 let actionBtn = '';
-                if (!editable) actionBtn = `<span style="font-size:10px; color:#94a3b8;">${placed ? '배치됨' : '미배치'}</span>`;
+                if (!editable) actionBtn = `<span style="font-size:10px; color:#64748b;">${placed ? '배치됨' : '미배치'}</span>`;
                 else if (!owned) actionBtn = `<button type="button" class="cy-btn amber" onclick="buyFurniture('${f.id}')">🌰 ${f.price} 구매</button>`;
                 else if (placed) actionBtn = `<button type="button" class="cy-btn pink" onclick="togglePlaceFurniture('${f.id}')">배치 해제</button>`;
                 else actionBtn = `<button type="button" class="cy-btn primary" onclick="togglePlaceFurniture('${f.id}')">방에 놓기</button>`;
                 return `
                     <div class="shop-card ${placed ? 'equipped' : (owned ? 'owned' : '')}">
+                        <img src="${rmThumb(mrKeyOf(f.id))}" alt="" style="height:40px; image-rendering:pixelated; object-fit:contain;">
                         <strong style="font-size:11px;">${f.name}</strong>
                         <span style="font-size:10px; color:${f.price === 0 ? '#15803d' : '#b45309'}; font-weight:bold;">
                             ${f.price === 0 ? '무료 기본' : (owned ? '보유 완료' : `🌰 ${f.price}`)}
@@ -7957,19 +8223,21 @@ var MR = (function () {
             if (!u.ownedThemes) u.ownedThemes = ['student'];
             if (!u.ownedThemes.includes(themeId)) u.ownedThemes.push(themeId);
             u.roomTheme = themeId;
+            applyThemeToRoom(u, themeId);
             saveDB(u.userId);
             if (buyer.userId !== u.userId) saveDB(buyer.userId);
             renderAll();
-            showToast(session.isDev ? `✨ '${theme.name}' 테마 적용 완료 (게스트 샘플에 자동 반영!)` : `✨ '${theme.name}' 테마를 구매했어요!`);
+            showToast((session.isDev && session.currentUserId === DEV_ID) ? `✨ '${theme.name}' 테마 적용 완료 (게스트 샘플에 자동 반영!)` : `✨ '${theme.name}' 테마를 구매했어요!`);
         };
 
         window.equipRoomTheme = function(themeId) {
             if (session.isGuest) { notifyGuestLoginRequired(); return; }
             if (!canEditCurrentHome()) return;
             host().roomTheme = themeId;
+            applyThemeToRoom(host(), themeId);
             saveDB(host().userId);
             renderAll();
-            showToast(session.isDev ? '방 테마 변경 완료 (게스트 샘플에 자동 반영!)' : '방 테마가 변경되었습니다 ✨');
+            showToast((session.isDev && session.currentUserId === DEV_ID) ? '방 테마 변경 완료 (게스트 샘플에 자동 반영!)' : '방 테마가 변경되었습니다 ✨');
         };
 
         window.buyFurniture = function(fid) {
@@ -7981,29 +8249,117 @@ var MR = (function () {
             if ((buyer.acorns || 0) < item.price) { showToast(`도토리가 부족해요! (필요: ${item.price}🌰)`); return; }
             buyer.acorns -= item.price;
             if (!u.ownedFurniture) u.ownedFurniture = [];
-            if (!u.placedFurniture) u.placedFurniture = [];
             if (!u.ownedFurniture.includes(fid)) u.ownedFurniture.push(fid);
-            if (!u.placedFurniture.includes(fid)) u.placedFurniture.push(fid);
+            const okPlace = isFurniturePlaced(u, fid) || placeFurnitureInRoom(u, fid);
+            MAIN_KEY = '';
             saveDB(u.userId);
             if (buyer.userId !== u.userId) saveDB(buyer.userId);
             renderAll();
-            showToast(`🪑 '${item.name}' 구매 & 배치 완료!`);
+            showToast(okPlace ? `🪑 '${item.name}' 구매 & 미니룸에 배치 완료! (미니룸 꾸미기에서 옮길 수 있어요)` : `🪑 '${item.name}' 구매 완료! 방에 빈 자리가 없어서 미니룸 꾸미기에서 놓아 주세요`);
         };
 
         window.togglePlaceFurniture = function(fid) {
             if (session.isGuest) { notifyGuestLoginRequired(); return; }
             if (!canEditCurrentHome()) return;
             const u = host();
-            if (!u.placedFurniture) u.placedFurniture = [];
-            const idx = u.placedFurniture.indexOf(fid);
-            if (idx >= 0) u.placedFurniture.splice(idx, 1);
-            else u.placedFurniture.push(fid);
+            const f = FURNITURE_CATALOG.find(x => x.id === fid);
+            if (!shopOwns(me(), f)) { showToast('먼저 구매해 주세요', true); return; }
+            let msg;
+            if (isFurniturePlaced(u, fid)) { removeFurnitureFromRoom(u, fid); msg = `'${f.name}'을(를) 방에서 뺐어요`; }
+            else msg = placeFurnitureInRoom(u, fid) ? `🪑 '${f.name}'을(를) 방에 놓았어요! (미니룸 꾸미기에서 옮길 수 있어요)` : '방에 빈 자리가 없어요. 미니룸 꾸미기에서 자리를 만들어 주세요';
+            MAIN_KEY = '';
             saveDB(u.userId);
             renderAll();
-            if (session.isDev) showToast('가구 배치 변경이 게스트 샘플에 자동 반영되었습니다 ✨');
+            showToast(msg);
         };
 
         /* ==================== 9. 사진첩 ==================== */
+        /* ----- 사진 저장소: 메모리 → 이 기기(IndexedDB) → 온라인(문서 하나에 사진 하나) ----- */
+        function retroDate(d) {
+            d = d || new Date();
+            return `2004-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+        }
+        const PHOTO_MEM = {};
+        const PHOTO_IDB = (() => {
+            let dbp = null;
+            const open = () => dbp || (dbp = new Promise((res) => {
+                try {
+                    const r = indexedDB.open('secret_diary_photos', 1);
+                    r.onupgradeneeded = () => r.result.createObjectStore('p');
+                    r.onsuccess = () => res(r.result);
+                    r.onerror = () => res(null);
+                } catch (e) { res(null); }
+            }));
+            return {
+                async get(k) { const db = await open(); if (!db) return null; return new Promise(res => { try { const q = db.transaction('p').objectStore('p').get(k); q.onsuccess = () => res(q.result || null); q.onerror = () => res(null); } catch (e) { res(null); } }); },
+                async put(k, v) { const db = await open(); if (!db) return; try { const t = db.transaction('p', 'readwrite'); v == null ? t.objectStore('p').delete(k) : t.objectStore('p').put(v, k); } catch (e) {} }
+            };
+        })();
+        async function photoCloudGet(id) {
+            try {
+                if (CLOUD.kind === 'claude' && CLOUD.db) { const s = await CLOUD.db.doc('cyworld_photos/' + id).get(); return s.exists ? (s.data() || {}).data || null : null; }
+                if (firestoreDb) { const s = await firestoreDb.collection('cyworld_photos').doc(id).get(); return s.exists ? (s.data() || {}).data || null : null; }
+            } catch (e) {}
+            return null;
+        }
+        async function photoCloudPut(id, owner, data) {
+            try {
+                if (CLOUD.kind === 'claude' && CLOUD.db) { if (data) await CLOUD.db.doc('cyworld_photos/' + id).set({ owner, data, at: Date.now() }); else await CLOUD.db.doc('cyworld_photos/' + id).delete(); return true; }
+                if (firestoreDb) { if (data) await firestoreDb.collection('cyworld_photos').doc(id).set({ owner, data, at: Date.now() }); else await firestoreDb.collection('cyworld_photos').doc(id).delete(); return true; }
+            } catch (e) { return false; }
+            return true;
+        }
+        const PHOTO_PENDING = {};
+        function photoSrc(id, cb) {
+            if (PHOTO_MEM[id]) return PHOTO_MEM[id];
+            if (!PHOTO_PENDING[id]) {
+                PHOTO_PENDING[id] = (async () => {
+                    let d = await PHOTO_IDB.get(id);
+                    if (!d) { d = await photoCloudGet(id); if (d) PHOTO_IDB.put(id, d); }
+                    if (d) PHOTO_MEM[id] = d;
+                    delete PHOTO_PENDING[id];
+                    if (d && cb) cb();
+                })();
+            }
+            return null;
+        }
+        function compressPhoto(file) {
+            return new Promise((res, rej) => {
+                const url = URL.createObjectURL(file), img = new Image();
+                img.onload = () => {
+                    const M = 720, k = Math.min(1, M / Math.max(img.naturalWidth, img.naturalHeight));
+                    const w = Math.max(1, Math.round(img.naturalWidth * k)), hh = Math.max(1, Math.round(img.naturalHeight * k));
+                    const c = document.createElement('canvas'); c.width = w; c.height = hh;
+                    const x = c.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, w, hh); x.drawImage(img, 0, 0, w, hh);
+                    URL.revokeObjectURL(url);
+                    let q = 0.72, d = c.toDataURL('image/jpeg', q);
+                    while (d.length > 180000 && q > 0.35) { q -= 0.08; d = c.toDataURL('image/jpeg', q); }
+                    res(d);
+                };
+                img.onerror = () => { URL.revokeObjectURL(url); rej(new Error('이미지를 읽을 수 없어요')); };
+                img.src = url;
+            });
+        }
+        let PHOTO_PICKED = null;
+        window.onPhotoPicked = async function(inp) {
+            const f = inp.files && inp.files[0]; if (!f) return;
+            const pv = document.getElementById('photo-pick-preview');
+            try {
+                PHOTO_PICKED = await compressPhoto(f);
+                pv.src = PHOTO_PICKED; pv.style.display = 'block';
+                document.getElementById('photo-pick-label').firstChild.textContent = '📷 다시 고르기';
+            } catch (e) { PHOTO_PICKED = null; pv.style.display = 'none'; showToast('사진을 불러오지 못했어요', true); }
+        };
+        window.openPhotoLightbox = function(id) {
+            const h = host(); const p = (h.photos || []).find(x => x.id === id); if (!p) return;
+            const src = p.img ? photoSrc(p.id) : null; if (p.img && !src) return;
+            document.getElementById('photo-lb-img').src = src || '';
+            document.getElementById('photo-lb-img').style.display = src ? 'block' : 'none';
+            document.getElementById('photo-lb-cap').textContent = `${p.caption || ''} · ${p.date || ''}`;
+            document.getElementById('photo-lightbox').classList.add('open');
+        };
+        window.closePhotoLightbox = function() { document.getElementById('photo-lightbox').classList.remove('open'); };
+
         function renderPhotoGallery() {
             const h = host();
             const editable = canEditCurrentHome();
@@ -8012,14 +8368,22 @@ var MR = (function () {
 
             const photos = h.photos || [];
             document.getElementById('photo-gallery-grid').innerHTML = photos.map(p => {
-                const preset = PHOTO_PRESETS[p.preset] || PHOTO_PRESETS.sunset;
+                let top;
+                if (p.img) {
+                    const src = photoSrc(p.id, () => { if (document.getElementById('view-photo')?.classList.contains('active')) renderPhotoGallery(); });
+                    top = src ? `<img class="ph-img" src="${src}" alt="" onclick="openPhotoLightbox('${esc(p.id)}')">` : `<span class="ph-loading">사진 불러오는 중…</span>`;
+                } else {
+                    const preset = PHOTO_PRESETS[p.preset] || PHOTO_PRESETS.sunset;
+                    top = preset.svg;
+                }
+                const bg = p.img ? '#f1f5f9' : (PHOTO_PRESETS[p.preset] || PHOTO_PRESETS.sunset).bg;
                 return `
                     <div class="entry-box" style="padding:0; overflow:hidden; background:#fff;">
-                        <div style="height:92px; background:${preset.bg}; display:flex; align-items:center; justify-content:center; border-bottom:1px solid #e2e8f0;">
-                            ${preset.svg}
+                        <div style="height:92px; background:${bg}; display:flex; align-items:center; justify-content:center; border-bottom:1px solid #e2e8f0;">
+                            ${top}
                         </div>
                         <div style="padding:6px 8px; display:flex; flex-direction:column; gap:3px;">
-                            <span style="font-size:10px; color:#64748b;">${esc(preset.title)} · ${esc(p.date)}</span>
+                            <span style="font-size:10px; color:#64748b;">📅 ${esc(p.date)}</span>
                             <strong style="font-size:11px; color:#1e293b;">${esc(p.caption)}</strong>
                             ${editable ? `<button type="button" class="cy-btn" style="align-self:flex-end; padding:1px 5px; font-size:9.5px;" onclick="deletePhotoEntry('${esc(p.id)}')">삭제</button>` : ''}
                         </div>
@@ -8028,29 +8392,39 @@ var MR = (function () {
             }).join('');
         }
 
-        window.postPhotoEntry = function(e) {
+        window.postPhotoEntry = async function(e) {
             e.preventDefault();
             if (session.isGuest) { notifyGuestLoginRequired(); return; }
             if (!canEditCurrentHome()) return;
-            const preset = document.getElementById('photo-preset-select').value;
+            if (!PHOTO_PICKED) { showToast('📷 먼저 사진을 골라 주세요', true); return; }
             const capInp = document.getElementById('photo-caption-input');
-            const caption = capInp.value.trim() || (PHOTO_PRESETS[preset]?.title || '오늘의 도트 추억');
+            const caption = capInp.value.trim() || '오늘의 추억 📷';
             const h = host();
+            const id = `ph_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`;
+            const data = PHOTO_PICKED;
+            PHOTO_MEM[id] = data; PHOTO_IDB.put(id, data);
             if (!h.photos) h.photos = [];
-            h.photos.unshift({ id: `ph_${Date.now()}`, preset, caption, date: todayDateString() });
-            capInp.value = '';
+            h.photos.unshift({ id, img: true, caption, date: retroDate() });
+            capInp.value = ''; PHOTO_PICKED = null;
+            const pv = document.getElementById('photo-pick-preview'); pv.style.display = 'none'; pv.removeAttribute('src');
+            document.getElementById('photo-file-input').value = '';
+            document.getElementById('photo-pick-label').firstChild.textContent = '📷 사진 고르기';
             saveDB(h.userId);
             renderPhotoGallery();
-            showToast(session.isDev ? '📷 사진 등록 완료 (게스트 샘플 사진첩에 자동 반영!)' : '📷 사진첩에 새 추억이 등록되었어요!');
+            showToast('📷 사진 올리는 중…');
+            const ok = await photoCloudPut(id, h.userId, data);
+            showToast(ok ? ((session.isDev && session.currentUserId === DEV_ID) ? '📷 사진 등록 완료 (게스트 샘플 사진첩에도 반영!)' : '📷 사진첩에 새 추억이 등록되었어요!') : '⚠️ 온라인 저장에 실패해서 이 기기에만 저장됐어요');
         };
 
         window.deletePhotoEntry = function(photoId) {
             if (session.isGuest) { notifyGuestLoginRequired(); return; }
             if (!canEditCurrentHome()) return;
             const h = host();
-            h.photos = (h.photos || []).filter(p => p.id !== photoId);
+            const p = (h.photos || []).find(x => x.id === photoId);
+            h.photos = (h.photos || []).filter(x => x.id !== photoId);
             saveDB(h.userId);
             renderPhotoGallery();
+            if (p && p.img) { delete PHOTO_MEM[photoId]; PHOTO_IDB.put(photoId, null); photoCloudPut(photoId, h.userId, null); }
         };
 
         /* ==================== 10. 일촌찾기 & 파도타기 ==================== */
@@ -8092,7 +8466,7 @@ var MR = (function () {
                             <div style="display:flex; align-items:center; gap:7px; min-width:0;">
                                 <div style="width:28px; height:34px; flex-shrink:0;">${userMinimiHTML(u)}</div>
                                 <div style="min-width:0;">
-                                    <div style="font-size:11.5px; font-weight:bold;">${esc(u.nickname)} <span style="font-size:10px; color:#94a3b8;">(@${esc(u.userId)})</span> ${isFriend ? '<span style="color:#e11d48;">★1촌</span>' : ''}</div>
+                                    <div style="font-size:11.5px; font-weight:bold;">${esc(u.nickname)} <span style="font-size:10px; color:#64748b;">(@${esc(u.userId)})</span> ${isFriend ? '<span style="color:#e11d48;">★1촌</span>' : ''}</div>
                                     <div style="font-size:10px; color:#64748b; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${esc(u.title)}</div>
                                 </div>
                             </div>
@@ -8218,7 +8592,7 @@ var MR = (function () {
             host().bio = document.getElementById('bio-textarea').value;
             saveDB(host().userId);
             renderAll();
-            showToast(session.isDev ? '소개글 저장 완료 (게스트 샘플에 자동 반영!)' : '소개글이 저장되었습니다');
+            showToast((session.isDev && session.currentUserId === DEV_ID) ? '소개글 저장 완료 (게스트 샘플에 자동 반영!)' : '소개글이 저장되었습니다');
         };
 
         window.handleGuestMoodClick = function() {
@@ -8275,7 +8649,7 @@ var MR = (function () {
             me().fontClass = fontClass;
             saveDB(me().userId);
             applyFontClass(fontClass);
-            showToast(session.isDev ? '글씨체 변경 완료 (게스트 샘플 기본 글씨체에도 반영!)' : '글씨체가 변경되었습니다 ✨');
+            showToast((session.isDev && session.currentUserId === DEV_ID) ? '글씨체 변경 완료 (게스트 샘플 기본 글씨체에도 반영!)' : '글씨체가 변경되었습니다 ✨');
         };
 
         function applyFontClass(fontClass) {
@@ -8299,6 +8673,20 @@ var MR = (function () {
             AVK.unmount();
             renderLeftMinimi(host());
         };
+        window.onAvatarPinned = function(p) {
+            const u = me(); if (!u) return false;
+            u.avatarPinned = p || null;
+            if (p) u.avatar3d = p;
+            saveDB(u.userId);
+            return CLOUD.kind !== 'local';
+        };
+        const OTHER_SPRITES = {};
+        function spriteForUser(u) {
+            if (!u || !u.avatar3d || !window.AVK || !AVK.spriteOf) return null;
+            const key = u.userId + JSON.stringify(u.avatar3d);
+            if (OTHER_SPRITES[key] === undefined) OTHER_SPRITES[key] = AVK.spriteOf(u.avatar3d, 64, 74, 0.3);
+            return OTHER_SPRITES[key];
+        }
         window.onAvatarSaved = function() {
             ROOM_SPRITE = null; MAIN_KEY = '';
             const u = me(); if (u) { u.avatar3d = AVK.get(); saveDB(u.userId); }
@@ -8344,7 +8732,7 @@ var MR = (function () {
         window.saveMinimiAndClose = function() {
             if (!canEditCurrentHome()) return;
             if (host().userId !== me().userId) saveDB(host().userId);
-            grantAcorns(me(), 3, session.isDev ? '미니미 코디 저장 (게스트 샘플에 자동 반영!)' : '미니미 코디 저장 완료');
+            grantAcorns(me(), 3, (session.isDev && session.currentUserId === DEV_ID) ? '미니미 코디 저장 (게스트 샘플에 자동 반영!)' : '미니미 코디 저장 완료');
             closeMinimiModal();
             renderAll();
         };
@@ -8516,6 +8904,265 @@ var MR = (function () {
         window.devResetActiveOverride = function() { if (!session.isDev) return; host().manualActiveOverride = null; saveDB(host().userId); renderAll(); showToast('자동 집계 모드로 복귀했습니다'); };
 
         /* ==================== 14. 탭 전환 & 전체 렌더 ==================== */
+
+        /* ==================== ♬ 쥬크박스 · BGM ==================== */
+        const BGM_AUDIO = new Audio();
+        let BGM_OWNER = null, BGM_IDX = 0, BGM_LOADING = false;
+        const SONG_URLS = {};
+        function bgmListOf(u) { if (!u) return []; if (!Array.isArray(u.bgm)) u.bgm = []; return u.bgm; }
+        function dataUrlToBlobUrl(d) {
+            const m = /^data:([^;]+);base64,(.*)$/.exec(d); if (!m) return d;
+            const bin = atob(m[2]), arr = new Uint8Array(bin.length);
+            for (let i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i);
+            return URL.createObjectURL(new Blob([arr], { type: m[1] }));
+        }
+        const SONG_CHUNK = () => (CLOUD.kind === 'claude' ? 200000 : 700000);
+        async function songCloudPut(id, owner, dataUrl) {
+            const n = Math.ceil(dataUrl.length / SONG_CHUNK()), size = SONG_CHUNK();
+            const put = async (key, body) => {
+                if (CLOUD.kind === 'claude' && CLOUD.db) return CLOUD.db.doc('cyworld_songs/' + key).set(body);
+                if (firestoreDb) return firestoreDb.collection('cyworld_songs').doc(key).set(body);
+            };
+            if (!(CLOUD.kind === 'claude' && CLOUD.db) && !firestoreDb) return true;
+            try {
+                for (let i = 0; i < n; i++) {
+                    await put(id + '__' + i, { d: dataUrl.slice(i * size, (i + 1) * size) });
+                    const pg = document.getElementById('juke-prog-' + id); if (pg) pg.textContent = `업로드 ${Math.round((i + 1) / n * 100)}%`;
+                }
+                await put(id, { owner, n, at: Date.now() });
+                return true;
+            } catch (e) { return false; }
+        }
+        async function songCloudGet(id) {
+            try {
+                const get = async (key) => {
+                    if (CLOUD.kind === 'claude' && CLOUD.db) { const s = await CLOUD.db.doc('cyworld_songs/' + key).get(); return s.exists ? s.data() : null; }
+                    if (firestoreDb) { const s = await firestoreDb.collection('cyworld_songs').doc(key).get(); return s.exists ? s.data() : null; }
+                    return null;
+                };
+                const meta = await get(id); if (!meta || !meta.n) return null;
+                let out = '';
+                for (let i = 0; i < meta.n; i++) { const c = await get(id + '__' + i); if (!c) return null; out += c.d || ''; }
+                return out;
+            } catch (e) { return null; }
+        }
+        async function songCloudDel(id, n) {
+            try {
+                const del = (key) => (CLOUD.kind === 'claude' && CLOUD.db) ? CLOUD.db.doc('cyworld_songs/' + key).delete() : (firestoreDb ? firestoreDb.collection('cyworld_songs').doc(key).delete() : null);
+                for (let i = 0; i < (n || 40); i++) await del(id + '__' + i);
+                await del(id);
+            } catch (e) {}
+        }
+        async function songUrl(id) {
+            if (SONG_URLS[id]) return SONG_URLS[id];
+            let d = await PHOTO_IDB.get('song_' + id);
+            if (!d) { d = await songCloudGet(id); if (d) PHOTO_IDB.put('song_' + id, d); }
+            if (!d) return null;
+            SONG_URLS[id] = dataUrlToBlobUrl(d);
+            return SONG_URLS[id];
+        }
+        function bgmHost() { return host(); }
+        function renderBgmBar() {
+            const el = document.getElementById('bgm-bar'); if (!el) return;
+            const u = BGM_OWNER && DB.users[BGM_OWNER] && !BGM_AUDIO.paused ? DB.users[BGM_OWNER] : bgmHost();
+            const list = bgmListOf(u);
+            const idx = (u && u.userId === BGM_OWNER) ? BGM_IDX : (u ? (u.bgmCur || 0) : 0);
+            const s = list[idx] || list.find(x => x.on);
+            const paused = BGM_AUDIO.paused;
+            el.classList.toggle('paused', paused);
+            el.innerHTML = `<span class="lb">♬ BGM</span><span class="sg"><span>${s ? esc(s.title + (s.artist ? ' - ' + s.artist : '')) : '선곡된 곡이 없어요'}</span></span><button type="button" onclick="bgmToggle()">${BGM_LOADING ? '…' : (paused ? '▶' : '❚❚')}</button><button type="button" onclick="bgmNext()">▶▶</button><button type="button" onclick="switchTab('jukebox')">LIST</button>`;
+        }
+        async function bgmPlay(ownerId, idx) {
+            const u = DB.users[ownerId]; const list = bgmListOf(u); const s = list[idx]; if (!s) return;
+            BGM_OWNER = ownerId; BGM_IDX = idx; BGM_LOADING = true; renderBgmBar();
+            const url = s.hasFile ? await songUrl(s.id) : null;
+            BGM_LOADING = false;
+            if (!url) { BGM_AUDIO.pause(); renderBgmBar(); showToast(canEditCurrentHome() ? `'${s.title}' 음원 파일을 쥬크박스에서 올려주세요` : `'${s.title}' 음원이 아직 없어요`, true); return; }
+            BGM_AUDIO.src = url;
+            try { await BGM_AUDIO.play(); } catch (e) { showToast('재생하지 못했어요 (한 번 더 눌러 주세요)', true); }
+            renderBgmBar(); if (document.getElementById('view-jukebox')?.classList.contains('active')) renderJukebox();
+        }
+        window.bgmToggle = function() {
+            const h = bgmHost(); if (!h) return;
+            if (!BGM_AUDIO.paused) { BGM_AUDIO.pause(); renderBgmBar(); return; }
+            if (BGM_OWNER === h.userId && BGM_AUDIO.src) { BGM_AUDIO.play().then(renderBgmBar).catch(() => {}); return; }
+            const list = bgmListOf(h); if (!list.length) { showToast('선곡된 곡이 없어요', true); return; }
+            let i = Math.min(list.length - 1, h.bgmCur || 0); if (!list[i].on) { const j = list.findIndex(x => x.on); if (j >= 0) i = j; }
+            bgmPlay(h.userId, i);
+        };
+        window.bgmNext = function(auto) {
+            const owner = BGM_OWNER && DB.users[BGM_OWNER] ? BGM_OWNER : bgmHost()?.userId; if (!owner) return;
+            const list = bgmListOf(DB.users[owner]); const on = list.map((s, i) => [s, i]).filter(([s]) => s.on); if (!on.length) return;
+            const pos = on.findIndex(([, i]) => i === BGM_IDX); const nx = on[(pos + 1) % on.length][1];
+            if (auto === true && !list[nx].hasFile) return;
+            bgmPlay(owner, nx);
+        };
+        BGM_AUDIO.addEventListener('ended', () => bgmNext(true));
+        BGM_AUDIO.addEventListener('play', renderBgmBar); BGM_AUDIO.addEventListener('pause', renderBgmBar);
+
+        function renderJukebox() {
+            const h = host(); const list = bgmListOf(h); const ed = canEditCurrentHome();
+            document.getElementById('jukebox-add').style.display = ed ? 'flex' : 'none';
+            document.getElementById('jukebox-list').innerHTML = !list.length ? `<div style="font-size:11.5px; color:#475569; padding:8px;">아직 선곡한 곡이 없어요 ♪</div>` :
+                `<div class="juke-row" style="font-weight:bold; color:#334155; background:#f1f5f9;"><span>BGM</span><span>#</span><span>곡명</span><span>아티스트</span><span>음원</span></div>` +
+                list.map((s, i) => {
+                    const cur = BGM_OWNER === h.userId && BGM_IDX === i && !BGM_AUDIO.paused;
+                    return `<div class="juke-row ${cur ? 'cur' : ''}">
+                        <input type="checkbox" ${s.on ? 'checked' : ''} ${ed ? '' : 'disabled'} onchange="jukeSet(${i},'on',this.checked)">
+                        <span>${cur ? '♪' : i + 1}</span>
+                        ${ed ? `<input type="text" value="${esc(s.title)}" onchange="jukeSet(${i},'title',this.value)">` : `<span>${esc(s.title)}</span>`}
+                        ${ed ? `<input type="text" value="${esc(s.artist || '')}" onchange="jukeSet(${i},'artist',this.value)">` : `<span>${esc(s.artist || '')}</span>`}
+                        <span style="display:flex; gap:3px; align-items:center; flex-wrap:wrap;">
+                            ${s.hasFile ? '<span class="ok">✓</span>' : ''}
+                            <button type="button" class="cy-btn" style="padding:1px 5px; font-size:10px;" onclick="bgmPlay('${esc(h.userId)}', ${i})">▶</button>
+                            ${ed ? `<label class="cy-btn" style="padding:1px 5px; font-size:10px;">${s.hasFile ? '변경' : '음원 올리기'}<input type="file" accept="audio/*" hidden onchange="uploadJukeFile(${i}, this)"></label><button type="button" class="cy-btn" style="padding:1px 5px; font-size:10px;" onclick="delJukeSong(${i})">✕</button>` : ''}
+                            <span class="juke-prog" id="juke-prog-${esc(s.id)}"></span>
+                        </span>
+                    </div>`;
+                }).join('');
+        }
+        window.jukeSet = function(i, k, v) { const h = host(); if (!canEditCurrentHome()) return; const s = bgmListOf(h)[i]; if (!s) return; s[k] = v; saveDB(h.userId); renderBgmBar(); };
+        window.addJukeSong = function(e) {
+            e.preventDefault(); if (!canEditCurrentHome()) return;
+            const t = document.getElementById('juke-title').value.trim(), a = document.getElementById('juke-artist').value.trim();
+            if (!t) { showToast('곡명을 적어주세요', true); return; }
+            const h = host(), payer = me();
+            if (!session.isDev) { if ((payer.acorns || 0) < 6) { showToast('도토리가 부족해요 (곡당 6개)', true); return; } payer.acorns -= 6; }
+            bgmListOf(h).push({ id: `sg_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`, title: t, artist: a, on: true, hasFile: false });
+            document.getElementById('juke-title').value = ''; document.getElementById('juke-artist').value = '';
+            saveDB(h.userId); renderTopBar(); renderJukebox(); renderBgmBar();
+            showToast('♪ 선곡 완료! 음원 파일을 올리면 재생돼요');
+        };
+        window.uploadJukeFile = function(i, inp) {
+            const f = inp.files && inp.files[0]; if (!f) return; const h = host(); const s = bgmListOf(h)[i]; if (!s) return;
+            if (f.size > 12 * 1024 * 1024) { showToast('12MB 이하 음원만 올릴 수 있어요', true); return; }
+            const rd = new FileReader();
+            rd.onload = async () => {
+                const d = String(rd.result);
+                PHOTO_IDB.put('song_' + s.id, d); if (SONG_URLS[s.id]) { URL.revokeObjectURL(SONG_URLS[s.id]); delete SONG_URLS[s.id]; }
+                s.hasFile = true; saveDB(h.userId); renderJukebox();
+                const pg = document.getElementById('juke-prog-' + s.id); if (pg) pg.textContent = '업로드 중…';
+                const ok = await songCloudPut(s.id, h.userId, d);
+                const pg2 = document.getElementById('juke-prog-' + s.id); if (pg2) pg2.textContent = ok ? '' : '이 기기에만 저장됨';
+                showToast(ok ? '♪ 음원을 올렸어요' : '⚠️ 온라인 업로드에 실패해서 이 기기에서만 재생돼요');
+            };
+            rd.readAsDataURL(f);
+        };
+        window.delJukeSong = function(i) {
+            const h = host(); if (!canEditCurrentHome()) return; const list = bgmListOf(h); const s = list[i]; if (!s) return;
+            list.splice(i, 1); if (BGM_OWNER === h.userId) { if (BGM_IDX === i) { BGM_AUDIO.pause(); } BGM_IDX = Math.max(0, Math.min(BGM_IDX, list.length - 1)); }
+            if (s.hasFile) { PHOTO_IDB.put('song_' + s.id, null); songCloudDel(s.id); }
+            saveDB(h.userId); renderJukebox(); renderBgmBar();
+        };
+
+        /* ==================== ✉ 쪽지 ==================== */
+        function notesOf(u) { if (!u) return []; if (!Array.isArray(u.notes)) u.notes = []; return u.notes; }
+        function renderNotesButton() {
+            const btn = document.getElementById('btn-notes'); if (!btn) return;
+            const u = me(); btn.style.display = u ? 'inline-block' : 'none';
+            const n = u ? notesOf(u).filter(x => !x.read).length : 0;
+            btn.classList.toggle('has-new', n > 0);
+            document.getElementById('notes-count').textContent = n ? `(${n})` : '';
+        }
+        let NOTE_TIMER = null;
+        window.openNotes = function() {
+            const u = me(); if (!u) { notifyGuestLoginRequired(); return; }
+            document.getElementById('notes-modal').classList.add('open');
+            renderNotesList();
+        };
+        window.closeNotes = function() { clearInterval(NOTE_TIMER); document.getElementById('notes-modal').classList.remove('open'); renderNotesButton(); };
+        function renderNotesList() {
+            clearInterval(NOTE_TIMER);
+            const u = me(); const list = notesOf(u);
+            document.getElementById('notes-head').textContent = '✉ 쪽지함';
+            document.getElementById('notes-body').innerHTML = `
+                <div style="display:flex; justify-content:space-between; align-items:center;"><span style="font-size:11.5px; color:#475569;">받은 쪽지 ${list.length}통</span><button type="button" class="cy-btn primary" onclick="composeNote('')">✏️ 쪽지 쓰기</button></div>
+                ${list.length ? list.map(n => `<button type="button" class="note-item ${n.read ? '' : 'unread'}" onclick="readNote('${esc(n.id)}')">${n.read ? '<span style="width:8px"></span>' : '<span class="dot"></span>'}<span style="flex:1; min-width:0;"><b>${esc(n.fromNick)}</b>님의 쪽지<br><span style="font-size:10.5px; color:#64748b;">${esc(n.date)}${n.read ? '' : ' · ✨ 새 쪽지'}</span></span><span>💌</span></button>`).join('') : '<div style="font-size:11.5px; color:#475569; padding:10px; text-align:center;">받은 쪽지가 없어요</div>'}`;
+        }
+        window.readNote = function(id) {
+            const u = me(); const n = notesOf(u).find(x => x.id === id); if (!n) return;
+            const wasNew = !n.read;
+            if (!n.read) { n.read = true; saveDB(u.userId); renderNotesButton(); }
+            document.getElementById('notes-head').textContent = `💌 ${n.fromNick}님의 쪽지`;
+            document.getElementById('notes-body').innerHTML = `
+                <div style="font-size:11px; color:#475569;">보낸 사람 <b style="color:#1e293b;">${esc(n.fromNick)}</b> (@${esc(n.fromId)}) · ${esc(n.date)}</div>
+                <div id="note-paper" class="note-paper"></div>
+                <div style="display:flex; justify-content:space-between; gap:6px;"><button type="button" class="cy-btn" onclick="renderNotesList()">◀ 목록</button><span style="display:flex; gap:6px;"><button type="button" class="cy-btn" onclick="deleteNote('${esc(n.id)}')">삭제</button>${DB.users[n.fromId] ? `<button type="button" class="cy-btn primary" onclick="composeNote('${esc(n.fromId)}')">↩ 답장</button>` : ''}</span></div>`;
+            const paper = document.getElementById('note-paper'); const txt = String(n.text || ''); let i = 0;
+            const cur = '<span class="cur">&nbsp;</span>';
+            paper.innerHTML = cur;
+            NOTE_TIMER = setInterval(() => {
+                i += 1; paper.innerHTML = esc(txt.slice(0, i)).replace(/\n/g, '<br>') + (i < txt.length ? cur : '');
+                if (i >= txt.length) clearInterval(NOTE_TIMER);
+            }, wasNew ? 85 : 35);
+        };
+        window.deleteNote = function(id) { const u = me(); u.notes = notesOf(u).filter(x => x.id !== id); saveDB(u.userId); renderNotesList(); renderNotesButton(); };
+        window.composeNote = function(toId) {
+            const u = me(); if (!u) { notifyGuestLoginRequired(); return; }
+            clearInterval(NOTE_TIMER);
+            document.getElementById('notes-modal').classList.add('open');
+            const users = Object.values(DB.users).filter(x => x.userId !== u.userId && (!x.isSecret || session.isDev));
+            const opts = users.map(x => `<option value="${esc(x.userId)}" ${x.userId === toId ? 'selected' : ''}>${esc(x.nickname)} (@${esc(x.userId)})</option>`).join('');
+            const fromOpts = session.isDev ? Object.values(DB.users).map(x => `<option value="${esc(x.userId)}" ${x.userId === u.userId ? 'selected' : ''}>${esc(x.nickname)} (@${esc(x.userId)})</option>`).join('') : '';
+            document.getElementById('notes-head').textContent = '✏️ 쪽지 쓰기';
+            document.getElementById('notes-body').innerHTML = `
+                ${session.isDev ? `<label style="font-size:11px; color:#5b21b6; font-weight:bold;">👑 보내는 사람 (운영자 전용)</label><select id="note-from" class="cy-input">${fromOpts}</select>` : ''}
+                <label style="font-size:11px; color:#334155; font-weight:bold;">받는 사람</label>
+                <select id="note-to" class="cy-input">${opts}</select>
+                <textarea id="note-text" rows="6" maxlength="500" placeholder="몰래 전하고 싶은 말을 적어주세요 🤫" style="width:100%; padding:8px; border:1px solid #94a3b8; border-radius:6px; font-size:12.5px; resize:none; background:#fffdf7; color:#3b2f2f;"></textarea>
+                <div style="display:flex; justify-content:space-between;"><button type="button" class="cy-btn" onclick="renderNotesList()">◀ 목록</button><button type="button" class="cy-btn primary" onclick="sendNote()">✉ 쪽지 보내기</button></div>`;
+        };
+        window.sendNote = function() {
+            const u = me(); if (!u) return;
+            const to = document.getElementById('note-to').value, text = document.getElementById('note-text').value.trim();
+            const fromId = session.isDev && document.getElementById('note-from') ? document.getElementById('note-from').value : u.userId;
+            const from = DB.users[fromId] || u, target = DB.users[to];
+            if (!target) { showToast('받는 사람을 골라 주세요', true); return; }
+            if (!text) { showToast('쪽지 내용을 적어주세요', true); return; }
+            notesOf(target).unshift({ id: `nt_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`, fromId: from.userId, fromNick: from.nickname, text, date: todayDateString(), read: false });
+            saveDB(target.userId);
+            showToast(`✉ ${target.nickname}님에게 쪽지를 보냈어요`);
+            renderNotesList(); renderNotesButton();
+        };
+
+        /* ==================== 👤 프로필 ==================== */
+        const PROFILE_FIELDS = [['name', '이름'], ['birth', '생일'], ['blood', '혈액형'], ['mbti', 'MBTI'], ['like', '좋아하는 것'], ['dream', '꿈'], ['intro', '자기소개']];
+        let PROFILE_EDIT = false;
+        function renderProfile() {
+            const h = host(); const p = h.profile || {}; const ed = canEditCurrentHome();
+            const rows = PROFILE_FIELDS.map(([k, t]) => `<tr><th>${t}</th><td>${PROFILE_EDIT && ed ? (k === 'intro' ? `<textarea id="pf-${k}" rows="3">${esc(p[k] || '')}</textarea>` : `<input id="pf-${k}" type="text" maxlength="40" value="${esc(p[k] || '')}">`) : (esc(p[k] || '-').replace(/\n/g, '<br>'))}</td></tr>`).join('');
+            document.getElementById('profile-view').innerHTML = `
+                <div style="display:flex; gap:12px; align-items:flex-start;">
+                    <div style="width:110px; height:130px; flex-shrink:0; border:1px solid #cbd5e1; border-radius:6px; background:#f8fafc;">${isMyHome() && window.AVK ? `<img src="${AVK.url()}" alt="" style="width:100%;height:100%;object-fit:contain">` : userMinimiHTML(h)}</div>
+                    <div style="flex:1; min-width:0;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;"><strong style="color:#1e3a8a; font-size:13px;">👤 ${esc(h.nickname)}의 프로필</strong>${ed ? `<button type="button" class="cy-btn primary" onclick="${PROFILE_EDIT ? 'saveProfile()' : 'PROFILE_EDIT=true;renderProfile()'}">${PROFILE_EDIT ? '저장' : '✏️ 수정'}</button>` : ''}</div>
+                        <table class="prof-table">${rows}</table>
+                    </div>
+                </div>`;
+        }
+        window.saveProfile = function() {
+            const h = host(); if (!canEditCurrentHome()) return; const p = h.profile || {};
+            PROFILE_FIELDS.forEach(([k]) => { const el = document.getElementById('pf-' + k); if (el) p[k] = el.value.trim(); });
+            h.profile = p; PROFILE_EDIT = false; saveDB(h.userId); renderProfile(); showToast('프로필을 저장했어요 ✨');
+        };
+
+        /* ==================== 📋 게시판 ==================== */
+        function renderBoard() {
+            const h = host(); const ed = canEditCurrentHome(); const list = Array.isArray(h.board) ? h.board : [];
+            document.getElementById('board-form').style.display = ed ? 'flex' : 'none';
+            document.getElementById('board-list').innerHTML = list.length ? list.map(b => `<div class="board-post"><div class="bh"><b>${esc(b.title)}</b><span style="color:#64748b; font-size:10.5px;">${esc(b.date)} ${ed ? `<button type="button" class="cy-btn" style="padding:0 5px; font-size:9.5px;" onclick="deleteBoard('${esc(b.id)}')">삭제</button>` : ''}</span></div><div class="bb">${esc(b.text || '')}</div></div>`).join('') : '<div style="font-size:11.5px; color:#475569; padding:8px;">아직 게시글이 없어요</div>';
+        }
+        window.postBoard = function(e) {
+            e.preventDefault(); if (!canEditCurrentHome()) return;
+            const t = document.getElementById('board-title').value.trim(), x = document.getElementById('board-text').value.trim();
+            if (!t) { showToast('제목을 적어주세요', true); return; }
+            const h = host(); if (!Array.isArray(h.board)) h.board = [];
+            h.board.unshift({ id: `bd_${Date.now()}`, title: t, text: x, date: todayDateString() });
+            document.getElementById('board-title').value = ''; document.getElementById('board-text').value = '';
+            saveDB(h.userId); renderBoard(); grantAcorns(me(), 2, '📋 게시글 등록');
+        };
+        window.deleteBoard = function(id) { const h = host(); if (!canEditCurrentHome()) return; h.board = (h.board || []).filter(b => b.id !== id); saveDB(h.userId); renderBoard(); };
+
         window.switchTab = function(tabName) {
             if (tabName === 'devinquiries' && !session.isDev) return;
             if (session.isGuest && (tabName === 'shop' || tabName === 'ilchon')) {
@@ -8532,6 +9179,9 @@ var MR = (function () {
             if (tabName === 'photo') renderPhotoGallery();
             if (tabName === 'ilchon') renderFriendDirectory();
             if (tabName === 'devinquiries') renderDevInquiries();
+            if (tabName === 'jukebox') renderJukebox();
+            if (tabName === 'profile') { PROFILE_EDIT = false; renderProfile(); }
+            if (tabName === 'board') renderBoard();
         };
 
         function renderTopBar() {
@@ -8603,6 +9253,11 @@ var MR = (function () {
             document.getElementById('stat-total').textContent = h.total || 1;
             document.getElementById('stat-streak').textContent = guest ? '👀 샘플' : `🔥 ${h.streak || 1}일째`;
             renderLeftMinimi(h);
+            renderBgmBar(); renderNotesButton();
+            { const nb = document.getElementById('btn-note-to-host'); if (nb) nb.style.display = (!guest && cur && h.userId !== cur.userId) ? 'block' : 'none'; }
+            if (document.getElementById('view-jukebox')?.classList.contains('active')) renderJukebox();
+            if (document.getElementById('view-profile')?.classList.contains('active') && !PROFILE_EDIT) renderProfile();
+            if (document.getElementById('view-board')?.classList.contains('active')) renderBoard();
 
             const moodSel = document.getElementById('mood-select');
             moodSel.value = h.mood || '행복 ♥';
@@ -8615,7 +9270,7 @@ var MR = (function () {
             const editable = canEditCurrentHome();
             const minimiBtn = document.getElementById('btn-open-minimi');
             const titleBtn = document.getElementById('btn-edit-title');
-            minimiBtn.style.display = (editable || guest) ? 'inline-block' : 'none';
+            minimiBtn.style.display = (isMyHome() || guest) ? 'inline-block' : 'none';
             minimiBtn.classList.toggle('guest-locked', guest);
             titleBtn.style.display = (editable || guest) ? 'inline-block' : 'none';
             titleBtn.classList.toggle('guest-locked', guest);
@@ -8672,7 +9327,7 @@ var MR = (function () {
             document.getElementById('ilchon-comments-list').innerHTML = (h.ilchonComments || []).map(c => `
                 <div style="display:flex; justify-content:space-between; align-items:center; font-size:11.5px; border-bottom:1px dotted #cbd5e1; padding:2px 2px; gap:6px;">
                     <span style="white:nowrap; overflow:hidden; text-overflow:ellipsis;">${esc(c.text)} <strong style="color:#1d4ed8; cursor:pointer;" onclick="visitUserHome('${esc(c.authorId)}')">(${esc(c.authorName)})</strong></span>
-                    <span style="font-size:10px; color:#94a3b8; flex-shrink:0;">${esc(c.date)}</span>
+                    <span style="font-size:10px; color:#64748b; flex-shrink:0;">${esc(c.date)}</span>
                 </div>
             `).join('');
 
