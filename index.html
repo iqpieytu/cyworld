@@ -9,23 +9,30 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="사이좋은 사람들, 싸이월드 미니홈피 🧡" />
     <meta property="og:description" content="가로형 링 바인더 도트 미니룸 꾸미기, 도토리 모으기, 닉네임 일촌 파도타기! 게스트 구경도 바로 가능 ✨" />
-    <meta id="og-image-meta" property="og:image" content="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='315' viewBox='0 0 600 315'%3E%3Crect width='600' height='315' fill='%23a9cbe4'/%3E%3Crect x='24' y='20' width='552' height='275' rx='18' fill='%23ffffff' stroke='%234c7391' stroke-width='6'/%3E%3Crect x='24' y='20' width='552' height='54' rx='12' fill='%23ff7a00'/%3E%3Ctext x='48' y='55' font-family='sans-serif' font-size='24' font-weight='bold' fill='%23ffffff'%3E%F0%9F%A7%A1 %EC%82%AC%EC%9D%B4%EC%A2%8B%EC%9D%80 %EC%82%AC%EB%9E%8C%EB%93%A4, %EC%8B%B8%EC%9D%B4%EC%9B%94%EB%93%9C%3C/text%3E%3Crect x='48' y='92' width='160' height='180' rx='10' fill='%23eff6ff' stroke='%2393c5fd' stroke-width='3'/%3E%3Ccircle cx='128' cy='152' r='34' fill='%23ffe4d6' stroke='%2354382e' stroke-width='4'/%3E%3Cpath d='M94 146 C94 114,162 114,162 146' fill='%2354382e'/%3E%3Ccircle cx='116' cy='152' r='4' fill='%23222'/%3E%3Ccircle cx='140' cy='152' r='4' fill='%23222'/%3E%3Crect x='104' y='190' width='48' height='46' rx='8' fill='%23ff8fab'/%3E%3Crect x='228' y='92' width='324' height='180' rx='10' fill='%23fff7ed' stroke='%23f59e0b' stroke-width='3'/%3E%3Crect x='228' y='198' width='324' height='74' fill='%23ebd0b0'/%3E%3Crect x='345' y='110' width='90' height='64' fill='%23dbeafe' stroke='%2364748b' stroke-width='4'/%3E%3Ctext x='246' y='244' font-family='sans-serif' font-size='20' font-weight='bold' fill='%2378350f'%3E%E2%9C%A8 %EB%8F%84%ED%8A%B8 %EB%AF%B8%EB%8B%88%EB%A3%B8 %26 %EC%9D%BC%EC%B4%8C %ED%8C%8C%EB%8F%84%ED%83%80%EA%B8%B0%3C/text%3E%3C/svg%3E" />
+    <meta id="og-image-meta" property="og:image" content="https://placehold.co/600x315/a9cbe4/1e293b?text=CYWORLD+MINIHOMPY" />
 
-    <!-- 4종 한국어 감성 폰트 -->
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- 4종 한국어 감성 폰트 (고운 돋움 포함) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Nanum+Pen+Script&family=Noto+Serif+KR:wght@400;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
 
+    <!-- Firebase Compat SDK (Firestore 실시간 동기화용) -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
     <style>
-        /* ==================== 1. 전역 리셋 & 폰트 4종 ==================== */
+        /* ==================== 1. 폰트 4종 & 전역 스타일 ==================== */
         :root {
             --cy-font: 'Gowun Dodum', 'Gulim', 'Apple SD Gothic Neo', sans-serif;
             --cy-scale: 1;
         }
         body.font-gothic { --cy-font: 'Gowun Dodum', 'Gulim', sans-serif; --cy-scale: 1; }
         body.font-serif { --cy-font: 'Noto Serif KR', serif; --cy-scale: 0.96; }
-        body.font-hand { --cy-font: 'Nanum Pen Script', cursive, sans-serif; --cy-scale: 1.22; }
-        body.font-pixel { --cy-font: 'Silkscreen', 'Gowun Dodum', monospace; --cy-scale: 0.92; }
+        body.font-hand { --cy-font: 'Nanum Pen Script', cursive, sans-serif; --cy-scale: 1.24; }
+        body.font-pixel { --cy-font: 'Silkscreen', 'Gowun Dodum', monospace; --cy-scale: 0.9; }
 
         *, *::before, *::after {
             box-sizing: border-box;
@@ -45,25 +52,25 @@
             justify-content: center;
             user-select: none;
             -webkit-user-select: none;
-            transition: background 0.3s ease;
+            transition: background 0.25s ease;
         }
 
         /* 바깥 배경 스킨 4종 */
         body.skin-sky {
             background-color: #a9cbe4;
             background-image:
-                linear-gradient(rgba(255,255,255,0.35) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.35) 1px, transparent 1px);
+                linear-gradient(rgba(255,255,255,0.36) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.36) 1px, transparent 1px);
             background-size: 20px 20px;
         }
         body.skin-pink {
             background-color: #f6c9dc;
-            background-image: radial-gradient(rgba(255,255,255,0.68) 2px, transparent 2px);
+            background-image: radial-gradient(rgba(255,255,255,0.7) 2px, transparent 2px);
             background-size: 18px 18px;
         }
         body.skin-mint {
             background-color: #bce3d8;
-            background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.28) 0 10px, transparent 10px 20px);
+            background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.3) 0 10px, transparent 10px 20px);
         }
         body.skin-retro {
             background-color: #c8c2b4;
@@ -80,7 +87,7 @@
         }
         button { font-family: var(--cy-font); cursor: pointer; }
 
-        /* ==================== 2. 첫 접속 로그인 / 회원가입 / 게스트 게이트 ==================== */
+        /* ==================== 2. 로그인 / 회원가입 / 게스트 게이트 ==================== */
         #auth-screen {
             position: fixed;
             inset: 0;
@@ -90,7 +97,7 @@
             justify-content: center;
             padding: 14px;
             background:
-                radial-gradient(circle at 20% 20%, rgba(255,255,255,0.62) 0%, transparent 45%),
+                radial-gradient(circle at 20% 20%, rgba(255,255,255,0.65) 0%, transparent 45%),
                 linear-gradient(135deg, #b5d6ee 0%, #f7d6e6 100%);
             overflow-y: auto;
         }
@@ -204,7 +211,7 @@
         }
         .btn-guest:hover { background: #e0f2fe; }
 
-        /* ==================== 3. 고정 가로형(1020x620) 싸이월드 링 바인더 무대 ==================== */
+        /* ==================== 3. 가로형(1020x620) 3단 링 바인더 무대 ==================== */
         #landscape-stage {
             width: 1020px;
             height: 620px;
@@ -216,10 +223,9 @@
             position: relative;
         }
 
-        /* 상단 미니 유틸리티 바 */
         .top-bar {
             height: 32px;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.96);
             border: 1.5px solid #5c82a3;
             border-radius: 7px;
             padding: 0 10px;
@@ -277,14 +283,10 @@
         .cy-btn.pink { background: #fff0f5; border-color: #e11d48; color: #be123c; }
         .cy-btn.amber { background: #fef3c7; border-color: #d97706; color: #92400e; }
         .cy-btn.dev { background: #7c3aed; border-color: #5b21b6; color: #ffffff; }
+        .cy-btn.danger { background: #fef2f2; border-color: #dc2626; color: #b91c1c; }
 
-        /* 게스트 모드 잠금 버튼 표시 스타일 */
-        .cy-btn.guest-locked {
-            opacity: 0.72;
-            cursor: pointer;
-        }
+        .cy-btn.guest-locked { opacity: 0.72; }
 
-        /* 전체 공지 1줄 티커 */
         .notice-strip {
             height: 24px;
             background: linear-gradient(90deg, #fff7ed 0%, #fef3c7 100%);
@@ -301,7 +303,6 @@
         }
         .notice-strip.hidden { display: none; }
 
-        /* 가로형 링 바인더 책 + 오른쪽 세로 책갈피 탭 */
         .book-row {
             flex: 1;
             min-height: 0;
@@ -333,12 +334,12 @@
             position: relative;
         }
 
-        /* 중앙 은색 스프링 링 4개 */
+        /* 중앙 은색 3단 스프링 링 */
         .spine-rings {
             position: absolute;
             left: 256px;
-            top: 46px;
-            bottom: 46px;
+            top: 58px;
+            bottom: 58px;
             width: 30px;
             display: flex;
             flex-direction: column;
@@ -367,7 +368,7 @@
         .ring-coil::before { left: 2px; }
         .ring-coil::after { right: 2px; }
 
-        /* ==================== 4. 왼쪽 페이지 (고정 258px) ==================== */
+        /* ==================== 4. 왼쪽 페이지 ==================== */
         .page-left {
             width: 258px;
             flex-shrink: 0;
@@ -446,7 +447,6 @@
             color: #334155;
         }
 
-        /* 액티브 지수 미니 박스 (좌측 하단) */
         .ai-box {
             flex-shrink: 0;
             background: #f8fafc;
@@ -529,7 +529,6 @@
         }
         .tab-view.active { display: flex; }
 
-        /* 홈 상단 요약 2열 */
         .home-summary-grid {
             height: 92px;
             flex-shrink: 0;
@@ -561,7 +560,6 @@
             align-items: center;
         }
 
-        /* 도트 미니룸 스테이지 */
         .miniroom-stage-box {
             flex: 1;
             min-height: 0;
@@ -595,7 +593,6 @@
             font-size: 11px;
         }
 
-        /* 홈 하단 일촌평 */
         .ilchon-bottom-box {
             height: 114px;
             flex-shrink: 0;
@@ -620,7 +617,6 @@
             background: #ffffff;
         }
 
-        /* 게스트 전용 작은 안내 문구 */
         .guest-small-notice {
             font-size: 10px;
             color: #64748b;
@@ -678,7 +674,7 @@
         .shop-card.owned { border-color: #38bdf8; background: #f0f9ff; }
         .shop-card.equipped { border-color: #e11d48; background: #fff1f2; }
 
-        /* ==================== 6. 오른쪽 세로 책갈피 탭 7개 ==================== */
+        /* ==================== 6. 오른쪽 세로 책갈피 탭 ==================== */
         .bookmark-col {
             width: 66px;
             flex-shrink: 0;
@@ -728,7 +724,7 @@
             border-color: #9333ea;
         }
 
-        /* ==================== 7. 모달 & 작은 글씨 토스트 ==================== */
+        /* ==================== 7. 모달 & 개발자 콘솔 ==================== */
         .modal-bg {
             position: fixed;
             inset: 0;
@@ -743,7 +739,7 @@
 
         .modal-box {
             width: 100%;
-            max-width: 520px;
+            max-width: 580px;
             max-height: 90dvh;
             background: #ffffff;
             border: 2px solid #334155;
@@ -771,6 +767,55 @@
             display: flex;
             flex-direction: column;
             gap: 9px;
+        }
+
+        .dev-subtabs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+            background: #f3e8ff;
+            padding: 4px;
+            border-radius: 8px;
+            border: 1px solid #d8b4fe;
+        }
+        .dev-subtab {
+            border: none;
+            background: transparent;
+            padding: 6px 4px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: bold;
+            color: #6b21a8;
+        }
+        .dev-subtab.active {
+            background: #ffffff;
+            color: #4c1d95;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+        }
+        .dev-pane { display: none; flex-direction: column; gap: 8px; }
+        .dev-pane.active { display: flex; }
+
+        .member-row-card {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 7px;
+            padding: 8px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .member-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+        .m-tag {
+            font-size: 10px;
+            padding: 1px 6px;
+            border-radius: 4px;
+            background: #f1f5f9;
+            color: #334155;
+            border: 1px solid #e2e8f0;
         }
 
         #toast {
@@ -802,7 +847,7 @@
 <body class="skin-sky font-gothic">
     <div id="toast">저장되었습니다</div>
 
-    <!-- ==================== 0. 첫 접속 로그인 / 회원가입 / 게스트 구경 게이트 (개발자 힌트 0%) ==================== -->
+    <!-- ==================== 0. 로그인 / 회원가입 / 게스트 구경 게이트 ==================== -->
     <div id="auth-screen">
         <div class="auth-card">
             <div class="auth-header">
@@ -865,9 +910,8 @@
         </div>
     </div>
 
-    <!-- ==================== 1. 가로형(1020x620) 싸이월드 링 바인더 무대 ==================== -->
+    <!-- ==================== 1. 가로형(1020x620) 링 바인더 무대 ==================== -->
     <div id="landscape-stage">
-        <!-- 상단 유틸리티 바 -->
         <header class="top-bar">
             <div class="top-group">
                 <div id="skin-picker-wrap" style="display:flex; align-items:center; gap:4px;">
@@ -878,7 +922,7 @@
                     <button type="button" class="skin-dot" data-skin="skin-retro" style="background:#c8c2b4;" onclick="setOuterSkin('skin-retro')"></button>
                 </div>
                 <select id="font-selector" class="cy-btn" onchange="changeGlobalFont(this.value)">
-                    <option value="font-gothic">Aa 기본 고딕</option>
+                    <option value="font-gothic">Aa 고운 돋움</option>
                     <option value="font-serif">Aa 클래식 명조</option>
                     <option value="font-hand">Aa 감성 손글씨</option>
                     <option value="font-pixel">Aa 도트 픽셀체</option>
@@ -890,7 +934,7 @@
             </div>
 
             <div class="top-group">
-                <button type="button" id="btn-dev-console" class="cy-btn dev" style="display:none;" onclick="openDevModal()">🛠️ DEV 콘솔</button>
+                <button type="button" id="btn-dev-console" class="cy-btn dev" style="display:none;" onclick="openDevModal('members')">🛠️ DEV 콘솔</button>
                 <button type="button" id="btn-my-home" class="cy-btn" onclick="goMyHome()">내 홈피</button>
                 <button type="button" id="btn-ilchon-top" class="cy-btn primary" onclick="switchTab('ilchon')">일촌찾기 <span id="req-count-pill"></span></button>
                 <button type="button" id="btn-send-inquiry" class="cy-btn pink" onclick="openInquirySendModal()">💌 문의하기</button>
@@ -898,20 +942,19 @@
             </div>
         </header>
 
-        <!-- 전체 공지 1줄 티커 -->
+        <!-- 전체 공지 티커 -->
         <div id="global-notice-bar" class="notice-strip">
             <div style="display:flex; align-items:center; gap:6px; min-width:0;">
                 <span style="background:#f59e0b; color:#fff; font-size:10px; font-weight:bold; padding:1px 6px; border-radius:999px; flex-shrink:0;">📢 전체공지</span>
                 <strong id="global-notice-text" style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">싸이월드 미니홈피 오픈! 매일 출석하고 도토리로 5가지 도트 테마를 꾸며보세요 ✨</strong>
             </div>
-            <button type="button" id="btn-notice-shortcut" class="cy-btn amber" style="display:none; padding:1px 6px; font-size:10px;" onclick="openDevModal()">공지 수정</button>
+            <button type="button" id="btn-notice-shortcut" class="cy-btn amber" style="display:none; padding:1px 6px; font-size:10px;" onclick="openDevModal('sample')">공지 수정</button>
         </div>
 
-        <!-- 가로형 책 본체 + 오른쪽 세로 책갈피 탭 -->
         <div class="book-row">
             <div class="book-cover">
                 <div class="book-dashed">
-                    <!-- 왼쪽 페이지: 프로필, 미니미, 액티브 지수, 1촌 파도타기 -->
+                    <!-- 왼쪽 페이지 -->
                     <aside class="page-left">
                         <div class="visit-bar">
                             <span>TODAY <span id="stat-today" class="today">1</span></span>
@@ -974,26 +1017,25 @@
                         </div>
                     </aside>
 
-                    <!-- 중앙 은색 스프링 링 4개 -->
+                    <!-- 중앙 3단 스프링 링 -->
                     <div class="spine-rings" aria-hidden="true">
-                        <div class="ring-coil"></div>
                         <div class="ring-coil"></div>
                         <div class="ring-coil"></div>
                         <div class="ring-coil"></div>
                     </div>
 
-                    <!-- 오른쪽 페이지: 홈 / 상점 / 사진첩 / 일촌찾기 / 방명록 / 다이어리 / DEV문의함 -->
+                    <!-- 오른쪽 메인 페이지 -->
                     <main class="page-right">
                         <div class="right-header">
                             <div style="display:flex; align-items:center; gap:6px; min-width:0;">
                                 <span id="hompy-title-text" class="hompy-title">사이좋은 사람들, 미니홈피</span>
                                 <button type="button" id="btn-edit-title" class="cy-btn" style="padding:1px 6px; font-size:10px;" onclick="editHompyTitle()">수정</button>
                             </div>
-                            <span id="hompy-url-text" style="font-size:10.5px; color:#64748b; flex-shrink:0;">cyworld.com/home</span>
+                            <span id="hompy-url-text" style="font-size:10.5px; color:#64748b; flex-shrink:0;">cyworld-nu.vercel.app</span>
                         </div>
 
                         <div id="guest-banner-inline" class="guest-banner-inline">
-                            <span>👀 <strong>게스트 구경 모드</strong> · <span style="font-size:10px;">구경 외 기능은 로그인 후 이용할 수 있어요</span></span>
+                            <span>👀 <strong>게스트 구경 모드</strong> · <span style="font-size:10px;">로그인 후 이용할 수 있어요</span></span>
                             <button type="button" class="cy-btn primary" style="padding:2px 7px; font-size:10px;" onclick="logoutUser()">로그인/가입 ▶</button>
                         </div>
 
@@ -1019,7 +1061,6 @@
                                 </div>
                             </div>
 
-                            <!-- 도트 미니룸 -->
                             <div class="miniroom-stage-box">
                                 <canvas id="pixel-room-canvas" width="320" height="144" onclick="moveMinimiInRoom(event)" title="바닥을 클릭하면 미니미가 이동해요!"></canvas>
                                 <div class="room-bottom-bar">
@@ -1028,7 +1069,6 @@
                                 </div>
                             </div>
 
-                            <!-- 일촌평 -->
                             <div class="ilchon-bottom-box">
                                 <div class="sub-title" style="margin-bottom:0;">
                                     <span>What friends say · 일촌평</span>
@@ -1039,13 +1079,13 @@
                                     <button type="submit" class="cy-btn primary">확인</button>
                                 </form>
                                 <div id="guest-ilchon-lock-note" class="guest-small-notice" style="display:none;" onclick="notifyGuestLoginRequired()">
-                                    🔒 일촌평 작성은 로그인 후 이용할 수 있어요
+                                    로그인 후 이용할 수 있어요
                                 </div>
                                 <div id="ilchon-comments-list" class="scroll-area"></div>
                             </div>
                         </section>
 
-                        <!-- TAB 2: 도토리 상점 & 도트 미니룸 -->
+                        <!-- TAB 2: 상점 -->
                         <section id="view-shop" class="tab-view">
                             <div class="entry-box" style="background:#fffbeb; border-color:#f59e0b; flex-shrink:0;">
                                 <div style="display:flex; justify-content:space-between; align-items:center;">
@@ -1078,7 +1118,7 @@
                                 <button type="submit" class="cy-btn primary">사진 올리기</button>
                             </form>
                             <div id="guest-photo-lock-note" class="guest-small-notice" style="display:none;" onclick="notifyGuestLoginRequired()">
-                                🔒 새 사진 등록 및 편집은 로그인 후 이용할 수 있어요 (샘플 사진 구경 가능)
+                                로그인 후 이용할 수 있어요
                             </div>
                             <div id="photo-gallery-grid" class="scroll-area" style="display:grid; grid-template-columns:repeat(3, 1fr); align-content:start;"></div>
                         </section>
@@ -1105,19 +1145,19 @@
                                 <button type="submit" class="cy-btn primary">등록</button>
                             </form>
                             <div id="guest-gb-lock-note" class="guest-small-notice" style="display:none;" onclick="notifyGuestLoginRequired()">
-                                🔒 방명록 작성은 로그인 후 이용할 수 있어요
+                                로그인 후 이용할 수 있어요
                             </div>
                             <div id="guestbook-list" class="scroll-area"></div>
                         </section>
 
-                        <!-- TAB 6: 다이어리 & 프로필 소개 수정 -->
+                        <!-- TAB 6: 다이어리 -->
                         <section id="view-diary" class="tab-view">
                             <form id="diary-form" class="inline-form" onsubmit="postDiary(event)">
                                 <input id="diary-input" type="text" maxlength="120" placeholder="오늘의 비밀 다이어리 기록 (+3🌰)" />
                                 <button type="submit" class="cy-btn primary">기록</button>
                             </form>
                             <div id="guest-diary-lock-note" class="guest-small-notice" style="display:none;" onclick="notifyGuestLoginRequired()">
-                                🔒 다이어리 및 소개글 작성은 로그인 후 이용할 수 있어요
+                                로그인 후 이용할 수 있어요
                             </div>
                             <div id="diary-list" class="scroll-area"></div>
                             <div id="bio-edit-panel" class="entry-box" style="flex-shrink:0;">
@@ -1129,7 +1169,7 @@
                             </div>
                         </section>
 
-                        <!-- TAB 7: 개발자 전용 '개발자에게 문의' 페이지 (ID & / PW 0907 전용) -->
+                        <!-- TAB 7: 개발자 전용 문의함 -->
                         <section id="view-devinquiries" class="tab-view">
                             <div class="entry-box" style="background:#f3e8ff; border-color:#9333ea; flex-shrink:0;">
                                 <div style="display:flex; justify-content:space-between; align-items:center;">
@@ -1143,14 +1183,14 @@
                 </div>
             </div>
 
-            <!-- 오른쪽 세로 책갈피 탭 7개 -->
+            <!-- 오른쪽 세로 책갈피 탭 -->
             <nav class="bookmark-col" aria-label="미니홈피 책갈피 메뉴">
                 <button type="button" class="bm-tab active" data-tab="home" onclick="switchTab('home')">홈</button>
                 <button type="button" id="bm-tab-shop" class="bm-tab" data-tab="shop" onclick="switchTab('shop')">상점</button>
-                <button type="button" class="bm-tab" data-tab="photo" onclick="switchTab('photo')">사진첩</button>
+                <button type="button" id="bm-tab-photo" class="bm-tab" data-tab="photo" onclick="switchTab('photo')">사진첩</button>
                 <button type="button" id="bm-tab-ilchon" class="bm-tab" data-tab="ilchon" onclick="switchTab('ilchon')">일촌찾기</button>
-                <button type="button" class="bm-tab" data-tab="guestbook" onclick="switchTab('guestbook')">방명록</button>
-                <button type="button" class="bm-tab" data-tab="diary" onclick="switchTab('diary')">다이어리</button>
+                <button type="button" id="bm-tab-guestbook" class="bm-tab" data-tab="guestbook" onclick="switchTab('guestbook')">방명록</button>
+                <button type="button" id="bm-tab-diary" class="bm-tab" data-tab="diary" onclick="switchTab('diary')">다이어리</button>
                 <button type="button" id="bm-tab-devinquiries" class="bm-tab dev-tab" data-tab="devinquiries" onclick="switchTab('devinquiries')">문의함</button>
             </nav>
         </div>
@@ -1188,7 +1228,7 @@
         </div>
     </div>
 
-    <!-- ==================== 모달 2: 일반 사용자용 문의 보내기 ==================== -->
+    <!-- ==================== 모달 2: 문의 보내기 ==================== -->
     <div id="inquiry-send-modal" class="modal-bg">
         <div class="modal-box" style="max-width:400px;">
             <div class="modal-head">
@@ -1206,60 +1246,177 @@
         </div>
     </div>
 
-    <!-- ==================== 모달 3: 개발자 콘솔 (ID & / PW 0907 전용) ==================== -->
+    <!-- ==================== 모달 3: 개발자 콘솔 ==================== -->
     <div id="dev-modal" class="modal-bg">
-        <div class="modal-box" style="max-width:580px;">
+        <div class="modal-box" style="max-width:640px;">
             <div class="modal-head dev">
-                <span>🛠️ 개발자 관리자 콘솔 (DEV ONLY · 게스트 샘플 자동 연동)</span>
+                <span>🛠️ 개발자 관리자 콘솔 (DEV ONLY · 전체 회원 통합 조회 & 샘플 연동)</span>
                 <button type="button" class="cy-btn" onclick="closeDevModal()">닫기 ✕</button>
             </div>
             <div class="modal-body">
-                <div class="entry-box" style="background:#f0f9ff; border-color:#0284c7;">
-                    <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <strong style="color:#0369a1;">👀 게스트 모드 샘플 미니홈피 실시간 자동 연동</strong>
-                        <span style="font-size:10.5px; font-weight:bold; color:#15803d;">● 자동 적용 ON</span>
-                    </div>
-                    <span style="font-size:11px; color:#0c4a6e;">
-                        개발자 계정(<strong>@&amp;</strong>)에서 꾸민 미니룸 테마·가구·미니미·소개글·사진첩·방명록·다이어리는 저장 즉시 <strong>게스트 구경 모드</strong>에 자동 반영됩니다.
-                    </span>
-                    <div style="display:flex; gap:6px;">
-                        <button type="button" class="cy-btn primary" onclick="devPreviewAsGuest()">👀 게스트 화면 바로 미리보기</button>
-                        <button type="button" class="cy-btn" onclick="devResetSampleHome()">↺ 샘플 홈피 기본값 초기화</button>
-                    </div>
+                <div class="dev-subtabs">
+                    <button type="button" id="dev-sub-members" class="dev-subtab active" onclick="switchDevPane('members')">👥 전체 회원 목록</button>
+                    <button type="button" id="dev-sub-sample" class="dev-subtab" onclick="switchDevPane('sample')">👀 샘플 & 공지</button>
+                    <button type="button" id="dev-sub-active" class="dev-subtab" onclick="switchDevPane('active')">📊 액티브 지수</button>
                 </div>
 
-                <div class="entry-box">
-                    <strong style="color:#92400e;">📢 전체 공지 설정</strong>
+                <div id="dev-pane-members" class="dev-pane active">
                     <div class="inline-form">
-                        <input id="dev-notice-input" type="text" maxlength="80" placeholder="전체 공지 문구를 입력하세요" />
-                        <button type="button" class="cy-btn amber" onclick="devSaveNotice()">공지 등록</button>
-                        <button type="button" class="cy-btn" onclick="devClearNotice()">숨김</button>
+                        <input id="dev-member-search" type="text" oninput="renderDevMemberList()" placeholder="회원 닉네임 또는 아이디 검색..." />
+                        <span id="dev-member-total-badge" class="pill" style="flex-shrink:0;">전체 0명</span>
+                    </div>
+                    <div id="dev-users-list" style="display:flex; flex-direction:column; gap:6px; max-height:360px; overflow-y:auto;"></div>
+                </div>
+
+                <div id="dev-pane-sample" class="dev-pane">
+                    <div class="entry-box" style="background:#f0f9ff; border-color:#0284c7;">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <strong style="color:#0369a1;">👀 게스트 모드 샘플 미니홈피 실시간 자동 연동</strong>
+                            <span style="font-size:10.5px; font-weight:bold; color:#15803d;">● 자동 적용 ON</span>
+                        </div>
+                        <span style="font-size:11px; color:#0c4a6e;">
+                            개발자 계정에서 꾸민 미니룸 테마·가구·미니미·소개글·사진첩·방명록·다이어리는 저장 즉시 <strong>게스트 구경 모드</strong>에 자동 반영됩니다.
+                        </span>
+                        <div style="display:flex; gap:6px;">
+                            <button type="button" class="cy-btn primary" onclick="devPreviewAsGuest()">👀 게스트 화면 바로 미리보기</button>
+                            <button type="button" class="cy-btn" onclick="devResetSampleHome()">↺ 샘플 홈피 기본값 초기화</button>
+                        </div>
+                    </div>
+
+                    <div class="entry-box">
+                        <strong style="color:#92400e;">📢 전체 공지 설정</strong>
+                        <div class="inline-form">
+                            <input id="dev-notice-input" type="text" maxlength="80" placeholder="전체 공지 문구를 입력하세요" />
+                            <button type="button" class="cy-btn amber" onclick="devSaveNotice()">공지 등록</button>
+                            <button type="button" class="cy-btn" onclick="devClearNotice()">숨김</button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="entry-box">
-                    <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <strong style="color:#1e3a8a;">📊 현재 미니홈피 액티브 지수 수동 조절</strong>
-                        <button type="button" class="cy-btn" style="font-size:10px;" onclick="devResetActiveOverride()">자동 집계 복귀</button>
+                <div id="dev-pane-active" class="dev-pane">
+                    <div class="entry-box">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <strong style="color:#1e3a8a;">📊 현재 미니홈피 액티브 지수 수동 조절</strong>
+                            <button type="button" class="cy-btn" style="font-size:10px;" onclick="devResetActiveOverride()">자동 집계 복귀</button>
+                        </div>
+                        <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:6px;">
+                            <label style="font-size:11px;">인기도(%) <input id="dev-ai-famous" type="number" min="0" max="100" class="cy-input" style="height:28px;" /></label>
+                            <label style="font-size:11px;">친화력(%) <input id="dev-ai-friendly" type="number" min="0" max="100" class="cy-input" style="height:28px;" /></label>
+                            <label style="font-size:11px;">성실도(%) <input id="dev-ai-kind" type="number" min="0" max="100" class="cy-input" style="height:28px;" /></label>
+                        </div>
+                        <button type="button" class="cy-btn primary" onclick="devApplyActiveOverride()">수동 수치 적용하기</button>
                     </div>
-                    <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:6px;">
-                        <label style="font-size:11px;">인기도(%) <input id="dev-ai-famous" type="number" min="0" max="100" class="cy-input" style="height:28px;" /></label>
-                        <label style="font-size:11px;">친화력(%) <input id="dev-ai-friendly" type="number" min="0" max="100" class="cy-input" style="height:28px;" /></label>
-                        <label style="font-size:11px;">성실도(%) <input id="dev-ai-kind" type="number" min="0" max="100" class="cy-input" style="height:28px;" /></label>
-                    </div>
-                    <button type="button" class="cy-btn primary" onclick="devApplyActiveOverride()">수동 수치 적용하기</button>
-                </div>
-
-                <div class="entry-box">
-                    <strong style="color:#5b21b6;">🌰 전체 회원 관리 & 도토리 지급</strong>
-                    <div id="dev-users-list" style="display:flex; flex-direction:column; gap:5px;"></div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- ==================== 모달 4: 홈피 제목 수정 모달 ==================== -->
+    <div id="title-edit-modal" class="modal-bg">
+        <div class="modal-box" style="max-width:380px;">
+            <div class="modal-head">
+                <span>✏️ 미니홈피 제목 수정</span>
+                <button type="button" class="cy-btn" onclick="closeTitleModal()">닫기 ✕</button>
+            </div>
+            <form class="modal-body" onsubmit="submitHompyTitle(event)">
+                <input id="hompy-title-input" class="cy-input" type="text" maxlength="28" placeholder="새 미니홈피 제목 (최대 28자)" />
+                <button type="submit" class="btn-orange">제목 저장하기</button>
+            </form>
+        </div>
+    </div>
+
     <script>
-        /* ==================== 1. 뷰포트 가로 비율 자동 피팅 (절대 세로 스택 붕괴 방지) ==================== */
+        /* ==================== Firebase 연결 설정 (cyworld-6fde3) ==================== */
+        const FIREBASE_CONFIG = {
+            apiKey: "AIzaSyDsBj40X7scZHI81bqfqFQCz38yRpoINTM",
+            authDomain: "cyworld-6fde3.firebaseapp.com",
+            projectId: "cyworld-6fde3",
+            storageBucket: "cyworld-6fde3.firebasestorage.app",
+            messagingSenderId: "40042135914",
+            appId: "1:40042135914:web:57d45c3c25b4663e7b2513",
+            measurementId: "G-XEV6BXYMPJ"
+        };
+
+        let firestoreDb = null;
+        let isApplyingRemoteSnapshot = false;
+
+        function initRealtimeCloudSync() {
+            try {
+                if (
+                    typeof firebase !== 'undefined' &&
+                    FIREBASE_CONFIG &&
+                    FIREBASE_CONFIG.apiKey &&
+                    FIREBASE_CONFIG.projectId
+                ) {
+                    if (!firebase.apps.length) {
+                        firebase.initializeApp(FIREBASE_CONFIG);
+                    }
+                    firestoreDb = firebase.firestore();
+
+                    firestoreDb.collection('cyworld_meta').doc('global').onSnapshot((doc) => {
+                        if (!doc.exists) return;
+                        const data = doc.data() || {};
+                        isApplyingRemoteSnapshot = true;
+                        if (typeof data.globalNotice === 'string') DB.globalNotice = data.globalNotice;
+                        if (Array.isArray(data.inquiries)) DB.inquiries = data.inquiries;
+                        persistLocalOnly();
+                        isApplyingRemoteSnapshot = false;
+                        if (session.currentUserId || session.isGuest) renderAll();
+                    }, () => {});
+
+                    firestoreDb.collection('cyworld_users').onSnapshot((snapshot) => {
+                        let changed = false;
+                        snapshot.forEach((doc) => {
+                            const norm = normalizeImportedUser(doc.id, doc.data());
+                            if (norm) {
+                                DB.users[norm.userId] = norm;
+                                changed = true;
+                            }
+                        });
+                        if (changed) {
+                            DB.users[DEV_ID].password = DEV_PW;
+                            DB.users[DEV_ID].isDev = true;
+                            isApplyingRemoteSnapshot = true;
+                            persistLocalOnly();
+                            isApplyingRemoteSnapshot = false;
+                            if (document.getElementById('dev-modal')?.classList.contains('open')) {
+                                renderDevMemberList();
+                            }
+                            if (session.currentUserId || session.isGuest) renderAll();
+                        }
+                    }, () => {});
+                }
+            } catch (err) {
+                firestoreDb = null;
+            }
+        }
+
+        function pushCloudSync(specificUserId = null) {
+            if (!firestoreDb || isApplyingRemoteSnapshot) return;
+            try {
+                firestoreDb.collection('cyworld_meta').doc('global').set({
+                    globalNotice: DB.globalNotice || '',
+                    inquiries: DB.inquiries || [],
+                    updatedAt: Date.now()
+                }, { merge: true });
+
+                if (specificUserId && DB.users[specificUserId]) {
+                    firestoreDb.collection('cyworld_users').doc(specificUserId).set(
+                        JSON.parse(JSON.stringify(DB.users[specificUserId])),
+                        { merge: true }
+                    );
+                } else {
+                    Object.values(DB.users).forEach((u) => {
+                        firestoreDb.collection('cyworld_users').doc(u.userId).set(
+                            JSON.parse(JSON.stringify(u)),
+                            { merge: true }
+                        );
+                    });
+                }
+            } catch (err) {}
+        }
+
+        /* ==================== 1. 가로형 뷰포트 피팅 ==================== */
         function fitLandscapeStage() {
             const stage = document.getElementById('landscape-stage');
             if (!stage) return;
@@ -1271,19 +1428,32 @@
         window.addEventListener('resize', fitLandscapeStage);
         window.addEventListener('orientationchange', fitLandscapeStage);
 
-        /* ==================== 2. 검증 정규식 & 개발자 상수 (특수문자 '&' 적용) ==================== */
+        /* ==================== 2. 검증 규칙 & 개발자 상수 ==================== */
         const DEV_ID = '&';
         const DEV_PW = '0907';
-        const USER_ID_REGEX = /^[a-zA-Z]{2,10}$/;
         const USER_PW_REGEX = /^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{2,10}$/;
         const NICK_REGEX = /^[가-힣a-zA-Z]{2,10}$/;
-        const STORAGE_KEY = 'cyworld_y2k_horizontal_v7';
+
+        const STORAGE_KEY = 'cyworld_master_db_v10';
+        const REGISTRY_KEY = 'cyworld_all_users_registry';
+        const LEGACY_KEYS = [
+            'cyworld_master_db_v9',
+            'cyworld_y2k_horizontal_v8',
+            'cyworld_y2k_horizontal_v7',
+            'cyworld_y2k_horizontal_v6',
+            'cyworld_y2k_v5',
+            'cyworld_y2k_v4',
+            'cyworld_db',
+            'cyworld_users',
+            'cyworld_accounts',
+            'cyworld_minihompy_db'
+        ];
 
         function getIdRuleError(rawId) {
             const val = (rawId || '').trim();
             if (val.length < 2) return '아이디는 2글자 이상 작성해주세요.';
             if (val.length > 10) return '아이디는 10글자 이내로 작성해주세요.';
-            if (!USER_ID_REGEX.test(val)) return '아이디는 영문 대소문자만 2글자 이상 10글자 이내로 작성해주세요.';
+            if (!/^[a-zA-Z]{2,10}$/.test(val)) return '아이디는 영문 대소문자만 2글자 이상 10글자 이내로 작성해주세요.';
             return '';
         }
 
@@ -1303,7 +1473,7 @@
             return '';
         }
 
-        /* ==================== 3. 5종 도트 방 테마 & 도토리 상점 & 사진첩 프리셋 ==================== */
+        /* ==================== 3. 5종 도트 방 테마 & 도토리 상점 ==================== */
         const ROOM_THEMES = [
             { id: 'student', name: '학생 방', price: 0, desc: '기본 학생 방', wallTop: '#fff7ed', wallBottom: '#ffedd5', floor: '#e6c29f', floorLine: '#c59b76', windowType: 'sunny' },
             { id: 'space', name: '우주', price: 30, desc: '별빛 우주선', wallTop: '#0f172a', wallBottom: '#1e293b', floor: '#334155', floorLine: '#475569', windowType: 'space' },
@@ -1396,7 +1566,7 @@
             ]
         };
 
-        /* ==================== 4. 데이터베이스 초기화 ==================== */
+        /* ==================== 4. 회원 통합 레지스트리 ==================== */
         function todayDateString() {
             const d = new Date();
             return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
@@ -1408,6 +1578,7 @@
                 password,
                 nickname,
                 isDev,
+                joinedDate: todayDateString(),
                 outerSkin: 'skin-sky',
                 fontClass: 'font-gothic',
                 title: isDev ? '사이좋은 사람들, 공식 샘플 미니홈피 ✨' : `사이좋은 사람들, ${nickname}의 미니홈피`,
@@ -1443,6 +1614,42 @@
                 ],
                 manualActiveOverride: null
             };
+        }
+
+        function normalizeImportedUser(rawId, rawObj) {
+            try {
+                if (!rawObj || typeof rawObj !== 'object') return null;
+                const uid = String(rawObj.userId || rawObj.id || rawId || '').trim();
+                if (!uid) return null;
+                const lowerId = uid === DEV_ID ? DEV_ID : uid.toLowerCase();
+                const isDev = (lowerId === DEV_ID);
+                const nick = String(rawObj.nickname || rawObj.nick || rawObj.name || uid).trim() || uid;
+                const pw = isDev ? DEV_PW : String(rawObj.password || rawObj.pw || 'pass12');
+                const base = createUserObject(lowerId, pw, nick, isDev);
+                return {
+                    ...base,
+                    ...rawObj,
+                    userId: lowerId,
+                    password: pw,
+                    nickname: nick,
+                    isDev,
+                    acorns: Number.isFinite(Number(rawObj.acorns)) ? Number(rawObj.acorns) : base.acorns,
+                    today: Number.isFinite(Number(rawObj.today)) ? Number(rawObj.today) : base.today,
+                    total: Number.isFinite(Number(rawObj.total)) ? Number(rawObj.total) : base.total,
+                    streak: Number.isFinite(Number(rawObj.streak)) ? Number(rawObj.streak) : base.streak,
+                    ownedThemes: Array.isArray(rawObj.ownedThemes) ? rawObj.ownedThemes : base.ownedThemes,
+                    ownedFurniture: Array.isArray(rawObj.ownedFurniture) ? rawObj.ownedFurniture : base.ownedFurniture,
+                    placedFurniture: Array.isArray(rawObj.placedFurniture) ? rawObj.placedFurniture : base.placedFurniture,
+                    photos: Array.isArray(rawObj.photos) ? rawObj.photos : base.photos,
+                    ilchons: Array.isArray(rawObj.ilchons) ? rawObj.ilchons : [],
+                    pendingRequests: Array.isArray(rawObj.pendingRequests) ? rawObj.pendingRequests : [],
+                    ilchonComments: Array.isArray(rawObj.ilchonComments) ? rawObj.ilchonComments : base.ilchonComments,
+                    guestbook: Array.isArray(rawObj.guestbook) ? rawObj.guestbook : base.guestbook,
+                    diary: Array.isArray(rawObj.diary) ? rawObj.diary : base.diary
+                };
+            } catch (e) {
+                return null;
+            }
         }
 
         function buildDefaultDatabase() {
@@ -1516,32 +1723,91 @@
             };
         }
 
+        function harvestAllLegacyUsers(targetUsersMap) {
+            const keysToScan = new Set([STORAGE_KEY, REGISTRY_KEY, ...LEGACY_KEYS]);
+            try {
+                for (let i = 0; i < localStorage.length; i++) {
+                    const k = localStorage.key(i);
+                    if (k && (k.toLowerCase().includes('cyworld') || k.toLowerCase().includes('minihompy') || k.toLowerCase().includes('user'))) {
+                        keysToScan.add(k);
+                    }
+                }
+            } catch (e) {}
+
+            keysToScan.forEach(k => {
+                try {
+                    const raw = localStorage.getItem(k);
+                    if (!raw) return;
+                    const parsed = JSON.parse(raw);
+                    if (!parsed || typeof parsed !== 'object') return;
+
+                    const candidateMap = parsed.users && typeof parsed.users === 'object' ? parsed.users : parsed;
+                    if (Array.isArray(candidateMap)) {
+                        candidateMap.forEach(item => {
+                            const norm = normalizeImportedUser(item?.userId || item?.id, item);
+                            if (norm && norm.userId !== DEV_ID && norm.userId !== '1') {
+                                if (!targetUsersMap[norm.userId]) targetUsersMap[norm.userId] = norm;
+                            }
+                        });
+                    } else if (typeof candidateMap === 'object') {
+                        Object.entries(candidateMap).forEach(([keyId, valObj]) => {
+                            if (!valObj || typeof valObj !== 'object') return;
+                            if (!('nickname' in valObj || 'nick' in valObj || 'password' in valObj || 'pw' in valObj || 'title' in valObj || 'acorns' in valObj)) return;
+                            const norm = normalizeImportedUser(keyId, valObj);
+                            if (norm && norm.userId !== DEV_ID && norm.userId !== '1') {
+                                if (!targetUsersMap[norm.userId]) targetUsersMap[norm.userId] = norm;
+                            }
+                        });
+                    }
+                } catch (e) {}
+            });
+        }
+
         function loadDB() {
+            const base = buildDefaultDatabase();
             try {
                 const raw = localStorage.getItem(STORAGE_KEY);
-                if (!raw) {
-                    const fresh = buildDefaultDatabase();
-                    localStorage.setItem(STORAGE_KEY, JSON.stringify(fresh));
-                    return fresh;
+                if (raw) {
+                    const parsed = JSON.parse(raw);
+                    if (parsed && parsed.users) {
+                        if (parsed.globalNotice !== undefined) base.globalNotice = parsed.globalNotice;
+                        if (Array.isArray(parsed.inquiries)) base.inquiries = parsed.inquiries;
+                        Object.entries(parsed.users).forEach(([uid, uObj]) => {
+                            const norm = normalizeImportedUser(uid, uObj);
+                            if (norm) base.users[norm.userId] = norm;
+                        });
+                    }
                 }
-                const parsed = JSON.parse(raw);
-                if (!parsed.users || !parsed.users[DEV_ID]) {
-                    const fresh = buildDefaultDatabase();
-                    localStorage.setItem(STORAGE_KEY, JSON.stringify(fresh));
-                    return fresh;
-                }
-                parsed.users[DEV_ID].password = DEV_PW;
-                parsed.users[DEV_ID].isDev = true;
-                return parsed;
-            } catch (e) {
-                return buildDefaultDatabase();
-            }
+            } catch (e) {}
+
+            harvestAllLegacyUsers(base.users);
+            base.users[DEV_ID].password = DEV_PW;
+            base.users[DEV_ID].isDev = true;
+            return base;
         }
 
         let DB = loadDB();
-        function saveDB() {
-            try { localStorage.setItem(STORAGE_KEY, JSON.stringify(DB)); } catch (e) {}
+
+        function persistLocalOnly() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(DB));
+                localStorage.setItem(REGISTRY_KEY, JSON.stringify(DB.users));
+            } catch (e) {}
         }
+
+        function saveDB(specificUserId = null) {
+            persistLocalOnly();
+            pushCloudSync(specificUserId);
+        }
+        persistLocalOnly();
+
+        window.addEventListener('storage', (e) => {
+            if (e.key === STORAGE_KEY || e.key === REGISTRY_KEY) {
+                DB = loadDB();
+                if (session.currentUserId || session.isGuest) renderAll();
+                if (document.getElementById('dev-modal')?.classList.contains('open')) renderDevMemberList();
+            }
+        });
 
         let session = {
             currentUserId: null,
@@ -1558,7 +1824,7 @@
         function isMyHome() { return !session.isGuest && session.currentUserId === session.viewingUserId; }
         function canEditCurrentHome() { return !session.isGuest && (isMyHome() || session.isDev); }
 
-        /* ==================== 5. 로그인 / 회원가입 / 게스트 모드 ==================== */
+        /* ==================== 5. 인증 & 게스트 모드 ==================== */
         window.notifyGuestLoginRequired = function() {
             showToast('로그인 후 이용할 수 있어요', true);
         };
@@ -1690,7 +1956,7 @@
             const newUser = createUserObject(lowerId, pw, nick, false);
             newUser.acorns = 30;
             DB.users[lowerId] = newUser;
-            saveDB();
+            saveDB(lowerId);
 
             startSession(lowerId);
             showToast(`🎉 가입 완료! 환영 보너스 도토리 30🌰 지급!`);
@@ -1704,7 +1970,6 @@
 
             if (!rawId) { err.textContent = '아이디는 2글자 이상 작성해주세요.'; return; }
 
-            // 개발자 특수문자 계정('&' / '0907') 전용 처리
             if (rawId === DEV_ID) {
                 if (pw !== DEV_PW) { err.textContent = '비밀번호가 일치하지 않아요.'; return; }
                 startSession(DEV_ID);
@@ -1712,7 +1977,6 @@
                 return;
             }
 
-            // 일반 회원 로그인 시 규정 미준수 입력 안내
             const idErr = getIdRuleError(rawId);
             if (idErr) { err.textContent = idErr; return; }
 
@@ -1736,7 +2000,7 @@
                 bonusMsg = user.streak >= 2 ? `🔥 ${user.streak}일 연속 출석! 도토리 +${reward}🌰 지급!` : `🌞 오늘 첫 출석 완료! 도토리 +10🌰 지급!`;
             }
 
-            saveDB();
+            saveDB(lowerId);
             startSession(lowerId);
             showToast(bonusMsg);
         };
@@ -1768,7 +2032,7 @@
         function grantAcorns(userObj, amount, reason) {
             if (session.isGuest || !userObj) return;
             userObj.acorns = (userObj.acorns || 0) + amount;
-            saveDB();
+            saveDB(userObj.userId);
             renderTopBar();
             if (reason) showToast(`${reason} (+${amount}🌰)`);
         }
@@ -1782,7 +2046,7 @@
             return { famous, friendly, kind };
         }
 
-        /* ==================== 7. 미니미 SVG & 도트 미니룸 Canvas 렌더러 ==================== */
+        /* ==================== 7. 미니미 SVG & 도트 미니룸 Canvas ==================== */
         function buildMinimiSVG(m) {
             const cfg = m || { hairStyle: 'long', hairColor: '#3b2820', outfit: 'sailor', acc: 'ribbon' };
             const outfit = MINIMI_OPTIONS.outfits.find(o => o.id === cfg.outfit) || MINIMI_OPTIONS.outfits[0];
@@ -2021,7 +2285,7 @@
             renderPixelMiniroom();
         };
 
-        /* ==================== 8. 도토리 상점 & 미니룸 꾸미기 ==================== */
+        /* ==================== 8. 도토리 상점 ==================== */
         function renderShopAndRoom() {
             if (session.isGuest) return;
             const u = host();
@@ -2080,7 +2344,8 @@
             if (!u.ownedThemes) u.ownedThemes = ['student'];
             if (!u.ownedThemes.includes(themeId)) u.ownedThemes.push(themeId);
             u.roomTheme = themeId;
-            saveDB();
+            saveDB(u.userId);
+            if (buyer.userId !== u.userId) saveDB(buyer.userId);
             renderAll();
             showToast(session.isDev ? `✨ '${theme.name}' 테마 적용 완료 (게스트 샘플에 자동 반영!)` : `✨ '${theme.name}' 테마를 구매했어요!`);
         };
@@ -2089,7 +2354,7 @@
             if (session.isGuest) { notifyGuestLoginRequired(); return; }
             if (!canEditCurrentHome()) return;
             host().roomTheme = themeId;
-            saveDB();
+            saveDB(host().userId);
             renderAll();
             showToast(session.isDev ? '방 테마 변경 완료 (게스트 샘플에 자동 반영!)' : '방 테마가 변경되었습니다 ✨');
         };
@@ -2106,7 +2371,8 @@
             if (!u.placedFurniture) u.placedFurniture = [];
             if (!u.ownedFurniture.includes(fid)) u.ownedFurniture.push(fid);
             if (!u.placedFurniture.includes(fid)) u.placedFurniture.push(fid);
-            saveDB();
+            saveDB(u.userId);
+            if (buyer.userId !== u.userId) saveDB(buyer.userId);
             renderAll();
             showToast(`🪑 '${item.name}' 구매 & 배치 완료!`);
         };
@@ -2119,12 +2385,12 @@
             const idx = u.placedFurniture.indexOf(fid);
             if (idx >= 0) u.placedFurniture.splice(idx, 1);
             else u.placedFurniture.push(fid);
-            saveDB();
+            saveDB(u.userId);
             renderAll();
             if (session.isDev) showToast('가구 배치 변경이 게스트 샘플에 자동 반영되었습니다 ✨');
         };
 
-        /* ==================== 9. 사진첩 (게스트 읽기 전용) ==================== */
+        /* ==================== 9. 사진첩 ==================== */
         function renderPhotoGallery() {
             const h = host();
             const editable = canEditCurrentHome();
@@ -2160,7 +2426,7 @@
             if (!h.photos) h.photos = [];
             h.photos.unshift({ id: `ph_${Date.now()}`, preset, caption, date: todayDateString() });
             capInp.value = '';
-            saveDB();
+            saveDB(h.userId);
             renderPhotoGallery();
             showToast(session.isDev ? '📷 사진 등록 완료 (게스트 샘플 사진첩에 자동 반영!)' : '📷 사진첩에 새 추억이 등록되었어요!');
         };
@@ -2170,11 +2436,11 @@
             if (!canEditCurrentHome()) return;
             const h = host();
             h.photos = (h.photos || []).filter(p => p.id !== photoId);
-            saveDB();
+            saveDB(h.userId);
             renderPhotoGallery();
         };
 
-        /* ==================== 10. 닉네임 기반 일촌찾기 & 파도타기 ==================== */
+        /* ==================== 10. 일촌찾기 & 파도타기 ==================== */
         window.renderFriendDirectory = function() {
             if (session.isGuest) return;
             const cur = me();
@@ -2199,7 +2465,7 @@
 
             const others = Object.values(DB.users).filter(u => {
                 if (u.userId === cur.userId || u.userId === DEV_ID) return false;
-                return !query || u.nickname.toLowerCase().includes(query);
+                return !query || u.nickname.toLowerCase().includes(query) || u.userId.toLowerCase().includes(query);
             });
 
             document.getElementById('friend-directory-list').innerHTML = !others.length
@@ -2212,7 +2478,7 @@
                             <div style="display:flex; align-items:center; gap:7px; min-width:0;">
                                 <div style="width:28px; height:34px; flex-shrink:0;">${buildMinimiSVG(u.minimi)}</div>
                                 <div style="min-width:0;">
-                                    <div style="font-size:11.5px; font-weight:bold;">${esc(u.nickname)} ${isFriend ? '<span style="color:#e11d48;">★1촌</span>' : ''}</div>
+                                    <div style="font-size:11.5px; font-weight:bold;">${esc(u.nickname)} <span style="font-size:10px; color:#94a3b8;">(@${esc(u.userId)})</span> ${isFriend ? '<span style="color:#e11d48;">★1촌</span>' : ''}</div>
                                     <div style="font-size:10px; color:#64748b; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${esc(u.title)}</div>
                                 </div>
                             </div>
@@ -2232,7 +2498,7 @@
             if (!target.pendingRequests) target.pendingRequests = [];
             if (target.pendingRequests.some(r => r.fromId === cur.userId)) { showToast('이미 일촌 신청을 보냈어요'); return; }
             target.pendingRequests.push({ id: `req_${Date.now()}`, fromId: cur.userId, msg: `${cur.nickname}님이 일촌을 신청했어요 ♥` });
-            saveDB();
+            saveDB(targetId);
             renderFriendDirectory();
             showToast(`${target.nickname}님에게 일촌 신청을 보냈어요!`);
         };
@@ -2248,6 +2514,7 @@
             if (sender) {
                 if (!cur.ilchons.includes(sender.userId)) cur.ilchons.push(sender.userId);
                 if (!sender.ilchons.includes(cur.userId)) sender.ilchons.push(cur.userId);
+                saveDB(sender.userId);
             }
             grantAcorns(cur, 5, '새 일촌 맺기 성공!');
             renderAll();
@@ -2257,7 +2524,7 @@
             if (session.isGuest) { notifyGuestLoginRequired(); return; }
             const cur = me();
             cur.pendingRequests = (cur.pendingRequests || []).filter(r => r.id !== reqId);
-            saveDB();
+            saveDB(cur.userId);
             renderAll();
         };
 
@@ -2268,7 +2535,7 @@
             session.viewingUserId = targetId;
             target.today = (target.today || 0) + 1;
             target.total = (target.total || 0) + 1;
-            saveDB();
+            saveDB(targetId);
             switchTab('home');
             renderAll();
             showToast(`${target.nickname}님의 미니홈피로 파도타기 이동 ✨`);
@@ -2287,7 +2554,7 @@
             visitUserHome(targetId);
         };
 
-        /* ==================== 11. 일촌평 / 방명록 / 다이어리 / 소개글 / 폰트 ==================== */
+        /* ==================== 11. 일촌평 / 방명록 / 다이어리 / 제목 / 폰트 ==================== */
         window.postIlchonComment = function(e) {
             e.preventDefault();
             if (session.isGuest) { notifyGuestLoginRequired(); return; }
@@ -2297,6 +2564,7 @@
             const cur = me(), h = host();
             h.ilchonComments.unshift({ id: Date.now(), authorId: cur.userId, authorName: cur.nickname, text, date: todayDateString() });
             inp.value = '';
+            if (h.userId !== cur.userId) saveDB(h.userId);
             grantAcorns(cur, 2, '일촌평 작성 완료');
             renderAll();
         };
@@ -2310,6 +2578,7 @@
             const cur = me(), h = host();
             h.guestbook.unshift({ id: Date.now(), authorId: cur.userId, authorName: cur.nickname, text, date: todayDateString() });
             inp.value = '';
+            if (h.userId !== cur.userId) saveDB(h.userId);
             grantAcorns(cur, 2, '방명록 등록 완료');
             renderAll();
         };
@@ -2324,6 +2593,7 @@
             const h = host();
             h.diary.unshift({ id: Date.now(), text, date: todayDateString() });
             inp.value = '';
+            if (h.userId !== me().userId) saveDB(h.userId);
             grantAcorns(me(), 3, '다이어리 기록 완료');
             renderAll();
         };
@@ -2332,7 +2602,7 @@
             if (session.isGuest) { notifyGuestLoginRequired(); return; }
             if (!canEditCurrentHome()) return;
             host().bio = document.getElementById('bio-textarea').value;
-            saveDB();
+            saveDB(host().userId);
             renderAll();
             showToast(session.isDev ? '소개글 저장 완료 (게스트 샘플에 자동 반영!)' : '소개글이 저장되었습니다');
         };
@@ -2345,27 +2615,39 @@
             if (session.isGuest) { notifyGuestLoginRequired(); return; }
             if (!canEditCurrentHome()) return;
             host().mood = val;
-            saveDB();
+            saveDB(host().userId);
         };
 
         window.editHompyTitle = function() {
             if (session.isGuest) { notifyGuestLoginRequired(); return; }
             if (!canEditCurrentHome()) return;
             const h = host();
-            const next = prompt('새 미니홈피 제목을 입력하세요 (최대 28자):', h.title);
-            if (next && next.trim()) {
-                h.title = next.trim().slice(0, 28);
-                saveDB();
+            document.getElementById('hompy-title-input').value = h.title || '';
+            document.getElementById('title-edit-modal').classList.add('open');
+        };
+
+        window.closeTitleModal = function() {
+            document.getElementById('title-edit-modal').classList.remove('open');
+        };
+
+        window.submitHompyTitle = function(e) {
+            e.preventDefault();
+            if (!canEditCurrentHome()) return;
+            const next = document.getElementById('hompy-title-input').value.trim();
+            if (next) {
+                host().title = next.slice(0, 28);
+                saveDB(host().userId);
                 renderAll();
                 if (session.isDev) showToast('홈피 제목이 게스트 샘플에도 자동 반영되었습니다 ✨');
             }
+            closeTitleModal();
         };
 
         window.setOuterSkin = function(skin) {
             if (session.isGuest) { notifyGuestLoginRequired(); return; }
             if (!canEditCurrentHome()) return;
             host().outerSkin = skin;
-            saveDB();
+            saveDB(host().userId);
             renderAll();
         };
 
@@ -2377,7 +2659,7 @@
                 return;
             }
             me().fontClass = fontClass;
-            saveDB();
+            saveDB(me().userId);
             applyFontClass(fontClass);
             showToast(session.isDev ? '글씨체 변경 완료 (게스트 샘플 기본 글씨체에도 반영!)' : '글씨체가 변경되었습니다 ✨');
         };
@@ -2415,12 +2697,13 @@
 
         window.saveMinimiAndClose = function() {
             if (!canEditCurrentHome()) return;
+            if (host().userId !== me().userId) saveDB(host().userId);
             grantAcorns(me(), 3, session.isDev ? '미니미 코디 저장 (게스트 샘플에 자동 반영!)' : '미니미 코디 저장 완료');
             closeMinimiModal();
             renderAll();
         };
 
-        /* ==================== 13. 문의 보내기 & 개발자 콘솔 ==================== */
+        /* ==================== 13. 문의함 & 개발자 콘솔 ==================== */
         window.openInquirySendModal = function() {
             if (session.isGuest) { notifyGuestLoginRequired(); return; }
             document.getElementById('inq-title-input').value = '';
@@ -2438,7 +2721,7 @@
             const cur = me();
             if (!DB.inquiries) DB.inquiries = [];
             DB.inquiries.unshift({ id: `inq_${Date.now()}`, fromId: cur.userId, fromNick: cur.nickname, title, body, date: todayDateString(), status: '답변대기' });
-            saveDB();
+            saveDB(cur.userId);
             closeInquirySendModal();
             if (session.isDev) renderDevInquiries();
             showToast('💌 개발자에게 문의가 전송되었습니다!');
@@ -2478,27 +2761,100 @@
             renderDevInquiries();
         };
 
-        window.openDevModal = function() {
+        window.switchDevPane = function(pane) {
+            ['members', 'sample', 'active'].forEach(p => {
+                document.getElementById(`dev-sub-${p}`).classList.toggle('active', p === pane);
+                document.getElementById(`dev-pane-${p}`).classList.toggle('active', p === pane);
+            });
+            if (pane === 'members') renderDevMemberList();
+        };
+
+        window.renderDevMemberList = function() {
+            if (!session.isDev) return;
+            const q = (document.getElementById('dev-member-search')?.value || '').trim().toLowerCase();
+            const allUsers = Object.values(DB.users);
+            const filtered = allUsers.filter(u =>
+                !q || u.nickname.toLowerCase().includes(q) || u.userId.toLowerCase().includes(q)
+            );
+            document.getElementById('dev-member-total-badge').textContent = `전체 ${allUsers.length}명 (검색 ${filtered.length}명)`;
+
+            document.getElementById('dev-users-list').innerHTML = filtered.map(u => {
+                const ai = computeActiveIndex(u);
+                const themeObj = ROOM_THEMES.find(t => t.id === u.roomTheme) || ROOM_THEMES[0];
+                return `
+                    <div class="member-row-card">
+                        <div style="display:flex; justify-content:space-between; align-items:center; gap:6px;">
+                            <div style="display:flex; align-items:center; gap:7px;">
+                                <div style="width:28px; height:32px;">${buildMinimiSVG(u.minimi)}</div>
+                                <div>
+                                    <strong style="font-size:12px; color:#0f172a;">${esc(u.nickname)}</strong>
+                                    <span style="font-size:10.5px; color:#64748b;">(@${esc(u.userId)} / PW: ${esc(u.password)})</span>
+                                    ${u.isDev ? '<span style="background:#7c3aed; color:#fff; font-size:9.5px; padding:1px 5px; border-radius:4px;">DEV</span>' : ''}
+                                </div>
+                            </div>
+                            <div style="display:flex; gap:4px; flex-wrap:wrap; justify-content:flex-end;">
+                                <button type="button" class="cy-btn amber" onclick="devAdjustAcorn('${esc(u.userId)}', 50)">+50🌰</button>
+                                <button type="button" class="cy-btn" onclick="devAdjustAcorn('${esc(u.userId)}', -20)">-20🌰</button>
+                                <button type="button" class="cy-btn primary" onclick="visitUserHome('${esc(u.userId)}'); closeDevModal();">홈피 방문</button>
+                                ${u.isDev ? '' : `<button type="button" class="cy-btn danger" onclick="devDeleteMember('${esc(u.userId)}')">삭제</button>`}
+                            </div>
+                        </div>
+                        <div class="member-badges">
+                            <span class="m-tag">🌰 도토리 ${u.acorns || 0}개</span>
+                            <span class="m-tag">👥 일촌 ${(u.ilchons || []).length}명</span>
+                            <span class="m-tag">🏠 테마: ${esc(themeObj.name)}</span>
+                            <span class="m-tag">📊 지수 ${ai.famous}/${ai.friendly}/${ai.kind}%</span>
+                            <span class="m-tag">👣 TODAY ${u.today || 1} · TOTAL ${u.total || 1}</span>
+                            <span class="m-tag">📅 가입 ${esc(u.joinedDate || '-')} · 최근 ${esc(u.lastLoginDate || '-')}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        };
+
+        window.devAdjustAcorn = function(userId, delta) {
+            if (!session.isDev) return;
+            const u = DB.users[userId];
+            if (!u) return;
+            u.acorns = Math.max(0, (u.acorns || 0) + delta);
+            saveDB(userId);
+            renderDevMemberList();
+            renderTopBar();
+            showToast(`${u.nickname}님 도토리 ${delta > 0 ? '+' + delta : delta}🌰 적용 (현재 ${u.acorns}🌰)`);
+        };
+
+        window.devDeleteMember = function(userId) {
+            if (!session.isDev || userId === DEV_ID) return;
+            const u = DB.users[userId];
+            if (!u) return;
+            const nick = u.nickname;
+            delete DB.users[userId];
+            Object.values(DB.users).forEach(other => {
+                other.ilchons = (other.ilchons || []).filter(id => id !== userId);
+                other.pendingRequests = (other.pendingRequests || []).filter(r => r.fromId !== userId);
+            });
+            if (firestoreDb) {
+                try { firestoreDb.collection('cyworld_users').doc(userId).delete(); } catch (e) {}
+            }
+            saveDB();
+            renderDevMemberList();
+            renderAll();
+            showToast(`🗑️ '${nick}' 회원이 삭제되었습니다`);
+        };
+
+        window.openDevModal = function(initialPane = 'members') {
             if (!session.isDev) return;
             document.getElementById('dev-notice-input').value = DB.globalNotice || '';
             const ai = computeActiveIndex(host());
             document.getElementById('dev-ai-famous').value = ai.famous;
             document.getElementById('dev-ai-friendly').value = ai.friendly;
             document.getElementById('dev-ai-kind').value = ai.kind;
-            document.getElementById('dev-users-list').innerHTML = Object.values(DB.users).map(u => `
-                <div style="display:flex; justify-content:space-between; align-items:center; background:#fff; border:1px solid #cbd5e1; border-radius:5px; padding:5px 8px;">
-                    <span style="font-size:11.5px;"><strong>${esc(u.nickname)}</strong> (@${esc(u.userId)}) · 🌰 ${u.acorns || 0}개</span>
-                    <div style="display:flex; gap:4px;">
-                        <button type="button" class="cy-btn amber" onclick="devGiveAcorn('${esc(u.userId)}', 50)">+50🌰</button>
-                        <button type="button" class="cy-btn" onclick="visitUserHome('${esc(u.userId)}'); closeDevModal();">방문</button>
-                    </div>
-                </div>
-            `).join('');
+            switchDevPane(initialPane);
             document.getElementById('dev-modal').classList.add('open');
         };
         window.closeDevModal = function() { document.getElementById('dev-modal').classList.remove('open'); };
         window.devPreviewAsGuest = function() { if (!session.isDev) return; closeDevModal(); enterGuestMode(); };
-        window.devResetSampleHome = function() { if (!session.isDev) return; DB.users[DEV_ID] = buildDefaultDatabase().users[DEV_ID]; saveDB(); renderAll(); showToast('↺ 샘플 미니홈피가 기본 세팅으로 초기화되었습니다'); };
+        window.devResetSampleHome = function() { if (!session.isDev) return; DB.users[DEV_ID] = buildDefaultDatabase().users[DEV_ID]; saveDB(DEV_ID); renderAll(); showToast('↺ 샘플 미니홈피가 기본 세팅으로 초기화되었습니다'); };
         window.devSaveNotice = function() { if (!session.isDev) return; DB.globalNotice = document.getElementById('dev-notice-input').value.trim(); saveDB(); renderAll(); showToast('📢 전체 공지가 등록되었습니다'); };
         window.devClearNotice = function() { if (!session.isDev) return; DB.globalNotice = ''; saveDB(); renderAll(); showToast('전체 공지를 숨겼습니다'); };
         window.devApplyActiveOverride = function() {
@@ -2508,23 +2864,13 @@
                 friendly: Math.max(0, Math.min(100, Number(document.getElementById('dev-ai-friendly').value) || 0)),
                 kind: Math.max(0, Math.min(100, Number(document.getElementById('dev-ai-kind').value) || 0))
             };
-            saveDB();
+            saveDB(host().userId);
             renderAll();
             showToast('📊 액티브 지수 수동 조정이 적용되었습니다');
         };
-        window.devResetActiveOverride = function() { if (!session.isDev) return; host().manualActiveOverride = null; saveDB(); renderAll(); showToast('자동 집계 모드로 복귀했습니다'); };
-        window.devGiveAcorn = function(userId, amount) {
-            if (!session.isDev) return;
-            const u = DB.users[userId];
-            if (!u) return;
-            u.acorns = (u.acorns || 0) + amount;
-            saveDB();
-            openDevModal();
-            renderTopBar();
-            showToast(`${u.nickname}님에게 도토리 +${amount}🌰 지급 완료!`);
-        };
+        window.devResetActiveOverride = function() { if (!session.isDev) return; host().manualActiveOverride = null; saveDB(host().userId); renderAll(); showToast('자동 집계 모드로 복귀했습니다'); };
 
-        /* ==================== 14. 책갈피 탭 전환 & 전체 화면 동기화 ==================== */
+        /* ==================== 14. 탭 전환 & 전체 렌더 ==================== */
         window.switchTab = function(tabName) {
             if (tabName === 'devinquiries' && !session.isDev) return;
             if (session.isGuest && (tabName === 'shop' || tabName === 'ilchon')) {
@@ -2637,7 +2983,7 @@
                 guestWaveBtn.style.display = 'none';
                 waveSel.style.display = 'block';
                 const friends = (cur.ilchons || []).map(id => DB.users[id]).filter(Boolean);
-                waveSel.innerHTML = `<option value="">★나의 1촌 파도타기 (${friends.length}명)</option>` + friends.map(f => `<option value="${esc(f.userId)}">${esc(f.nickname)}</option>`).join('');
+                waveSel.innerHTML = `<option value="">★ 나의 1촌 파도타기 (${friends.length}명)</option>` + friends.map(f => `<option value="${esc(f.userId)}">${esc(f.nickname)}</option>`).join('');
             }
 
             const shopTab = document.getElementById('bm-tab-shop');
@@ -2667,7 +3013,7 @@
             document.getElementById('ai-kind-bar').style.width = `${ai.kind}%`;
 
             document.getElementById('hompy-title-text').textContent = h.title;
-            document.getElementById('hompy-url-text').textContent = guest ? 'cyworld.com/sample' : `cyworld.com/${h.userId}`;
+            document.getElementById('hompy-url-text').textContent = guest ? 'cyworld-nu.vercel.app' : `cyworld.com/${h.userId}`;
             document.getElementById('cnt-diary').textContent = (h.diary || []).length;
             document.getElementById('cnt-photo').textContent = (h.photos || []).length;
             document.getElementById('cnt-guestbook').textContent = (h.guestbook || []).length;
@@ -2678,7 +3024,7 @@
 
             document.getElementById('ilchon-comments-list').innerHTML = (h.ilchonComments || []).map(c => `
                 <div style="display:flex; justify-content:space-between; align-items:center; font-size:11.5px; border-bottom:1px dotted #cbd5e1; padding:2px 2px; gap:6px;">
-                    <span style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${esc(c.text)} <strong style="color:#1d4ed8; cursor:pointer;" onclick="visitUserHome('${esc(c.authorId)}')">(${esc(c.authorName)})</strong></span>
+                    <span style="white:nowrap; overflow:hidden; text-overflow:ellipsis;">${esc(c.text)} <strong style="color:#1d4ed8; cursor:pointer;" onclick="visitUserHome('${esc(c.authorId)}')">(${esc(c.authorName)})</strong></span>
                     <span style="font-size:10px; color:#94a3b8; flex-shrink:0;">${esc(c.date)}</span>
                 </div>
             `).join('');
@@ -2720,7 +3066,10 @@
             toastTimer = setTimeout(() => el.classList.remove('show'), 2200);
         };
 
-        window.addEventListener('DOMContentLoaded', fitLandscapeStage);
+        window.addEventListener('DOMContentLoaded', () => {
+            fitLandscapeStage();
+            initRealtimeCloudSync();
+        });
     </script>
 </body>
 </html>
