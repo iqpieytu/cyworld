@@ -130,6 +130,7 @@
         .board-post .bb { padding: 7px 9px; font-size: 11.5px; white-space: pre-wrap; line-height: 1.5; }
         #rm-grid .rm-lock img { opacity: .45; filter: grayscale(.6); }
         #rm-grid .rm-lock small { color: #b45309; font-weight: bold; }
+        .sp-opt { display: flex; gap: 8px; align-items: center; font-size: 12.5px; color: #1e293b; padding: 7px 9px; border: 1px solid #e2e8f0; border-radius: 6px; background: #fff; }
         .photo-up { align-items: center; }
         .photo-pick { position: relative; white-space: nowrap; }
         #photo-pick-preview { width: 34px; height: 34px; object-fit: cover; border: 2px solid #fff; box-shadow: 0 0 0 1px #94a3b8; border-radius: 3px; }
@@ -6001,6 +6002,7 @@ url(a){return avUrl(a||AV)}, svg(a,s){return avSVG(a||AV,s)}, get(){return {...A
 sprite(w,h,yaw){try{const r=AV3D.sprite({...AV,nm:""},w,h,yaw==null?0.3:yaw,true);return r?pixelize(r):null}catch(e){return null}},
 spriteOf(av,w,h,yaw){try{const v=vAv(av);if(!v)return null;const r=AV3D.sprite({...v,nm:""},w,h,yaw==null?0.3:yaw,true);return r?pixelize(r):null}catch(e){return null}},
 mount3D(el){try{return AV3D.mount(el,{...AV,nm:""})}catch(e){return false}},
+mount3DOf(el,av){try{const v=vAv(av);return v?AV3D.mount(el,{...v,nm:""}):false}catch(e){return false}},
 isDirty(){return avDirty}, boot, useAccount, pinned(){return PIN}, account(){return ACCT}
 };
 })();
@@ -6799,6 +6801,13 @@ var MR = (function () {
                 <button type="button" id="bm-tab-board" class="bm-tab" data-tab="board" onclick="switchTab('board')">게시판</button>
                 <button type="button" id="bm-tab-devinquiries" class="bm-tab dev-tab" data-tab="devinquiries" onclick="switchTab('devinquiries')">문의함</button>
             </nav>
+        </div>
+    </div>
+
+    <div id="sample-modal" class="modal-bg" onclick="if(event.target===this)closeSampleModal()">
+        <div class="modal-box" style="max-width:420px;">
+            <div class="modal-head"><span>📤 게스트 샘플로 올리기</span><button type="button" class="cy-btn" onclick="closeSampleModal()">닫기 ✕</button></div>
+            <div id="sample-body" class="modal-body"></div>
         </div>
     </div>
 
@@ -8088,26 +8097,39 @@ var MR = (function () {
             const k = mrKeyOf(fid); const R = JSON.parse(JSON.stringify(MR.norm(roomOf(u))));
             R.items = R.items.filter(i => i.k !== k); u.room2 = R;
         }
-        let SAMPLE_ARM = 0;
         window.publishSecretRoomAsSample = function() {
             if (session.currentUserId !== SECRET_ID || !session.isDev) return;
-            const btn = document.getElementById('btn-room-sample');
-            if (Date.now() - SAMPLE_ARM > 3500) {
-                SAMPLE_ARM = Date.now();
-                if (btn) btn.textContent = '한 번 더 누르면 올라가요';
-                setTimeout(() => { if (btn && Date.now() - SAMPLE_ARM >= 3400) btn.textContent = '📤 샘플로 올리기'; }, 3500);
-                showToast('게스트가 보는 샘플 미니룸이 의주 방으로 바뀌어요. 한 번 더 누르면 올라가요');
-                return;
-            }
-            SAMPLE_ARM = 0;
-            if (btn) btn.textContent = '📤 샘플로 올리기';
-            const src = DB.users[SECRET_ID], dev = DB.users[DEV_ID];
-            if (!src || !dev) return;
-            dev.room2 = JSON.parse(JSON.stringify(MR.norm(roomOf(src))));
-            dev.roomTheme = src.roomTheme || dev.roomTheme;
-            saveDB(DEV_ID);
-            showToast('📤 의주 미니룸을 게스트 샘플로 올렸어요!');
+            const src = DB.users[SECRET_ID];
+            const n = k => (Array.isArray(src[k]) ? src[k].length : 0);
+            document.getElementById('sample-body').innerHTML = `
+                <p style="font-size:12px; color:#334155; line-height:1.5;">고른 것들이 게스트가 보는 <b>샘플 홈피</b>로 복사돼요. 의주 홈피는 그대로예요.</p>
+                <label class="sp-opt"><input type="checkbox" id="sp-room" checked> 🛋 미니룸 (가구·벽지·바닥)</label>
+                <label class="sp-opt"><input type="checkbox" id="sp-minimi" checked> 🎀 미니미</label>
+                <label class="sp-opt"><input type="checkbox" id="sp-bgm" checked> ♬ 쥬크박스 (${n('bgm')}곡)</label>
+                <label class="sp-opt"><input type="checkbox" id="sp-photos" checked> 📷 사진첩 (${n('photos')}장)</label>
+                <label class="sp-opt"><input type="checkbox" id="sp-profile"> 👤 프로필 · 소개글</label>
+                <div style="display:flex; justify-content:flex-end; gap:6px;"><button type="button" class="cy-btn" onclick="closeSampleModal()">취소</button><button type="button" class="cy-btn primary" onclick="doPublishSample()">📤 샘플로 올리기</button></div>`;
+            document.getElementById('sample-modal').classList.add('open');
         };
+        window.closeSampleModal = function() { document.getElementById('sample-modal').classList.remove('open'); };
+        window.doPublishSample = function() {
+            const src = DB.users[SECRET_ID], dev = DB.users[DEV_ID]; if (!src || !dev) return;
+            const on = id => document.getElementById(id)?.checked;
+            const C = v => JSON.parse(JSON.stringify(v));
+            const done = [];
+            if (on('sp-room')) { dev.room2 = C(MR.norm(roomOf(src))); dev.roomTheme = src.roomTheme || dev.roomTheme; done.push('미니룸'); }
+            if (on('sp-minimi')) { const av = (src.userId === me()?.userId && window.AVK) ? AVK.get() : src.avatar3d; if (av) { dev.avatar3d = C(av); dev.avatarPinned = null; } done.push('미니미'); }
+            if (on('sp-bgm')) { dev.bgm = C(src.bgm || []); dev.bgmCur = 0; done.push('쥬크박스'); }
+            if (on('sp-photos')) { dev.photos = C(src.photos || []); done.push('사진첩'); }
+            if (on('sp-profile')) { dev.profile = C(src.profile || {}); dev.bio = src.bio; done.push('프로필'); }
+            if (!done.length) { showToast('올릴 항목을 골라 주세요', true); return; }
+            Object.keys(OTHER_SPRITES).forEach(k => delete OTHER_SPRITES[k]);
+            saveDB(DEV_ID); closeSampleModal();
+            showToast(`📤 샘플로 올렸어요: ${done.join(' · ')}`);
+        };
+        function idUsedElsewhere(field, id, exceptUserId) {
+            return Object.values(DB.users).some(u => u.userId !== exceptUserId && Array.isArray(u[field]) && u[field].some(x => x.id === id));
+        }
         function rmSync() { EDIT_SCENE.setRoom(EDIT_ROOM); rmCtrl(); }
         function roomEditClick(e) {
             const p = EDIT_SCENE.toRoom(e), hit = EDIT_SCENE.hit(p.x, p.y), sel = EDIT_SCENE.sel;
@@ -8424,7 +8446,7 @@ var MR = (function () {
             h.photos = (h.photos || []).filter(x => x.id !== photoId);
             saveDB(h.userId);
             renderPhotoGallery();
-            if (p && p.img) { delete PHOTO_MEM[photoId]; PHOTO_IDB.put(photoId, null); photoCloudPut(photoId, h.userId, null); }
+            if (p && p.img && !idUsedElsewhere('photos', photoId, h.userId)) { delete PHOTO_MEM[photoId]; PHOTO_IDB.put(photoId, null); photoCloudPut(photoId, h.userId, null); }
         };
 
         /* ==================== 10. 일촌찾기 & 파도타기 ==================== */
@@ -8711,7 +8733,7 @@ var MR = (function () {
                 if (document.getElementById('minimi-modal').classList.contains('open')) return;
                 if (!AVK.mount3D(el)) el.innerHTML = `<img src="${AVK.url()}" style="width:100%;height:100%;object-fit:contain">`;
             } else {
-                el.innerHTML = userMinimiHTML(h);
+                if (!(h.avatar3d && AVK.mount3DOf && AVK.mount3DOf(el, h.avatar3d))) el.innerHTML = userMinimiHTML(h);
             }
         }
         function renderMinimiModal() {
@@ -9051,7 +9073,7 @@ var MR = (function () {
         window.delJukeSong = function(i) {
             const h = host(); if (!canEditCurrentHome()) return; const list = bgmListOf(h); const s = list[i]; if (!s) return;
             list.splice(i, 1); if (BGM_OWNER === h.userId) { if (BGM_IDX === i) { BGM_AUDIO.pause(); } BGM_IDX = Math.max(0, Math.min(BGM_IDX, list.length - 1)); }
-            if (s.hasFile) { PHOTO_IDB.put('song_' + s.id, null); songCloudDel(s.id); }
+            if (s.hasFile && !idUsedElsewhere('bgm', s.id, h.userId)) { PHOTO_IDB.put('song_' + s.id, null); songCloudDel(s.id); }
             saveDB(h.userId); renderJukebox(); renderBgmBar();
         };
 
