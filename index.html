@@ -18,7 +18,7 @@
     <!-- 4종 한국어 감성 폰트 (고운 돋움 포함) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Nanum+Pen+Script&family=Noto+Serif+KR:wght@400;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Hi+Melody&family=Nanum+Pen+Script&family=Noto+Serif+KR:wght@400;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
 
     <style>
         /* ==================== 1. 폰트 4종 & 전역 스타일 ==================== */
@@ -118,9 +118,21 @@
         .note-item { display: flex; gap: 8px; align-items: center; padding: 8px 10px; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; color: #1e293b; cursor: pointer; text-align: left; width: 100%; font-size: 12px; }
         .note-item.unread { border-color: #f59e0b; background: #fffbeb; box-shadow: 0 0 10px rgba(255, 196, 0, .45); }
         .note-item .dot { width: 8px; height: 8px; border-radius: 50%; background: #f59e0b; flex-shrink: 0; }
-        .note-paper { background: repeating-linear-gradient(180deg, #fffdf7 0 22px, #f1e7d2 22px 23px); border: 1px solid #e7d9bc; border-radius: 6px; padding: 12px 14px; min-height: 140px; font-size: 13px; line-height: 23px; color: #3b2f2f; white-space: pre-wrap; word-break: break-all; }
+        .note-paper { background: repeating-linear-gradient(180deg, #fffdf7 0 22px, #f1e7d2 22px 23px); background-position: 0 12px; border: 1px solid #e7d9bc; border-radius: 6px; padding: 12px 14px; overflow: hidden; min-height: 140px; font-size: 13px; line-height: 23px; color: #3b2f2f; white-space: pre-wrap; word-break: break-all; }
         .note-paper .cur { display: inline-block; width: 7px; background: #3b2f2f; animation: blinkc 0.8s steps(1) infinite; }
         @keyframes blinkc { 50% { opacity: 0; } }
+        .note-paper img, .note-paper .emoji { height: 1em; vertical-align: -2px; }
+        /* 루네 쪽지: 옛날 폰 문자 화면 */
+        .fphone { width: 100%; max-width: 340px; margin: 0 auto; }
+        .fp-scr { border-radius: 10px; overflow: hidden; background: #e4eefb; box-shadow: 0 8px 22px rgba(40,70,140,.28); }
+        .fp-sb { display: flex; justify-content: space-between; padding: 4px 8px; background: linear-gradient(#2d5fd8,#1d3fa8); color: #fff; font-size: 11px; font-weight: 700; }
+        .fp-hd { margin: 8px 8px 0; padding: 6px 10px; border-radius: 6px 6px 0 0; background: linear-gradient(#7fb3f5,#4f8ee8 70%,#8fd8ff); color: #fff; }
+        .fp-hd b { display: block; font-family: 'Hi Melody','Nanum Pen Script',cursive; font-size: 24px; line-height: 1.1; }
+        .fp-hd small { font-family: 'Hi Melody',cursive; font-size: 14px; }
+        .fp-body { margin: 0 8px 8px; padding: 6px; background: #6f9be8; }
+        .fp-paper { min-height: 170px; padding: 12px; background: linear-gradient(#d9e8fb,#c3daf8 60%,#e6f0fc); border: 2px solid #9cc0f2; font-family: 'Hi Melody','Nanum Pen Script',cursive; font-size: 19px; line-height: 28px; color: #151515; white-space: pre-wrap; word-break: keep-all; }
+        .fp-paper .cur { display: inline-block; width: 7px; background: #151515; animation: blinkc .8s steps(1) infinite; }
+        .fp-bar { height: 10px; margin: 0 8px 6px; border-radius: 4px 4px 0 0; background: #4f78c8; }
         .prof-table { width: 100%; border-collapse: collapse; font-size: 12px; color: #1e293b; }
         .prof-table th { width: 90px; text-align: left; background: #f1f5f9; color: #334155; padding: 6px 8px; border-bottom: 1px solid #e2e8f0; font-weight: bold; }
         .prof-table td { padding: 6px 8px; border-bottom: 1px solid #e2e8f0; background: #fff; }
@@ -1012,7 +1024,7 @@ m_layer: "bob"
 , AV_NOSE = [["dot", "점"], ["small", "작게"], ["none", "없음"], ["round", "동글"], ["pig", "돼지코"]]
 , AV_MOUTH = [["smile", "미소"], ["cat", "ω"], ["grin", "활짝"], ["smug", "씨익"], ["pout", "삐죽"], ["o", "오"], ["flat", "무표정"], ["tongue", "메롱"], ["wavy", "울먹"], ["teeth", "뻐드렁니"], ["scream", "으악"], ["woo", "우~"], ["soft", "살짝 미소"], ["flatup", "일자 + 입꼬리 업"], ["teethsmile", "😁 이 보이는 웃음"]]
 , AV_SEX = [["f", "여자"], ["m", "남자"], ["x", "선택 안 함"]]
-, AV_OUT_GRP = [["🎀 교복룩", [["sailor", "클래식 세라복"], ["blazer", "브리티시 블레이저"], ["vest", "하복 니트 베스트"], ["trench", "트렌치 코트 교복"]]], ["🧸 키치 & Y2K", [["zip", "별 패치 크롭 집업"], ["cathood", "고양이 후드티"], ["gyaru", "갸루 카디건 & 넥타이"], ["tech", "테크웨어 바람막이"], ["argyle", "아가일 니트 & 베레모"]]], ["👗 러블리 원피스", [["frilldress", "리본 셔링 프릴 원피스"], ["flower", "플라워 퍼프 원피스"], ["tweed", "트위드 투피스"], ["knit", "오프숄더 니트 원피스"]]], ["🍰 로리타 & 고딕", [["lolita", "스위트 케이크 로리타"], ["gmaid", "고딕 메이드"], ["vamp", "뱀파이어 귀족 블라우스"], ["angelsailor", "엔젤 윙 세일러"]]], ["🎤 아이돌 무대의상", [["prince", "왕자님 제복"], ["varsity", "바시티 점퍼"], ["rider", "레더 라이더 & 체인"], ["harness", "셔츠 & 하네스"], ["rugby", "하이틴 럭비 카라티"]]], ["🦖 인형탈 & 병맛 코스튬", [["dino", "공룡 인형탈"], ["shark", "상어 인형탈"], ["frog", "개구리 우비"], ["bungeo", "인간 붕어빵"], ["astro", "아폴로 우주복"], ["snowman", "☃️ 눈사람"]]], ["👔 남자 교복", [["muni1", "회색·남색 자켓 + 남색 조끼"], ["muni2", "회색 자켓 + 체크 바지"], ["muni3", "남색 블레이저 + 니트 조끼"]]], ["✨ 기타", [["crew", "✈️ 승무원 정장 (스페셜)"], ["padding", "숏 패딩"], ["coat", "롱 코트"], ["suit", "정장 재킷"], ["sdress", "정장 원피스"], ["hanbok", "한복"], ["kimono", "기모노"], ["qipao", "치파오"], ["bunny", "토끼 후드"], ["tee", "티셔츠"], ["devil", "악마"], ["angel", "천사"]]]]
+, AV_OUT_GRP = [["🎀 교복룩", [["sailor", "클래식 세라복"], ["blazer", "브리티시 블레이저"], ["vest", "하복 니트 베스트"], ["trench", "트렌치 코트 교복"]]], ["🧸 키치 & Y2K", [["zip", "별 패치 크롭 집업"], ["cathood", "고양이 후드티"], ["gyaru", "갸루 카디건 & 넥타이"], ["tech", "테크웨어 바람막이"], ["argyle", "아가일 니트 & 베레모"]]], ["👗 러블리 원피스", [["frilldress", "리본 셔링 프릴 원피스"], ["flower", "플라워 퍼프 원피스"], ["tweed", "트위드 투피스"], ["knit", "오프숄더 니트 원피스"]]], ["🍰 로리타 & 고딕", [["lolita", "스위트 케이크 로리타"], ["gmaid", "고딕 메이드"], ["vamp", "뱀파이어 귀족 블라우스"], ["angelsailor", "엔젤 윙 세일러"]]], ["🎤 아이돌 무대의상", [["prince", "왕자님 제복"], ["varsity", "바시티 점퍼"], ["rider", "레더 라이더 & 체인"], ["harness", "셔츠 & 하네스"], ["rugby", "하이틴 럭비 카라티"]]], ["🦖 인형탈 & 병맛 코스튬", [["dino", "공룡 인형탈"], ["shark", "상어 인형탈"], ["frog", "개구리 우비"], ["bungeo", "인간 붕어빵"], ["astro", "아폴로 우주복"], ["snowman", "☃️ 눈사람"]]], ["👔 남자 교복", [["muni1", "회색·남색 자켓 + 남색 조끼"], ["muni2", "회색 자켓 + 체크 바지"], ["muni3", "남색 블레이저 + 니트 조끼"], ["muni4", "하늘 꽈배기 조끼 + 핑크 셔츠"], ["pjm", "🍊 귤 무늬 파자마"]]], ["✨ 기타", [["crew", "✈️ 승무원 정장 (스페셜)"], ["padding", "숏 패딩"], ["coat", "롱 코트"], ["suit", "정장 재킷"], ["sdress", "정장 원피스"], ["hanbok", "한복"], ["kimono", "기모노"], ["qipao", "치파오"], ["bunny", "토끼 후드"], ["tee", "티셔츠"], ["devil", "악마"], ["angel", "천사"]]]]
 , AV_OUT = AV_OUT_GRP.flatMap(g => g[1])
 , AV_OUT2D = {
 dino: "hood",
@@ -1024,6 +1036,8 @@ snowman: "padding",
 muni1: "suit",
 muni2: "jacket",
 muni3: "suit",
+muni4: "vest",
+pjm: "shirt",
 sailor: "sdress",
 blazer: "jacket",
 vest: "shirt",
@@ -1047,7 +1061,7 @@ rugby: "stripe"
 , AV_BOT = [["skirt", "플리츠 치마"], ["slit", "트임 스커트"], ["satin", "새틴 스커트"], ["starpants", "별패치 바지"], ["slacks", "정장 바지"], ["frill", "레이어드 프릴"], ["shorts", "반바지"], ["wide", "와이드 팬츠"], ["jeans", "배기 진"], ["cargo", "카고"]]
 , AV_SHOE = [["warmer", "레그워머+통굽"], ["heel", "스틸레토 힐"], ["mary", "메리제인"], ["boots", "롱부츠"], ["platform", "통굽 부츠"], ["sneaker", "청키 스니커즈"], ["fur", "퍼 부츠"], ["stripe", "줄무늬 양말"], ["loafer", "로퍼"]]
 , AV_SIDE = [["none", "없음"], ["short", "짧은 옆머리"], ["cheek", "볼 가리는 옆머리"], ["long", "긴 옆머리"], ["curl", "웨이브 옆머리"]]
-, AV_ACC = [["none", "없음"], ["crewhat", "✈️ 승무원 모자"], ["glass", "안경"], ["rglass", "👓 빨간 가로 안경"], ["bglass", "👓 갈색 뿔테 안경"], ["catbeanie", "고양이 비니"], ["phones", "헤드폰"], ["beret", "베레모"], ["cap", "볼캡"], ["ribbon", "리본"], ["choker", "초커"], ["sun", "선글"], ["mask", "마스크"], ["alien", "👽 외계인 더듬이"], ["poop", "💩 똥모자"], ["sleepfrog", "🐸 개구리 수면 안대"], ["sleepbear", "🐻 곰돌이 수면 안대"], ["halo", "😇 엔젤링 & 날개 핀"]];
+, AV_ACC = [["none", "없음"], ["crewhat", "✈️ 승무원 모자"], ["glass", "안경"], ["rglass", "👓 빨간 가로 안경"], ["bglass", "👓 갈색 뿔테 안경"], ["nightcap", "🌙 파자마 수면 모자"], ["catbeanie", "고양이 비니"], ["phones", "헤드폰"], ["beret", "베레모"], ["cap", "볼캡"], ["ribbon", "리본"], ["choker", "초커"], ["sun", "선글"], ["mask", "마스크"], ["alien", "👽 외계인 더듬이"], ["poop", "💩 똥모자"], ["sleepfrog", "🐸 개구리 수면 안대"], ["sleepbear", "🐻 곰돌이 수면 안대"], ["halo", "😇 엔젤링 & 날개 핀"]];
 function avShade(h, f) {
 h = h.replace("#", "");
 let r = parseInt(h.slice(0, 2), 16)
@@ -2217,6 +2231,8 @@ snowman: "none",
 muni1: "mslacks",
 muni2: "mcheck",
 muni3: "mslacks",
+muni4: "mslacks",
+pjm: "pjpants",
 astro: "astro",
 sailor: "pleat",
 blazer: "check",
@@ -2456,6 +2472,35 @@ fill(m);
 seams();
 vneck(wht, 0.86, 0.22);
 break;
+case "pjm": {
+fill(m);
+seams("#3F6FB8");
+const tang = (x, y, r) => { c.fillStyle = "#F7922B"; c.beginPath(); c.arc(x, y, r, 0, 2 * PI); c.fill(); c.fillStyle = "#FFB45C"; c.beginPath(); c.arc(x - r * .3, y - r * .3, r * .35, 0, 2 * PI); c.fill(); c.fillStyle = "#3E9A4A"; c.beginPath(); c.ellipse(x + r * .35, y - r * 1.0, r * .55, r * .25, -0.5, 0, 2 * PI); c.fill(); };
+for (let j = 0; j < 4; j++) for (let i = 0; i < 16; i++) tang((i + (j % 2) * .5) * (W / 16) + 24, 70 + j * 120, 23);
+c.strokeStyle = "#F4F6FB"; c.lineWidth = 7; c.beginPath(); c.moveTo(X(0.04), Y(1.3)); c.lineTo(X(0.04), Y(0.0)); c.stroke();
+c.fillStyle = "#F4F6FB"; for (const y of [1.08, 0.82, 0.56, 0.3]) { c.beginPath(); c.arc(X(0.09), Y(y), 11, 0, 2 * PI); c.fill(); }
+vneck("#F4F6FB", 0.98, 0.17);
+vneck(m, 1.02, 0.12);
+break;
+}
+case "muni4": {
+fill(m);
+seams("#7FA6C9");
+c.strokeStyle = "rgba(255,255,255,.35)";
+c.lineWidth = 5;
+for (const x0 of [-0.42, -0.2, 0.2, 0.42]) { for (let y = 0.1; y < 1.25; y += 0.08) { c.beginPath(); c.moveTo(X(x0 - 0.03), Y(y)); c.quadraticCurveTo(X(x0 + 0.04), Y(y + 0.04), X(x0 - 0.03), Y(y + 0.08)); c.stroke(); } }
+c.strokeStyle = "rgba(60,90,130,.25)";
+c.lineWidth = 3;
+for (const x0 of [-0.31, 0.31]) { c.beginPath(); c.moveTo(X(x0), Y(0.1)); c.lineTo(X(x0), Y(1.2)); c.stroke(); }
+vneck("#1F2340", 0.70, 0.36);
+vneck("#F4F4F2", 0.74, 0.32);
+vneck("#1F2340", 0.79, 0.28);
+vneck("#F3BFCB", 0.84, 0.23);
+c.strokeStyle = "#1F2340"; c.lineWidth = 4;
+c.beginPath(); c.moveTo(X(-0.5), Y(0.12)); c.lineTo(X(0.5), Y(0.12)); c.stroke();
+c.strokeStyle = "#F4F4F2"; c.beginPath(); c.moveTo(X(-0.5), Y(0.08)); c.lineTo(X(0.5), Y(0.08)); c.stroke();
+break;
+}
 case "muni3": {
 fill(m);
 seams("#0E1322");
@@ -3217,7 +3262,7 @@ add(sphere(12, 10), chain(T(s * 0.48, 1.12, 0), S(0.22, 0.18, 0.22)), shade(sh, 
 }
 // ===== new outfit system (22 looks) =====
 const newOut = () => {
-const m = top === "muni1" ? "#8C9099" : top === "muni2" ? "#9C9FA6" : top === "muni3" ? "#1E2640" : sh
+const m = top === "muni1" ? "#8C9099" : top === "muni2" ? "#9C9FA6" : top === "muni3" ? "#1E2640" : top === "muni4" ? "#A9CCEB" : top === "pjm" ? "#5E8FD8" : sh
 , LM = lum(m) > 0.62
 , ac = LM ? "#2B2B2E" : "#F4F2EC"
 , gold = "#D9B45A"
@@ -3437,6 +3482,28 @@ btn(0.2, 0.68, silver, 0.03);
 box(chain(faceM(-0.27, 0.95, 0.006), S(0.09, 0.022, 0.012)), nv);
 for (const s of [-1, 1])
 arm(s, "long", m, { cuff: nv });
+break;
+}
+case "pjm": {
+shirtCollar("#F4F6FB");
+btn(0.08, 0.78, "#F4F6FB", 0.03);
+btn(0.08, 0.62, "#F4F6FB", 0.03);
+btn(0.08, 0.46, "#F4F6FB", 0.03);
+for (const s of [-1, 1])
+arm(s, "long", m, { cuff: "#F4F6FB" });
+break;
+}
+case "muni4": {
+const pk = "#F3BFCB";
+shirtCollar(pk);
+tie("#3A3B46", tex("tie-muni4", () => {
+const cv = cnv(256, 256), x = cv.getContext("2d");
+x.fillStyle = "#3A3B46"; x.fillRect(0, 0, 256, 256);
+x.fillStyle = "rgba(255,255,255,.08)"; for (let i = 0; i < 256; i += 12) x.fillRect(i, 0, 4, 256);
+return cv;
+}), 0.16);
+for (const s of [-1, 1])
+arm(s, "long", pk, { cuff: pk });
 break;
 }
 case "muni3": {
@@ -4071,6 +4138,9 @@ switch (setB) {
 case "mslacks":
 pants("#3F4147", null, [[0.18, 0.08], [0.18, 0.35], [0.2, 0.58]]);
 break;
+case "pjpants":
+pants("#5E8FD8", tex("pjp", () => { const cv = cnv(512, 512), x = cv.getContext("2d"); x.fillStyle = "#5E8FD8"; x.fillRect(0, 0, 512, 512); for (let j = 0; j < 5; j++) for (let i = 0; i < 5; i++) { const cx = i * 110 + (j % 2) * 55 + 20, cy = j * 110 + 40; x.fillStyle = "#F7922B"; x.beginPath(); x.arc(cx, cy, 16, 0, 7); x.fill(); x.fillStyle = "#3E9A4A"; x.beginPath(); x.ellipse(cx + 6, cy - 16, 9, 4, -.5, 0, 7); x.fill(); } return cv; }), [[0.2, 0.06], [0.2, 0.35], [0.21, 0.58]]);
+break;
 case "mcheck":
 pants("#8E9198", tex("mchk", () => checkTex("#8E9198", "#45474D")), [[0.18, 0.08], [0.18, 0.35], [0.2, 0.58]]);
 break;
@@ -4227,7 +4297,7 @@ legacyBot(a.bot, bc);
 // legs / bottoms / shoes
 const legY0 = 0.1
 , legY1 = 0.6;
-const shoe = (top === "muni1" || top === "muni2" || top === "muni3") && a.shoe !== "sneaker" ? "loafer" : a.shoe;
+const shoe = (top === "muni1" || top === "muni2" || top === "muni3" || top === "muni4") && a.shoe !== "sneaker" ? "loafer" : a.shoe;
 const shoeCol = {
 heel: "#1D1D20",
 mary: "#1D1D20",
@@ -4933,14 +5003,14 @@ sideH(a.side);
 // ---- accessories ----
 const AC = new Set(String(a.acc || "none").split(","));
 if (AC.has("rglass") || AC.has("bglass")) {
-const BG = !AC.has("rglass"), ey = -0.27, rc = BG ? "#5A3826" : "#D3283A", hw = BG ? 0.28 : 0.32, hh = BG ? 0.16 : 0.2, fr = BG ? 0.018 : 0.024;
+const BG = !AC.has("rglass"), WG = a.eye === "wide", ey = -0.27, rc = BG ? "#5A3826" : "#D3283A", hw = (BG ? 0.28 : 0.32) * (WG ? 1.08 : 1), hh = (BG ? 0.16 : 0.2) * (WG ? 1.1 : 1), fr = BG ? 0.018 : 0.024;
 const tube = (p0, p1, r) => {
 const dx = p1[0] - p0[0], dy = p1[1] - p0[1], dz = p1[2] - p0[2], L = Math.hypot(dx, dy, dz);
 add(lathe([[r, 0], [r, L]], 6), head(T(p0[0], p0[1], p0[2]), RY(Math.atan2(dx, dz)), RX(Math.acos(Math.max(-1, Math.min(1, dy / L))))), rc, { line: false });
 };
 const ends = {};
 for (const s of [-1, 1]) {
-const th = s * 0.56, q = hd(th, Math.acos(ey), 1.08);
+const th = s * (WG ? 0.72 : 0.56), q = hd(th, Math.acos(ey), 1.08);
 const ax = [Math.cos(th), 0, -Math.sin(th)];
 add(grid(28, 1, (u, v) => {
 const t = u * TAU, cx = Math.cos(t), cy = Math.sin(t);
@@ -4976,6 +5046,13 @@ line: false
 add(lathe([[0.025, -0.34], [0.025, 0.34]], 6), head(T(0, -0.25, 0.94), RZ(PI / 2)), cl, {
 line: false
 });
+}
+if (AC.has("nightcap")) {
+const cc = "#5E8FD8", cw = "#F4F6FB";
+add(torus(1.02, 0.11, 24, 6), head(T(0, 0.52, 0), RX(-0.12)), cw, { flat: true });
+add(lathe([[1.0, 0], [0.7, 0.45], [0.38, 0.85], [0.001, 1.15]], 20), head(T(0, 0.52, 0), RX(-0.12)), cc, { flat: true });
+add(lathe([[0.2, 0], [0.12, 0.3], [0.001, 0.55]], 12), head(T(0.12, 1.62, -0.12), RZ(-1.15)), cc, { flat: true });
+add(sphere(10, 8), head(T(0.62, 1.48, -0.12), S(0.17, 0.17, 0.17)), cw);
 }
 if (AC.has("catbeanie")) {
 add(grid(16, 5, (u, v) => {
@@ -5274,8 +5351,10 @@ return null;
 const key = JSON.stringify(a)
 , prev = cur
 , pa = lastA;
-if (keep)
+if (keep) {
 lastA = a;
+if (a && a.eye === "wide") { yaw = 0; vy = 0; }
+}
 try {
 if (key !== cur) {
 build(a);
@@ -5308,6 +5387,7 @@ return o;
 }
 function mount(host, a) {
 lastA = a;
+if (a && a.eye === "wide") { yaw = 0; vy = 0; }
 if (!host)
 return false;
 if (!init())
@@ -5608,9 +5688,10 @@ const blush = `<ellipse cx="33.5" cy="${EY + 8.5}" rx="4.4" ry="2.4" fill="#F49B
 // ---------- accessories
 const ACCD = {
 none: "",
-bglass: `<g fill="none" stroke="#5A3826" stroke-width="1.1"><rect x="29.5" y="${EY - 4}" width="18" height="8" rx="1.6"/><rect x="52.5" y="${EY - 4}" width="18" height="8" rx="1.6"/><path d="M47.5 ${EY - 1} h5 M29.5 ${EY - 2} l-4 -1.5 M70.5 ${EY - 2} l4 -1.5"/></g>`,
-rglass: `<g fill="none" stroke="#D3283A" stroke-width="1.5"><rect x="28" y="${EY - 5}" width="20" height="10" rx="2"/><rect x="52" y="${EY - 5}" width="20" height="10" rx="2"/><path d="M47.5 ${EY - 1} h5 M29.5 ${EY - 2} l-4 -1.5 M70.5 ${EY - 2} l4 -1.5"/></g>`,
+bglass: a.eye === "wide" ? `<g fill="none" stroke="#5A3826" stroke-width="1.1"><rect x="25" y="${EY - 4.5}" width="18" height="9" rx="1.6"/><rect x="57" y="${EY - 4.5}" width="18" height="9" rx="1.6"/><path d="M43 ${EY - 1} h14 M25 ${EY - 2} l-3 -1.5 M75 ${EY - 2} l3 -1.5"/></g>` : `<g fill="none" stroke="#5A3826" stroke-width="1.1"><rect x="29.5" y="${EY - 4}" width="18" height="8" rx="1.6"/><rect x="52.5" y="${EY - 4}" width="18" height="8" rx="1.6"/><path d="M47.5 ${EY - 1} h5 M29.5 ${EY - 2} l-4 -1.5 M70.5 ${EY - 2} l4 -1.5"/></g>`,
+rglass: a.eye === "wide" ? `<g fill="none" stroke="#D3283A" stroke-width="1.5"><rect x="24" y="${EY - 5}" width="20" height="10" rx="2"/><rect x="56" y="${EY - 5}" width="20" height="10" rx="2"/><path d="M44 ${EY - 1} h12 M24 ${EY - 2} l-3 -1.5 M76 ${EY - 2} l3 -1.5"/></g>` : `<g fill="none" stroke="#D3283A" stroke-width="1.5"><rect x="28" y="${EY - 5}" width="20" height="10" rx="2"/><rect x="52" y="${EY - 5}" width="20" height="10" rx="2"/><path d="M47.5 ${EY - 1} h5 M29.5 ${EY - 2} l-4 -1.5 M70.5 ${EY - 2} l4 -1.5"/></g>`,
 glass: `<g fill="none" stroke="#3A3A3E" stroke-width="1.3"><rect x="32.5" y="${EY - 6.5}" width="14" height="12" rx="4"/><rect x="53.5" y="${EY - 6.5}" width="14" height="12" rx="4"/><path d="M46.5 ${EY - 1} h7 M32.5 ${EY - 2} l-6 -2 M67.5 ${EY - 2} l6 -2"/></g><path d="M34 ${EY - 5} l4 0" stroke="#fff" stroke-opacity=".6" stroke-width="1"/>`,
+nightcap: `<path d="M24 24 Q46 -14 76 -4 Q64 4 78 24Z" fill="#5E8FD8"/><circle cx="76" cy="-4" r="5" fill="#F4F6FB"/><rect x="20" y="19" width="60" height="8" rx="4" fill="#F4F6FB"/>`,
 catbeanie: `<path d="M24 26 q-1 -22 26 -22 q27 0 26 22Z" fill="${U("sh")}"/><path d="M26 10 l-2 -10 l10 6Z M74 10 l2 -10 l-10 6Z" fill="${U("sh")}"/>${[10, 15, 20].map(y => `<path d="M25 ${y} q25 -3 50 0" stroke="${L(sh, sh === "#2B2B2E" ? .25 : -.25)}" stroke-width="1.6" fill="none"/>`).join("")}<rect x="22.5" y="22" width="55" height="7" rx="3.5" fill="${L(sh, -.12)}"/>${star(64, 15, 2.6, "#E9E9EB")}`,
 phones: `<path d="M24 30 q0 -28 26 -28 q26 0 26 28" stroke="#F2F2F3" stroke-width="3" fill="none"/><ellipse cx="24" cy="33" rx="5" ry="7" fill="${U("wt")}"/><ellipse cx="76" cy="33" rx="5" ry="7" fill="${U("wt")}"/><ellipse cx="24" cy="33" rx="3" ry="4.5" fill="#D6D6DA"/><ellipse cx="76" cy="33" rx="3" ry="4.5" fill="#D6D6DA"/>`,
 beret: `<path d="M24 20 q4 -16 30 -16 q22 0 24 14 q-26 -4 -54 2Z" fill="${U("bk")}"/><circle cx="52" cy="4" r="1.6" fill="#1A1A1D"/>${star(66, 13, 2.2, "#C9C9CD")}`,
@@ -5828,7 +5909,7 @@ nm: ""
 };
 let raw = null;
 try {
-raw = AV3D.sprite(a, 64, 74, PXYAW, true);
+raw = AV3D.sprite(a, 64, 74, a.eye === "wide" && PXYAW === 0.3 ? 0 : PXYAW, true);
 } catch (e) {}
 if (!raw)
 return false;
@@ -5845,7 +5926,7 @@ hp.prepend(c);
 const draw = () => {
 let r = null;
 try {
-r = AV3D.sprite(a, 64, 74, PXYAW, true);
+r = AV3D.sprite(a, 64, 74, a.eye === "wide" && PXYAW === 0.3 ? 0 : PXYAW, true);
 } catch (e) {}
 if (!r)
 return;
@@ -5915,7 +5996,7 @@ pinSaveDB(PIN);
 function unpin(){PIN=null;try{localStorage.removeItem(AK("avk.pinned"))}catch(e){}toast("고정을 해제했어요");pinSaveDB(null);render();}
 const AV_DEF={skin:0,sex:"f",hair:"bob",hc:1,eye:"big",mouth:"smile",acc:"none",out:"tee",sh:3,bot:"jeans",bc:4,shoe:"sneaker",nm:""};
 function boot(){if(PIN)applyPin(PIN,true);}
-function useAccount(id,u){
+function useAccount(id,u){if(window.__SCENE)return;
 ACCT=String(id||"");
 const J=k=>{try{return JSON.parse(LS.get(k)||"null")}catch(e){return null}};
 let slots=J(AK("tripPlanner.avslots")),pin=J(AK("avk.pinned"));
@@ -5999,14 +6080,15 @@ return {
 mount(el){if(ROOT){ROOT.removeEventListener("click",onClick);ROOT.removeEventListener("change",onChange);}ROOT=el;el.addEventListener("click",onClick);el.addEventListener("change",onChange);render();},
 unmount(){if(ROOT){ROOT.removeEventListener("click",onClick);ROOT.removeEventListener("change",onChange);ROOT.innerHTML="";}ROOT=null;},
 url(a){return avUrl(a||AV)}, svg(a,s){return avSVG(a||AV,s)}, get(){return {...AV}},
-sprite(w,h,yaw){try{const r=AV3D.sprite({...AV,nm:""},w,h,yaw==null?0.3:yaw,true);return r?pixelize(r):null}catch(e){return null}},
-spriteOf(av,w,h,yaw){try{const v=vAv(av);if(!v)return null;const r=AV3D.sprite({...v,nm:""},w,h,yaw==null?0.3:yaw,true);return r?pixelize(r):null}catch(e){return null}},
-mount3D(el){try{return AV3D.mount(el,{...AV,nm:""})}catch(e){return false}},
-mount3DOf(el,av){try{const v=vAv(av);return v?AV3D.mount(el,{...v,nm:""}):false}catch(e){return false}},
-isDirty(){return avDirty}, boot, useAccount, pinned(){return PIN}, account(){return ACCT}
+sprite(w,h,yaw){try{const r=AV3D.sprite({...AV,nm:""},w,h,yaw==null?(AV.eye==="wide"?0.1:0.3):yaw,true);return r?pixelize(r):null}catch(e){return null}},
+spriteOf(av,w,h,yaw){try{const v=vAv(av);if(!v)return null;const r=AV3D.sprite({...v,nm:""},w,h,yaw==null?(v.eye==="wide"?0.1:0.3):yaw,true);return r?pixelize(r):null}catch(e){return null}},
+mount3D(el){try{const r=AV3D.mount(el,{...AV,nm:""});if(r&&AV.eye==="wide"&&AV3D.setYaw)AV3D.setYaw(0.08);return r}catch(e){return false}},
+mount3DOf(el,av){try{const v=vAv(av);const r=v?AV3D.mount(el,{...v,nm:""}):false;if(r&&v.eye==="wide"&&AV3D.setYaw)AV3D.setYaw(0.08);return r}catch(e){return false}},
+setAv(a){const v=vAv(a);if(v){AV=v;avDirty=true;render();}},
+isDirty(){return avDirty}, yaw(v){try{AV3D.setYaw(v)}catch(e){}}, px(v){PXMODE=!!v;LS.set("tripPlanner.pxmode",PXMODE?"1":"0");render();}, boot, useAccount, pinned(){return PIN}, account(){return ACCT}
 };
 })();
-</script>
+    </script>
     <script>
 /* ===== 도트 아이소메트릭 미니룸 (MR) ===== */
 var MR = (function () {
@@ -6225,6 +6307,76 @@ var MR = (function () {
       for (let j = 0; j < 4; j++) { k.box(0.12, 0.02, 0.1, 0.1, 15 + j * 6, 3, '#FFF6C8'); k.box(1.78, 0.02, 0.1, 0.1, 15 + j * 6, 3, '#FFF6C8'); }
       k.box(0.4, 0.4, 0.15, 0.15, 13, 5, '#FF5C8A'); k.box(1.3, 0.35, 0.2, 0.2, 13, 3, '#C9A7FF');
     } },
+    cac_y: { n: '✨ 노랑 선인장', w: 1, d: 1, sp: true, draw(k) {
+      k.box(0.3, 0.3, 0.4, 0.4, 0, 7, '#D9744A'); k.box(0.27, 0.27, 0.46, 0.46, 6, 2, '#E58B5E'); k.box(0.33, 0.33, 0.34, 0.34, 8, 1, '#5B3A26');
+      k.box(0.43, 0.43, 0.14, 0.14, 9, 7, '#4E9A4A');
+      k.box(0.32, 0.32, 0.36, 0.36, 16, 9, '#F5CE52', { lc: '#E8B93A', rc: '#CF9E22' }); k.box(0.38, 0.38, 0.22, 0.22, 25, 2, '#FFE27A');
+      for (const [x, y, z] of [[0.36, 0.5, 20], [0.55, 0.36, 22], [0.48, 0.48, 27]]) k.box(x, y, 0.05, 0.05, z, 1, '#FFFFFF');
+    } },
+    cac_r: { n: '✨ 빨강 선인장', w: 1, d: 1, sp: true, draw(k) {
+      k.box(0.3, 0.3, 0.4, 0.4, 0, 7, '#F2EEE6'); k.box(0.27, 0.27, 0.46, 0.46, 6, 2, '#FFFFFF'); k.box(0.33, 0.33, 0.34, 0.34, 8, 1, '#5B3A26');
+      k.box(0.43, 0.43, 0.14, 0.14, 9, 6, '#4E9A4A');
+      k.box(0.33, 0.33, 0.34, 0.34, 15, 8, '#E0434F', { lc: '#C8303C', rc: '#A82430' }); k.box(0.39, 0.39, 0.2, 0.2, 23, 2, '#FF6B7E');
+      for (const [x, y, z] of [[0.37, 0.5, 18], [0.55, 0.37, 20], [0.47, 0.47, 25]]) k.box(x, y, 0.05, 0.05, z, 1, '#FFFFFF');
+    } },
+    turtle: { n: '✨ 꼬북이', w: 1, d: 1, sp: true, draw(k) {
+      for (const [x, y] of [[0.26, 0.34], [0.62, 0.34], [0.26, 0.62], [0.62, 0.62]]) k.box(x, y, 0.12, 0.1, 0, 2, '#8FCB7A');
+      k.box(0.74, 0.44, 0.16, 0.14, 1, 4, '#8FCB7A'); k.box(0.84, 0.46, 0.03, 0.03, 4, 1, '#1E1E22');
+      k.box(0.25, 0.3, 0.52, 0.42, 2, 4, '#3F7A34'); k.box(0.31, 0.35, 0.4, 0.32, 6, 3, '#5A9A45'); k.box(0.38, 0.41, 0.26, 0.2, 9, 2, '#7CB86A');
+      k.box(0.46, 0.47, 0.1, 0.08, 11, 1, '#A6D68F');
+    } },
+    fishtank: { n: '✨ 금붕어 어항', w: 2, d: 1, sp: true, draw(k) {
+      const f = k.front();
+      const st = k.box(0.02, 0.1, 1.96, 0.8, 0, 12, '#6E4630'); k.face(st, f, 0.06, 0.48, 3, 9, '#57351F'); k.face(st, f, 0.52, 0.94, 3, 9, '#57351F');
+      const t = k.box(0.08, 0.16, 1.84, 0.66, 12, 22, '#8FD3F2', { lc: '#9FDBF5', rc: '#7CC4E8', tc: [196, 236, 252] });
+      k.face(t, f, 0.02, 0.98, 0, 4, '#E9D7A8'); k.face(t, f, 0.05, 0.3, 4, 6, '#D9C08A');
+      k.face(t, f, 0.12, 0.16, 4, 16, '#3E9A56'); k.face(t, f, 0.16, 0.2, 4, 12, '#57B86C'); k.face(t, f, 0.84, 0.88, 4, 18, '#3E9A56'); k.face(t, f, 0.88, 0.91, 4, 13, '#57B86C');
+      k.face(t, f, 0.34, 0.46, 11, 15, '#FF8A2A'); k.face(t, f, 0.46, 0.5, 12, 14, '#FFB063'); k.face(t, f, 0.36, 0.38, 13, 14, '#1E1E22');
+      k.face(t, f, 0.6, 0.7, 16, 19, '#FF6A1E'); k.face(t, f, 0.56, 0.6, 16.5, 18.5, '#FFB063');
+      for (const [u, v] of [[0.3, 18], [0.32, 20], [0.75, 13]]) k.face(t, f, u, u + 0.02, v, v + 1, '#FFFFFF');
+      k.face(t, f, 0.02, 0.06, 6, 20, '#E6F7FF');
+    } },
+    bed2: { n: '✨ 베이지 폭닥 침대', w: 2, d: 3, sp: true, draw(k) {
+      const f = k.front();
+      k.box(0, 0.15, 2, 2.85, 0, 6, '#7A5A44', { lc: '#6A4C38', rc: '#5A3F2E' });
+      const hb = k.box(0, 0, 2, 0.18, 0, 27, '#8C6A52'); k.face(hb, f, 0.06, 0.94, 9, 24, '#33406A'); k.face(hb, f, 0.1, 0.9, 11, 22, '#3B4A78');
+      k.box(0.05, 0.2, 1.9, 2.75, 6, 5, '#F7F2E9');
+      k.box(0.14, 0.26, 0.78, 0.5, 11, 5, '#FFFDF8', { lc: '#F1EADF', rc: '#E4DBCC' }); k.box(1.08, 0.26, 0.78, 0.5, 11, 5, '#FFFDF8', { lc: '#F1EADF', rc: '#E4DBCC' });
+      k.box(0.62, 0.62, 0.76, 0.3, 13, 4, '#2E3A5C');
+      const dv = k.box(0.0, 0.92, 2.0, 2.06, 8, 8, '#EADFCB', { lc: '#DDCFB6', rc: '#CBB998' });
+      k.box(0.0, 0.92, 2.0, 0.34, 16, 2, '#F6EEE0');
+      for (let i = 0; i < 4; i++) k.box(0.08, 1.34 + i * 0.38, 1.84, 0.24, 16, 1, '#F1E7D6');
+      k.box(0.0, 2.38, 2.0, 0.6, 16, 1.5, '#2E3A5C'); k.face(dv, f, 0, 1, 1, 8, '#2E3A5C'); k.face(dv, f, 0.05, 0.95, 6.5, 7.5, '#4A5A8C');
+    } },
+    desk2: { n: '✨ 레트로 컴퓨터 책상', w: 3, d: 1, sp: true, draw(k) {
+      const f = k.front();
+      const cab = k.box(0.04, 0.06, 0.82, 0.88, 0, 14, '#DCCDB2', { lc: '#D2C2A5', rc: '#BFAE90' });
+      k.face(cab, f, 0.1, 0.9, 8.5, 12.5, '#CDBB9C'); k.face(cab, f, 0.1, 0.9, 2.5, 7, '#CDBB9C'); k.face(cab, f, 0.42, 0.58, 10, 11, '#2E3A5C'); k.face(cab, f, 0.42, 0.58, 4.3, 5.3, '#2E3A5C');
+      for (const [x, y] of [[2.8, 0.06], [2.8, 0.8]]) k.box(x, y, 0.14, 0.14, 0, 14, '#CDBB9C');
+      k.box(0, 0, 3, 1, 14, 2.5, '#EFE3CC', { lc: '#E2D4B9', rc: '#CDBC9C' });
+      k.box(1.18, 0.08, 0.6, 0.34, 16.5, 11, '#E2D7BF');
+      const m = k.box(1.0, 0.18, 0.95, 0.62, 16.5, 15, '#F1E8D5', { lc: '#E6DBC4', rc: '#CFC2A6' });
+      k.face(m, f, 0.12, 0.88, 3.5, 13, '#232C44'); k.face(m, f, 0.17, 0.83, 4.5, 12, '#3A6FA8'); k.face(m, f, 0.2, 0.5, 9, 11, '#9FD0F5'); k.face(m, f, 0.2, 0.6, 6, 7, '#CFE9FF');
+      k.box(1.05, 0.82, 0.88, 0.14, 16.5, 1.2, '#E6DBC4'); k.box(2.05, 0.84, 0.12, 0.09, 16.5, 1, '#F1E8D5');
+      k.box(0.28, 0.12, 0.2, 0.2, 16.5, 1, '#2E3A5C'); k.box(0.35, 0.19, 0.05, 0.05, 17.5, 13, '#2E3A5C'); k.box(0.24, 0.16, 0.32, 0.26, 30, 4, '#F4EEE4', { lc: '#EADFCB', rc: '#D9CBB0' });
+      k.box(0.4, 0.6, 0.18, 0.18, 16.5, 3, '#2E3A5C'); k.box(0.43, 0.63, 0.12, 0.12, 19.5, 0.5, '#7A5A44');
+      for (const [z, c] of [[16.5, '#2E3A5C'], [18.5, '#C9A97E'], [20.5, '#F4EEE4'], [22.5, '#4A5A8C']]) k.box(2.25 + (z % 3) * 0.02, 0.2, 0.5, 0.36, z, 2, c);
+    } },
+    books: { n: '✨ 책 더미', w: 1, d: 1, sp: true, draw(k) {
+      const cs = ['#2E3A5C', '#E9DCC4', '#8C6A52', '#4A5A8C', '#F4EEE4', '#C9A97E'];
+      for (let i = 0; i < 6; i++) { const o = (i % 2 ? 0.05 : -0.03); k.box(0.2 + o, 0.22 - o, 0.6, 0.5, i * 2.6, 2.6, cs[i]); k.box(0.24 + o, 0.26 - o, 0.52, 0.04, i * 2.6 + 0.5, 1.6, '#FFFDF5'); }
+      k.box(0.18, 0.28, 0.32, 0.42, 15.6, 0.8, '#FFFDF8'); k.box(0.5, 0.28, 0.32, 0.42, 15.6, 0.8, '#F7F0E2'); k.box(0.48, 0.28, 0.04, 0.42, 16.4, 0.3, '#C9A97E');
+    } },
+    rug2: { n: '✨ 네이비 체크 러그', w: 3, d: 2, flat: true, sp: true, draw(k) {
+      k.flat(0, 0, 3, 2, 0, '#2E3A5C'); k.flat(0.12, 0.12, 2.76, 1.76, 0, '#E9DCC4');
+      k.flat(0.22, 0.22, 2.56, 1.56, 0, '#F4EEE4', (x, y) => ((Math.floor(x / 3) + Math.floor(y / 2)) % 2 ? [233, 220, 196] : [244, 238, 228]));
+      k.flat(0.22, 0.95, 2.56, 0.1, 0, '#4A5A8C'); k.flat(1.45, 0.22, 0.1, 1.56, 0, '#4A5A8C');
+    } },
+    chair2: { n: '✨ 네이비 의자', w: 1, d: 1, sp: true, draw(k) {
+      for (const [x, y] of [[0.22, 0.22], [0.68, 0.22], [0.22, 0.68], [0.68, 0.68]]) k.box(x, y, 0.08, 0.08, 0, 8, '#8C6A52');
+      k.box(0.16, 0.16, 0.68, 0.68, 8, 3, '#2E3A5C', { lc: '#26304D', rc: '#1E273F' }); k.box(0.16, 0.16, 0.68, 0.12, 11, 12, '#2E3A5C', { lc: '#26304D', rc: '#1E273F' }); k.box(0.22, 0.2, 0.56, 0.06, 13, 8, '#3B4A78');
+    } },
+    shelf2: { n: '✨ 베이지 책장', w: 2, d: 1, sp: true, draw(k) { const b = k.box(0, 0, 2, 0.8, 0, 38, '#E9DCC4', { lc: '#DCCDB2', rc: '#C6B494' }); const f = k.front(); for (const v of [4, 16, 28]) { k.face(b, f, 0.06, 0.94, v, v + 9, '#BFAE90'); const cols = ['#2E3A5C', '#F4EEE4', '#8C6A52', '#4A5A8C', '#C9A97E', '#3B4A78']; for (let i = 0; i < 6; i++) k.face(b, f, 0.1 + i * 0.13, 0.1 + i * 0.13 + 0.09, v, v + 6 + (i % 2) * 2, cols[(i + v) % 6]); } k.box(0.15, 0.2, 0.25, 0.25, 38, 6, '#5A9A45'); k.box(1.4, 0.2, 0.4, 0.3, 38, 3, '#2E3A5C'); k.box(1.42, 0.22, 0.36, 0.26, 41, 3, '#E9DCC4'); } },
     cat: { n: '삼색냥', w: 1, d: 1, draw(k) { k.box(0.2, 0.35, 0.6, 0.35, 0, 6, '#FFFFFF'); k.box(0.2, 0.35, 0.25, 0.35, 3, 3, '#F2A73A'); k.box(0.6, 0.35, 0.22, 0.35, 0, 6, '#3A3A40'); k.box(0.15, 0.4, 0.25, 0.25, 6, 5, '#FFFFFF'); k.box(0.15, 0.4, 0.06, 0.06, 11, 2, '#F2A73A'); k.box(0.34, 0.4, 0.06, 0.06, 11, 2, '#3A3A40'); } }
   };
   const WIT = {
@@ -6417,7 +6569,7 @@ var MR = (function () {
   return { Scene, IT, WIT, WALLS, FLOORS, norm, defRoom, fits, fp, thumb, N };
 })();
 
-</script>
+    </script>
     <!-- Firebase Compat SDK (Firestore 실시간 동기화용) -->
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
@@ -7285,7 +7437,12 @@ var MR = (function () {
         };
 
         /* ==================== 4. 회원 통합 레지스트리 ==================== */
+        function realDateString() {
+            const d = new Date();
+            return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+        }
         function todayDateString() {
+            try { if (typeof host === 'function') { const hh = host(); if (hh && hh.userId === SECRET_ID) return retroDate(); } } catch (e) {}
             const d = new Date();
             return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
         }
@@ -7748,6 +7905,15 @@ var MR = (function () {
             if (!Array.isArray(E.bgm)) { E.bgm = [{ id: 'sg_lovelovelove', title: 'Love Love Love', artist: '', on: true, hasFile: false }, { id: 'sg_ytellme', title: 'Y (Please Tell Me Why)', artist: '', on: true, hasFile: false }]; ch = true; }
             if (!Array.isArray(E.notes)) { E.notes = [{ id: 'nt_rune_first', fromId: 'rune', fromNick: '루네', text: '의주야, 오늘 진짜 수고 많았어!\n무대 위에서 반짝반짝하던 거 다 봤어 ✨\n쉿, 이건 너만 알아 🤫', date: todayDateString(), read: false }]; ch = true; }
             if (!E.profile) { E.profile = { name: '의주', birth: '', blood: '', mbti: '', like: '', dream: '', intro: '' }; ch = true; }
+            if ((!E.room2 || E.roomV !== 2) && window.MR) { try { const R = { wall: 'cream', floor: 'wood', items: [], wall2: [{ k: 'window', side: 'R', u: 0.5 }, { k: 'frame', side: 'L', u: 2.4 }, { k: 'clock', side: 'R', u: 4.4 }] };
+                [{ k: 'fishtank', c: 0, r: 0, rot: 0 }, { k: 'shelf2', c: 2, r: 0, rot: 0 }, { k: 'books', c: 4, r: 0, rot: 0 }, { k: 'desk2', c: 5, r: 0, rot: 0 }, { k: 'chair2', c: 6, r: 1, rot: 0 }, { k: 'cac_r', c: 8, r: 0, rot: 0 }, { k: 'cac_y', c: 9, r: 0, rot: 0 }, { k: 'bed2', c: 0, r: 6, rot: 1 }, { k: 'lamp', c: 0, r: 4, rot: 0 }, { k: 'rug2', c: 4, r: 4, rot: 0 }, { k: 'turtle', c: 5, r: 7, rot: 0 }, { k: 'books', c: 3, r: 8, rot: 0 }, { k: 'plant', c: 9, r: 3, rot: 0 }]
+                .forEach(it => { if (MR.IT[it.k] && MR.fits(R, it, -1)) R.items.push(it); }); E.room2 = R; E.roomV = 2; ch = true; } catch (e) {} }
+            if (E.seedV !== 1) {
+                E.bio = '안녕! 의주의 미니홈피야 ^—^♥\n루네의 일상에 의주가 들어가서\n조금의 행복이 더해지면 좋겠다~~';
+                E.board = [{ id: 'bd_rule', title: '규칙!!!', text: '1. 일찍 일어나기 2. 거북이 밥 꼬박꼬박 주기! 3. 누나랑 싸우지 않기', date: retroDate() }];
+                ['diary', 'guestbook', 'ilchonComments', 'notes', 'photos', 'board'].forEach(k => { if (Array.isArray(E[k])) E[k].forEach(x => { if (/^20[12]\d-/.test(String(x.date || ''))) x.date = '2004' + String(x.date).slice(4); }); });
+                E.seedV = 1; ch = true;
+            }
             if (ch) persistLocalOnly();
         }
         window.openSecretHome = function() {
@@ -8706,7 +8872,7 @@ var MR = (function () {
         function spriteForUser(u) {
             if (!u || !u.avatar3d || !window.AVK || !AVK.spriteOf) return null;
             const key = u.userId + JSON.stringify(u.avatar3d);
-            if (OTHER_SPRITES[key] === undefined) OTHER_SPRITES[key] = AVK.spriteOf(u.avatar3d, 64, 74, 0.3);
+            if (OTHER_SPRITES[key] === undefined) OTHER_SPRITES[key] = AVK.spriteOf(u.avatar3d, 64, 74);
             return OTHER_SPRITES[key];
         }
         window.onAvatarSaved = function() {
@@ -8718,7 +8884,7 @@ var MR = (function () {
         function getRoomSprite() {
             const key = JSON.stringify(AVK.get());
             if (ROOM_SPRITE && ROOM_SPRITE_KEY === key) return ROOM_SPRITE;
-            const sp = AVK.sprite(64, 74, 0.3);
+            const sp = AVK.sprite(64, 74);
             if (sp) { ROOM_SPRITE = sp; ROOM_SPRITE_KEY = key; }
             return sp;
         }
@@ -8732,6 +8898,7 @@ var MR = (function () {
             if (isMyHome()) {
                 if (document.getElementById('minimi-modal').classList.contains('open')) return;
                 if (!AVK.mount3D(el)) el.innerHTML = `<img src="${AVK.url()}" style="width:100%;height:100%;object-fit:contain">`;
+                else if (AVK.get().eye === 'wide' && AVK.yaw) setTimeout(() => AVK.yaw(0), 60);
             } else {
                 if (!(h.avatar3d && AVK.mount3DOf && AVK.mount3DOf(el, h.avatar3d))) el.innerHTML = userMinimiHTML(h);
             }
@@ -8776,7 +8943,7 @@ var MR = (function () {
             if (!title || !body) { showToast('제목과 내용을 모두 입력해주세요'); return; }
             const cur = me();
             if (!DB.inquiries) DB.inquiries = [];
-            DB.inquiries.unshift({ id: `inq_${Date.now()}`, fromId: cur.userId, fromNick: cur.nickname, title, body, date: todayDateString(), status: '답변대기' });
+            DB.inquiries.unshift({ id: `inq_${Date.now()}`, fromId: cur.userId, fromNick: cur.nickname, title, body, date: realDateString(), status: '답변대기' });
             saveDB(cur.userId);
             closeInquirySendModal();
             if (session.isDev) renderDevInquiries();
@@ -9106,10 +9273,20 @@ var MR = (function () {
             const wasNew = !n.read;
             if (!n.read) { n.read = true; saveDB(u.userId); renderNotesButton(); }
             document.getElementById('notes-head').textContent = `💌 ${n.fromNick}님의 쪽지`;
+            if (n.fromId === 'lune' || n.fromId === 'rune') {
+                const d = String(n.date || '').slice(5).replace('-', '/');
+                document.getElementById('notes-body').innerHTML = `
+                <div class="fphone"><div class="fp-scr"><div class="fp-sb"><span>Yıl</span><span>✉ ▮▮▮▮ 11:42 PM</span></div>
+                  <div class="fp-hd"><b>${esc(n.fromNick)}</b><small>${esc(d)} 11:42 PM</small></div>
+                  <div class="fp-body"><div id="note-paper" class="fp-paper"></div></div>
+                  <div class="fp-bar"></div></div></div>
+                <div style="display:flex; justify-content:space-between; gap:6px; margin-top:8px;"><button type="button" class="cy-btn" onclick="renderNotesList()">◀ 목록</button><button type="button" class="cy-btn" onclick="deleteNote('${esc(n.id)}')">삭제</button></div>`;
+            } else {
             document.getElementById('notes-body').innerHTML = `
                 <div style="font-size:11px; color:#475569;">보낸 사람 <b style="color:#1e293b;">${esc(n.fromNick)}</b> (@${esc(n.fromId)}) · ${esc(n.date)}</div>
                 <div id="note-paper" class="note-paper"></div>
                 <div style="display:flex; justify-content:space-between; gap:6px;"><button type="button" class="cy-btn" onclick="renderNotesList()">◀ 목록</button><span style="display:flex; gap:6px;"><button type="button" class="cy-btn" onclick="deleteNote('${esc(n.id)}')">삭제</button>${DB.users[n.fromId] ? `<button type="button" class="cy-btn primary" onclick="composeNote('${esc(n.fromId)}')">↩ 답장</button>` : ''}</span></div>`;
+            }
             const paper = document.getElementById('note-paper'); const txt = String(n.text || ''); let i = 0;
             const cur = '<span class="cur">&nbsp;</span>';
             paper.innerHTML = cur;
@@ -9141,7 +9318,7 @@ var MR = (function () {
             const from = DB.users[fromId] || u, target = DB.users[to];
             if (!target) { showToast('받는 사람을 골라 주세요', true); return; }
             if (!text) { showToast('쪽지 내용을 적어주세요', true); return; }
-            notesOf(target).unshift({ id: `nt_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`, fromId: from.userId, fromNick: from.nickname, text, date: todayDateString(), read: false });
+            notesOf(target).unshift({ id: `nt_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`, fromId: from.userId, fromNick: from.nickname, text, date: (target && target.userId === SECRET_ID ? retroDate() : todayDateString()), read: false });
             saveDB(target.userId);
             showToast(`✉ ${target.nickname}님에게 쪽지를 보냈어요`);
             renderNotesList(); renderNotesButton();
